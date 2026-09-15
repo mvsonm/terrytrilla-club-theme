@@ -23,12 +23,15 @@
 */
 .welcome-banner {
   /*
-    Узор с главной сайта. Цвет белый и не зависит от схемы: обложка всегда лежит
-    на фирменном градиенте. Свечения здесь НЕ включаем — под градиентом и кругом
-    ступеней из макета они дали бы кашу; на полосе призыва, где фон ровный, они
-    к месту.
+    Узор с главной сайта — тот же, что в полосе призыва. Цвет белый и от схемы
+    не зависит: обложка всегда лежит на фирменном градиенте.
+
+    ⚠️ Круга ступеней из макета здесь БОЛЬШЕ НЕТ. Его двенадцатиконечная звезда
+    на просвет читалась как шестиконечная, то есть как religious symbol, которого
+    задание не заказывало и которому неоткуда взяться на музыкальном форуме.
+    Решение владельца: обложка несёт ровно то же, что нижняя полоса.
   */
-  @include tt-music-deco(#fff, 0.1);
+  @include tt-music-deco(#fff, 0.1, $glow: true);
 
   margin-block-end: 0;
   color: #fff;
@@ -43,11 +46,11 @@
   */
   --welcome-banner-search-menu-margin-inline: 0;
   --welcome-banner-text-align: start;
-  background-image: url($tt-cover),
-    linear-gradient(135deg, var(--tertiary) 0%, color-mix(in srgb, var(--tertiary) 72%, #0c0e1a) 100%);
-  background-repeat: no-repeat, no-repeat;
-  background-position: right clamp(-150px, -10vw, -70px) top clamp(-130px, -9vw, -50px), 0 0;
-  background-size: clamp(260px, 39vw, 560px) clamp(260px, 39vw, 560px), cover;
+  background-image: linear-gradient(
+    135deg,
+    var(--tertiary) 0%,
+    color-mix(in srgb, var(--tertiary) 72%, #0c0e1a) 100%
+  );
 
   // Текст и поиск идут во всю ширину, вровень с шапками — см. $tt-gutter.
   .welcome-banner__inner-wrapper,
@@ -140,9 +143,7 @@
 }
 
 /*
-  Зеркалирование украшения для арабской раскладки. У фонового слоя нет
-  логических свойств, поэтому сторона задаётся явно.
+  Зеркалирования здесь больше нет: оно переворачивало круг ступеней, а круг убран.
+  У самого узора кольца расставлены симметрично — по одному в каждый угол, — и
+  арабской раскладке зеркалить нечего.
 */
-[dir="rtl"] .welcome-banner {
-  background-position: left clamp(-150px, -10vw, -70px) top clamp(-130px, -9vw, -50px), 0 0;
-}
