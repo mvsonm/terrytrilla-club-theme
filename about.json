@@ -16,6 +16,10 @@
       "tt-show-your-work",
       "tt-ideas",
       "tt-general"
+    ],
+    "csp_extensions": [
+      "connect-src https://terrytrilla.com",
+      "script-src https://terrytrilla.com"
     ]
   },
   "theme_site_settings": {

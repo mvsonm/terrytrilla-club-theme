@@ -45,6 +45,8 @@ it:
     latest: "Recenti"
     all_topics: "Tutte le discussioni"
   profile:
+    works: "Lavori nella Galleria"
+    works_all: "Tutti i lavori: %{count}"
     empty: "Qui non c’è ancora nulla: il membro è appena arrivato. Il profilo si riempie da solo: prima risposta, primo grazie, primo distintivo."
     account_note: "Nome, email e avatar arrivano dal tuo account TerryTrilla e si cambiano lì —"
     account_link: "apri le impostazioni dell’account"

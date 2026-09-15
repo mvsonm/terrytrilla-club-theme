@@ -45,6 +45,8 @@ ja:
     latest: "最新"
     all_topics: "すべてのトピック"
   profile:
+    works: "ギャラリーの作品"
+    works_all: "すべての作品: %{count}"
     empty: "まだ何もありません——参加したばかりです。プロフィールは自然に埋まります：最初の返信、最初のお礼、最初のバッジ。"
     account_note: "名前・メール・アバターは TerryTrilla のアカウントから来ており、変更もそちらで行います——"
     account_link: "アカウント設定を開く"

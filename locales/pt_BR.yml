@@ -45,6 +45,8 @@ pt_BR:
     latest: "Recentes"
     all_topics: "Todos os tópicos"
   profile:
+    works: "Trabalhos na Galeria"
+    works_all: "Todos os trabalhos: %{count}"
     empty: "Ainda não há nada aqui — o membro acabou de chegar. O perfil se preenche sozinho: a primeira resposta, o primeiro obrigado, o primeiro emblema."
     account_note: "Nome, e-mail e avatar vêm da sua conta TerryTrilla e são alterados lá —"
     account_link: "abrir configurações da conta"

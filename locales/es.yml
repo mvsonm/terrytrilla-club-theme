@@ -45,6 +45,8 @@ es:
     latest: "Recientes"
     all_topics: "Todos los temas"
   profile:
+    works: "Obras en la Galería"
+    works_all: "Todas las obras: %{count}"
     empty: "Aquí todavía no hay nada: es un miembro nuevo. El perfil se llena solo: la primera respuesta, el primer gracias, la primera insignia."
     account_note: "El nombre, el correo y el avatar vienen de tu cuenta de TerryTrilla y se cambian allí —"
     account_link: "abrir ajustes de la cuenta"

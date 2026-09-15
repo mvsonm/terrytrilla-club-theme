@@ -68,3 +68,48 @@
     font-weight: 600;
   }
 }
+
+/* ── E5. «Работы в Галерее» ───────────────────────────────────────────────── */
+
+.tt-works {
+  margin-block: 20px;
+  padding: 18px 20px;
+  background: var(--secondary);
+  border: 1px solid var(--primary-low);
+  border-radius: 14px;
+}
+
+.tt-works__title {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.tt-works__list {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  a {
+    font-size: 15px;
+    color: var(--primary);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--tertiary);
+    }
+  }
+}
+
+.tt-works__all {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tertiary);
+  text-decoration: none;
+}

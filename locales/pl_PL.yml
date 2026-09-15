@@ -45,6 +45,8 @@ pl_PL:
     latest: "Najnowsze"
     all_topics: "Wszystkie tematy"
   profile:
+    works: "Prace w Galerii"
+    works_all: "Wszystkie prace: %{count}"
     empty: "Na razie tu pusto — to nowy uczestnik. Profil wypełnia się sam: pierwsza odpowiedź, pierwsze podziękowanie, pierwsza odznaka."
     account_note: "Imię, e-mail i awatar pochodzą z konta TerryTrilla i tam się je zmienia —"
     account_link: "otwórz ustawienia konta"

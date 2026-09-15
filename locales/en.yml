@@ -45,6 +45,8 @@ en:
     latest: "Latest"
     all_topics: "All topics"
   profile:
+    works: "Works in the Gallery"
+    works_all: "All works: %{count}"
     empty: "Nothing here yet — this is a new member. The profile fills in by itself: the first reply, the first thanks, the first badge."
     account_note: "Name, email and avatar come from your TerryTrilla account and are changed there —"
     account_link: "open account settings"
