@@ -41,5 +41,16 @@
       "success": "22C55E",
       "love": "F472B6"
     }
+  },
+  "assets": {
+    "inter-cyrillic-ext": "assets/fonts/inter-cyrillic-ext.woff2",
+    "inter-cyrillic": "assets/fonts/inter-cyrillic.woff2",
+    "inter-latin-ext": "assets/fonts/inter-latin-ext.woff2",
+    "inter-latin": "assets/fonts/inter-latin.woff2",
+    "rubik-arabic": "assets/fonts/rubik-arabic.woff2",
+    "rubik-cyrillic-ext": "assets/fonts/rubik-cyrillic-ext.woff2",
+    "rubik-cyrillic": "assets/fonts/rubik-cyrillic.woff2",
+    "rubik-latin-ext": "assets/fonts/rubik-latin-ext.woff2",
+    "rubik-latin": "assets/fonts/rubik-latin.woff2"
   }
 }
