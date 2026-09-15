@@ -82,8 +82,8 @@
   padding: clamp(20px, 1.7vw, 28px);
   min-height: clamp(104px, 8vw, 128px);
   min-width: 0;
-  background: var(--secondary);
-  border: 1px solid var(--primary-low);
+  background: var(--tt-card);
+  border: 1px solid var(--tt-card-border);
   border-radius: 16px;
   color: var(--primary);
   text-decoration: none;
