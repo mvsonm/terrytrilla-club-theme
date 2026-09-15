@@ -199,3 +199,49 @@
 .tt-home__latest {
   padding-block-end: clamp(40px, 4vw, 64px);
 }
+
+/* ── Пустой раздел (C6) ───────────────────────────────────────────────────── */
+
+.tt-empty {
+  margin-block-end: 18px;
+  padding: clamp(22px, 2.4vw, 32px);
+  background: var(--tertiary-low);
+  border: 1px solid var(--primary-low);
+  border-radius: 14px;
+}
+
+.tt-empty__title {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: clamp(18px, 1.5vw, 22px);
+  letter-spacing: -0.01em;
+  margin-block-end: 8px;
+}
+
+.tt-empty__text {
+  margin: 0 0 18px;
+  max-width: 60ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--primary-medium);
+  text-wrap: pretty;
+}
+
+.tt-empty__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 38px;
+  padding-inline: 18px;
+  border-radius: 10px;
+  background: var(--tertiary);
+  color: var(--secondary);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--tertiary-hover);
+    color: var(--secondary);
+  }
+}

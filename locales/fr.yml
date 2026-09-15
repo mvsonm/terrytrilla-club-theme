@@ -33,6 +33,8 @@ fr:
     licenses: "Licences"
     tagline: "TerryTrilla Club — questions, analyses et travaux des membres."
   home:
+    empty_title: "Personne n’a encore écrit ici"
+    empty_text: "La section attend son premier sujet. Pose ta question sur ce qui te bloque maintenant : une gamme, un accord, un enchaînement qui ne tombe pas juste."
     cover_sub: "Pose ta question dans ta langue — nous y répondons. Gammes, accords et enchaînements, avec le cercle vivant dans le sujet."
     sections: "Sections"
     section_empty: "Poser la première question"

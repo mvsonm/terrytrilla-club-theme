@@ -33,6 +33,8 @@ pl_PL:
     licenses: "Licencje"
     tagline: "TerryTrilla Club — pytania, analizy i prace uczestników."
   home:
+    empty_title: "Nikt jeszcze tu nie pisał"
+    empty_text: "Dział czeka na pierwszy temat. Zapytaj o to, nad czym siedzisz teraz: skala, akord, zwrot, który się nie składa."
     cover_sub: "Pytaj w swoim języku — odpowiemy w nim. Skale, akordy i progresje, z żywym kołem prosto w temacie."
     sections: "Działy"
     section_empty: "Zadaj pierwsze pytanie"

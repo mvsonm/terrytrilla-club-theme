@@ -33,6 +33,8 @@ it:
     licenses: "Licenze"
     tagline: "TerryTrilla Club — domande, analisi e lavori dei membri."
   home:
+    empty_title: "Qui non ha ancora scritto nessuno"
+    empty_text: "La sezione aspetta la sua prima discussione. Chiedi di ciò su cui stai lavorando adesso: una scala, un accordo, un giro che non torna."
     cover_sub: "Chiedi nella tua lingua: rispondiamo in quella. Scale, accordi e progressioni, con il cerchio vivo dentro la discussione."
     sections: "Sezioni"
     section_empty: "Fai la prima domanda"
