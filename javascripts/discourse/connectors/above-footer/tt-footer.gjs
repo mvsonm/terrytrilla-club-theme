@@ -61,25 +61,35 @@ const DOORS = [
   РАЗДЕЛЕНЫ: «Библиотека» и «Все лады» — разные подписи, и ведут они в разные
   углы справочника. Все адреса проверены живьём: отвечают 200.
 */
+/*
+  ⚠️ Часть подписей берётся из ключей полосы продукта (`bar.*`), а не дублируется
+  в `footer.*`: «Partimento v3», «Блог», «Развитие слуха», «Войти», «Тарифы» —
+  это одни и те же слова в двух местах страницы, и держать их двумя наборами
+  значит однажды перевести по-разному.
+
+  Первая версия этого не учла: скрипт добавления ключей проверял наличие имени
+  ПО ВСЕМУ файлу, находил его в `bar` и в `footer` не добавлял. На экране в
+  подвале висели сырые ключи вида [ru.theme_translations.1.footer.blog].
+*/
 const PRODUCT = [
-  ["partimento", "/partimento"],
-  ["library", "/chords"],
-  ["ear_training", "/ear-training"],
-  ["metronome", "/metronome"],
-  ["tuner", "/tuner"],
-  ["gallery", "/gallery"],
+  ["bar.partimento", "/partimento"],
+  ["footer.library", "/chords"],
+  ["bar.ear_training", "/ear-training"],
+  ["footer.metronome", "/metronome"],
+  ["footer.tuner", "/tuner"],
+  ["footer.gallery", "/gallery"],
 ];
 const MATERIALS = [
-  ["blog", "/blog"],
-  ["music", "/music-by-terry-trilla"],
-  ["circle", "/circle-of-fifths"],
-  ["all_scales", "/scales"],
+  ["bar.blog", "/blog"],
+  ["footer.music", "/music-by-terry-trilla"],
+  ["bar.circle_of_fifths", "/circle-of-fifths"],
+  ["footer.all_scales", "/scales"],
 ];
 const ACCOUNT = [
-  { key: "login", forum: "/login" },
-  { key: "pricing", site: "/pricing" },
-  { key: "rules", forum: "/guidelines" },
-  { key: "privacy", site: "/privacy-policy" },
+  { key: "bar.login", forum: "/login" },
+  { key: "bar.pricing", site: "/pricing" },
+  { key: "footer.rules", forum: "/guidelines" },
+  { key: "footer.privacy", site: "/privacy-policy" },
 ];
 
 const SECTIONS = ["start-here", "questions", "theory", "show-your-work", "ideas", "general"];
@@ -105,7 +115,7 @@ export default class TtFooter extends Component {
   }
 
   #link(key, path) {
-    return { key, href: this.#site(path), label: i18n(themePrefix(`footer.${key}`)) };
+    return { key, href: this.#site(path), label: i18n(themePrefix(key)) };
   }
 
   get doors() {
@@ -137,7 +147,7 @@ export default class TtFooter extends Component {
     return ACCOUNT.map((a) => ({
       key: a.key,
       href: a.forum ?? this.#site(a.site),
-      label: i18n(themePrefix(`footer.${a.key}`)),
+      label: i18n(themePrefix(a.key)),
     }));
   }
 

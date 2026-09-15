@@ -111,7 +111,10 @@ export default class TtHome extends Component {
       .filter((t) => t.fancy_title_localized && t.locale)
       .slice(0, 3)
       .map((t) => ({
-        title: t.title,
+        // ⚠️ Берём fancy_title, а НЕ title: в title лежит ОРИГИНАЛ, и колонка
+        // показывала португальский заголовок там, где лента ниже показывала
+        // русский перевод. Признак перевода — fancy_title_localized.
+        title: t.fancy_title,
         href: `/t/${t.slug}/${t.id}`,
         meta: i18n(themePrefix("home.translated_from"), {
           lang: LANG_NAMES[t.locale] || t.locale,
