@@ -1,9 +1,8 @@
 import Component from "@glimmer/component";
-import { service } from "@ember/service";
 import { i18n } from "discourse-i18n";
 
 /*
-  Название клуба и навигация по разделам в шапке (макет Header.dc.html).
+  Название клуба в шапке (макет Header.dc.html).
 
   ⚠️ НЕ `home-logo-wrapper`. Та точка — wrapper, у неё допускается ровно ОДНА
   врезка, и её уже занимает плагин чата (`home-logo-wrapper/chat-header-…`).
@@ -16,35 +15,13 @@ import { i18n } from "discourse-i18n";
   ⚠️ Название короткое — «Клуб», а не заголовок сайта. В макете рядом со знаком
   стоит именно оно: длинное «TerryTrilla Community» вытесняло навигацию разделов
   и дублировало полосу продукта, где имя продукта уже написано.
+
+  Навигация по разделам жила здесь же и прижималась к левому краю. Она переехала
+  в отдельную врезку `before-header-panel/tt-club-nav.gjs` — к переключателю
+  языка, как в макете. Список разделов у обеих один: `lib/tt-sections.js`.
 */
-
-// Порядок разделов — из макета, а не из порядка в базе.
-const SECTIONS = [
-  "start-here",
-  "questions",
-  "theory",
-  "show-your-work",
-  "ideas",
-  "general",
-];
-
 export default class TtClubName extends Component {
-  @service site;
-
-  get sections() {
-    const bySlug = new Map((this.site.categories || []).map((c) => [c.slug, c]));
-    return SECTIONS.map((slug) => bySlug.get(slug))
-      .filter(Boolean)
-      .map((c) => ({ name: c.name, href: `/c/${c.slug}/${c.id}` }));
-  }
-
   <template>
     <span class="tt-club-name">{{i18n (themePrefix "header.club")}}</span>
-
-    <nav class="tt-club-nav">
-      {{#each this.sections as |s|}}
-        <a href={{s.href}}>{{s.name}}</a>
-      {{/each}}
-    </nav>
   </template>
 }

@@ -25,6 +25,17 @@
   position: relative;
   margin-block-end: 0;
   color: #fff;
+
+  /*
+    Поиск по ЛЕВОМУ краю, вровень с заголовком и подзаголовком.
+
+    Механизм штатный: ядро центрирует поле автоотступом, но выносит и отступ, и
+    выравнивание текста в переменные (`common/upcoming-changes/…/variables.scss`,
+    применяются в `welcome-banner.scss`). Значит перебивать правило ядра своим
+    `margin-inline: 0 !important` не нужно — достаточно задать переменную.
+  */
+  --welcome-banner-search-menu-margin-inline: 0;
+  --welcome-banner-text-align: start;
   background-image: url($tt-cover),
     linear-gradient(135deg, var(--tertiary) 0%, color-mix(in srgb, var(--tertiary) 72%, #0c0e1a) 100%);
   background-repeat: no-repeat, no-repeat;
