@@ -42,13 +42,7 @@ de:
     domain: "terrytrilla.club — Community von terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Produkt"
-    col_reference: "Nachschlagewerk"
-    col_legal: "Rechtliches"
     terms: "Bedingungen"
-    privacy_policy: "Datenschutz"
-    cookie_policy: "Cookies"
-    licenses: "Lizenzen"
-    tagline: "TerryTrilla Club — Fragen, Analysen und Arbeiten der Mitglieder."
   home:
     cover_title: "Frag nach Harmonie"
     cover_placeholder: "Zum Beispiel: warum ist die V. Stufe in Moll dur"
@@ -64,8 +58,6 @@ de:
     cover_sub: "Melodie-Analyse, Modi, Akkorde. Lesen ohne Anmeldung — Antworten kommen in deiner Sprache."
     sections: "Bereiche"
     curated_start: "Wo anfangen"
-    curated_deep: "Analysen"
-    replies: "Antworten: %{count}"
     all_topics: "Alle Themen"
   profile:
     works: "Arbeiten in der Galerie"

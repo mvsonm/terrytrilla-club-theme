@@ -42,13 +42,7 @@ it:
     domain: "terrytrilla.club — comunità di terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Prodotto"
-    col_reference: "Riferimento"
-    col_legal: "Legale"
     terms: "Termini"
-    privacy_policy: "Privacy"
-    cookie_policy: "Cookie"
-    licenses: "Licenze"
-    tagline: "TerryTrilla Club — domande, analisi e lavori dei membri."
   home:
     cover_title: "Chiedi di armonia"
     cover_placeholder: "Per esempio: perché il V grado è maggiore in tonalità minore"
@@ -64,8 +58,6 @@ it:
     cover_sub: "Analisi della melodia, modi, accordi. Leggi senza accedere: le risposte arrivano nella tua lingua."
     sections: "Sezioni"
     curated_start: "Da dove iniziare"
-    curated_deep: "Analisi"
-    replies: "Risposte: %{count}"
     all_topics: "Tutte le discussioni"
   profile:
     works: "Lavori nella Galleria"

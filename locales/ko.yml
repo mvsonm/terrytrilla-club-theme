@@ -42,13 +42,7 @@ ko:
     domain: "terrytrilla.club — terrytrilla.com 커뮤니티"
     door_partimento: "Partimento v3"
     col_product: "제품"
-    col_reference: "참고 자료"
-    col_legal: "법적 고지"
     terms: "이용약관"
-    privacy_policy: "개인정보"
-    cookie_policy: "쿠키"
-    licenses: "라이선스"
-    tagline: "TerryTrilla Club — 질문, 분석, 회원들의 작업."
   home:
     cover_title: "화성에 대해 물어보기"
     cover_placeholder: "예: 단조에서 V도가 왜 장화음이 되는가"
@@ -63,8 +57,6 @@ ko:
     cover_sub: "멜로디 분석, 모드, 코드. 로그인 없이 읽을 수 있고 답변은 당신의 언어로 옵니다."
     sections: "섹션"
     curated_start: "어디서 시작할까"
-    curated_deep: "분석"
-    replies: "답글: %{count}"
     all_topics: "모든 주제"
   profile:
     works: "갤러리의 작업"

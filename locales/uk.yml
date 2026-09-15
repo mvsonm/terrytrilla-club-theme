@@ -42,13 +42,7 @@ uk:
     domain: "terrytrilla.club — спільнота terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Продукт"
-    col_reference: "Довідник"
-    col_legal: "Правове"
     terms: "Умови"
-    privacy_policy: "Приватність"
-    cookie_policy: "Куки"
-    licenses: "Ліцензії"
-    tagline: "Спільнота TerryTrilla — питання, розбори та роботи учасників."
   home:
     cover_title: "Спитайте про гармонію"
     cover_placeholder: "Наприклад: чому V щабель у мінорі мажорний"
@@ -66,8 +60,6 @@ uk:
     cover_sub: "Розбір мелодії, лади, акорди. Читати можна без входу, відповіді приходять вашою мовою."
     sections: "Розділи"
     curated_start: "З чого почати"
-    curated_deep: "Розбори"
-    replies: "Відповідей: %{count}"
     all_topics: "Усі теми"
   profile:
     works: "Роботи в Галереї"

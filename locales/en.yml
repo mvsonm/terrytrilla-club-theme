@@ -42,13 +42,7 @@ en:
     domain: "terrytrilla.club — community of terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Product"
-    col_reference: "Reference"
-    col_legal: "Legal"
     terms: "Terms"
-    privacy_policy: "Privacy"
-    cookie_policy: "Cookies"
-    licenses: "Licenses"
-    tagline: "TerryTrilla Club — questions, breakdowns and work by members."
   home:
     cover_title: "Ask about harmony"
     cover_placeholder: "For example: why is the V degree major in a minor key"
@@ -64,8 +58,6 @@ en:
     cover_sub: "Melody analysis, modes, chords. Read without signing in — answers arrive in your language."
     sections: "Sections"
     curated_start: "Where to start"
-    curated_deep: "Breakdowns"
-    replies: "Replies: %{count}"
     all_topics: "All topics"
   profile:
     works: "Works in the Gallery"

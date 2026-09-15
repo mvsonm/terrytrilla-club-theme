@@ -42,13 +42,7 @@ ja:
     domain: "terrytrilla.club — terrytrilla.com のコミュニティ"
     door_partimento: "Partimento v3"
     col_product: "製品"
-    col_reference: "リファレンス"
-    col_legal: "規約"
     terms: "利用規約"
-    privacy_policy: "プライバシー"
-    cookie_policy: "クッキー"
-    licenses: "ライセンス"
-    tagline: "TerryTrilla Club — 質問、分析、メンバーの作品。"
   home:
     cover_title: "和声について聞く"
     cover_placeholder: "例：なぜ短調のV度が長三和音になるのか"
@@ -63,8 +57,6 @@ ja:
     cover_sub: "メロディの分析、モード、コード。ログインなしで読めて、答えはあなたの言語で届きます。"
     sections: "セクション"
     curated_start: "はじめに"
-    curated_deep: "解説"
-    replies: "返信: %{count}"
     all_topics: "すべてのトピック"
   profile:
     works: "ギャラリーの作品"

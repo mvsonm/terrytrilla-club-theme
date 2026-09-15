@@ -42,13 +42,7 @@ es:
     domain: "terrytrilla.club — comunidad de terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Producto"
-    col_reference: "Referencia"
-    col_legal: "Legal"
     terms: "Términos"
-    privacy_policy: "Privacidad"
-    cookie_policy: "Cookies"
-    licenses: "Licencias"
-    tagline: "TerryTrilla Club: preguntas, análisis y trabajos de los miembros."
   home:
     cover_title: "Pregunta sobre armonía"
     cover_placeholder: "Por ejemplo: por qué el V grado es mayor en tonalidad menor"
@@ -64,8 +58,6 @@ es:
     cover_sub: "Análisis de melodía, modos, acordes. Lee sin iniciar sesión: las respuestas llegan en tu idioma."
     sections: "Secciones"
     curated_start: "Por dónde empezar"
-    curated_deep: "Análisis"
-    replies: "Respuestas: %{count}"
     all_topics: "Todos los temas"
   profile:
     works: "Obras en la Galería"

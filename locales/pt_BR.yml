@@ -42,13 +42,7 @@ pt_BR:
     domain: "terrytrilla.club — comunidade de terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Produto"
-    col_reference: "Referência"
-    col_legal: "Jurídico"
     terms: "Termos"
-    privacy_policy: "Privacidade"
-    cookie_policy: "Cookies"
-    licenses: "Licenças"
-    tagline: "TerryTrilla Club — perguntas, análises e trabalhos dos membros."
   home:
     cover_title: "Pergunte sobre harmonia"
     cover_placeholder: "Por exemplo: por que o V grau é maior em tonalidade menor"
@@ -64,8 +58,6 @@ pt_BR:
     cover_sub: "Análise de melodia, modos, acordes. Leia sem entrar — as respostas chegam no seu idioma."
     sections: "Seções"
     curated_start: "Por onde começar"
-    curated_deep: "Análises"
-    replies: "Respostas: %{count}"
     all_topics: "Todos os tópicos"
   profile:
     works: "Trabalhos na Galeria"

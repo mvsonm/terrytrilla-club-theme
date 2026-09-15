@@ -42,13 +42,7 @@ ar:
     domain: "terrytrilla.club — مجتمع terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "المنتج"
-    col_reference: "المرجع"
-    col_legal: "قانوني"
     terms: "الشروط"
-    privacy_policy: "الخصوصية"
-    cookie_policy: "الكوكيز"
-    licenses: "التراخيص"
-    tagline: "مجتمع TerryTrilla — أسئلة وتحليلات وأعمال الأعضاء."
   home:
     cover_title: "اسأل عن الهارموني"
     cover_placeholder: "مثلاً: لماذا تكون الدرجة الخامسة كبيرة في السلّم الصغير"
@@ -68,8 +62,6 @@ ar:
     cover_sub: "تحليل اللحن، المقامات، الأكورات. القراءة بدون تسجيل، والإجابات تصلك بلغتك."
     sections: "الأقسام"
     curated_start: "من أين تبدأ"
-    curated_deep: "تحليلات"
-    replies: "الردود: %{count}"
     all_topics: "كل المواضيع"
   profile:
     works: "الأعمال في المعرض"

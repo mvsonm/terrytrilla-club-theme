@@ -42,13 +42,7 @@ fr:
     domain: "terrytrilla.club — communauté de terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Produit"
-    col_reference: "Référence"
-    col_legal: "Mentions légales"
     terms: "Conditions"
-    privacy_policy: "Confidentialité"
-    cookie_policy: "Cookies"
-    licenses: "Licences"
-    tagline: "TerryTrilla Club — questions, analyses et travaux des membres."
   home:
     cover_title: "Posez une question d’harmonie"
     cover_placeholder: "Par exemple : pourquoi le Ve degré est majeur en mineur"
@@ -64,8 +58,6 @@ fr:
     cover_sub: "Analyse de mélodie, modes, accords. Lecture sans connexion — les réponses arrivent dans ta langue."
     sections: "Sections"
     curated_start: "Par où commencer"
-    curated_deep: "Analyses"
-    replies: "Réponses : %{count}"
     all_topics: "Tous les sujets"
   profile:
     works: "Travaux dans la Galerie"

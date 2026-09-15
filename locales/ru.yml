@@ -42,13 +42,7 @@ ru:
     domain: "terrytrilla.club — сообщество terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Продукт"
-    col_reference: "Справочник"
-    col_legal: "Правовое"
     terms: "Условия"
-    privacy_policy: "Приватность"
-    cookie_policy: "Куки"
-    licenses: "Лицензии"
-    tagline: "Сообщество TerryTrilla — вопросы, разборы и работы участников."
   home:
     cover_title: "Спросите о гармонии"
     cover_placeholder: "Например: почему V ступень в миноре мажорная"
@@ -66,8 +60,6 @@ ru:
     cover_sub: "Разбор мелодии, лады, аккорды. Читать можно без входа, ответы приходят на вашем языке."
     sections: "Разделы"
     curated_start: "С чего начать"
-    curated_deep: "Разборы"
-    replies: "Ответов: %{count}"
     all_topics: "Все темы"
   profile:
     works: "Работы в Галерее"

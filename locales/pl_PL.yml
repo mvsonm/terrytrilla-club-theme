@@ -42,13 +42,7 @@ pl_PL:
     domain: "terrytrilla.club — społeczność terrytrilla.com"
     door_partimento: "Partimento v3"
     col_product: "Produkt"
-    col_reference: "Materiały"
-    col_legal: "Informacje prawne"
     terms: "Regulamin"
-    privacy_policy: "Prywatność"
-    cookie_policy: "Pliki cookie"
-    licenses: "Licencje"
-    tagline: "TerryTrilla Club — pytania, analizy i prace uczestników."
   home:
     cover_title: "Zapytaj o harmonię"
     cover_placeholder: "Na przykład: dlaczego V stopień w moll jest durowy"
@@ -66,8 +60,6 @@ pl_PL:
     cover_sub: "Analiza melodii, skale, akordy. Czytasz bez logowania — odpowiedzi przychodzą w Twoim języku."
     sections: "Działy"
     curated_start: "Od czego zacząć"
-    curated_deep: "Analizy"
-    replies: "Odpowiedzi: %{count}"
     all_topics: "Wszystkie tematy"
   profile:
     works: "Prace w Galerii"
