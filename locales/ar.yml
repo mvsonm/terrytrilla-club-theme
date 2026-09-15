@@ -32,3 +32,12 @@ ar:
     cookie_policy: "الكوكيز"
     licenses: "التراخيص"
     tagline: "مجتمع TerryTrilla — أسئلة وتحليلات وأعمال الأعضاء."
+  home:
+    sections: "الأقسام"
+    section_empty: "اطرح السؤال الأول"
+    section_topics: "المواضيع: %{count}"
+    curated_start: "من أين تبدأ"
+    curated_deep: "تحليلات"
+    replies: "الردود: %{count}"
+    latest: "الأحدث"
+    all_topics: "كل المواضيع"

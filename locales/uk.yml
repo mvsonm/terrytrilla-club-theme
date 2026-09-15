@@ -32,3 +32,12 @@ uk:
     cookie_policy: "Куки"
     licenses: "Ліцензії"
     tagline: "Спільнота TerryTrilla — питання, розбори та роботи учасників."
+  home:
+    sections: "Розділи"
+    section_empty: "Поставити перше питання"
+    section_topics: "Тем: %{count}"
+    curated_start: "З чого почати"
+    curated_deep: "Розбори"
+    replies: "Відповідей: %{count}"
+    latest: "Останні"
+    all_topics: "Усі теми"

@@ -32,3 +32,12 @@ pt_BR:
     cookie_policy: "Cookies"
     licenses: "Licenças"
     tagline: "TerryTrilla Club — perguntas, análises e trabalhos dos membros."
+  home:
+    sections: "Seções"
+    section_empty: "Faça a primeira pergunta"
+    section_topics: "Tópicos: %{count}"
+    curated_start: "Por onde começar"
+    curated_deep: "Análises"
+    replies: "Respostas: %{count}"
+    latest: "Recentes"
+    all_topics: "Todos os tópicos"

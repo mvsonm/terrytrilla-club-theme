@@ -7,7 +7,16 @@
   "theme_version": "0.1.0",
   "minimum_discourse_version": "2026.8.0",
   "modifiers": {
-    "only_theme_color_schemes": true
+    "only_theme_color_schemes": true,
+    "custom_homepage": true,
+    "svg_icons": [
+      "tt-start-here",
+      "tt-questions",
+      "tt-theory",
+      "tt-show-your-work",
+      "tt-ideas",
+      "tt-general"
+    ]
   },
   "theme_site_settings": {
     "enable_welcome_banner": true
@@ -51,6 +60,7 @@
     "rubik-cyrillic-ext": "assets/fonts/rubik-cyrillic-ext.woff2",
     "rubik-cyrillic": "assets/fonts/rubik-cyrillic.woff2",
     "rubik-latin-ext": "assets/fonts/rubik-latin-ext.woff2",
-    "rubik-latin": "assets/fonts/rubik-latin.woff2"
+    "rubik-latin": "assets/fonts/rubik-latin.woff2",
+    "icons-sprite": "assets/tt-icons.svg"
   }
 }

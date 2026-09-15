@@ -1,0 +1,201 @@
+/*
+  Своя главная (C3, C5, C6). Раскладка — артборды Home.dc.html и SectionCards.dc.html:
+  содержимое 1110 px, карточки от 290 px, колонки отобранного от 300 px.
+*/
+
+.tt-home {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 1.7vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 3vw, 44px);
+}
+
+.tt-home__title {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: clamp(20px, 1.7vw, 24px);
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+}
+
+.tt-home__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+
+  .tt-home__title {
+    margin-bottom: 12px;
+  }
+
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--tertiary);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
+
+.tt-home__sections {
+  padding-block-start: clamp(28px, 3vw, 44px);
+}
+
+.tt-home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
+}
+
+/* ── Карточка раздела ─────────────────────────────────────────────────────── */
+
+.tt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 22px 22px 20px;
+  min-width: 0;
+  background: var(--secondary);
+  border: 1px solid var(--primary-low);
+  border-radius: 14px;
+  color: var(--primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--tertiary-medium);
+    background: var(--hover);
+    color: var(--primary);
+  }
+}
+
+/*
+  Значок красится цветом РАЗДЕЛА. Цвет лежит на категории (A4) и приезжает
+  переменной `--category-<slug>-color`, которую движок объявляет сам для каждой
+  категории; при её отсутствии откатываемся на акцент схемы.
+*/
+.tt-card__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 11px;
+  background: var(--tertiary-low);
+  color: var(--tertiary);
+
+  .d-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@each $slug in (start-here, questions, theory, show-your-work, ideas, general) {
+  .tt-card[data-section="#{$slug}"] .tt-card__icon {
+    color: var(--category-#{$slug}-color, var(--tertiary));
+  }
+}
+
+.tt-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tt-card__name {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.tt-card__desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--primary-medium);
+  text-wrap: pretty;
+}
+
+.tt-card__count {
+  margin-block-start: auto;
+  font-size: 13px;
+  color: var(--primary-medium);
+}
+
+/*
+  Приглашение вместо счётчика. Пустых разделов сейчас четыре из шести — это
+  основной вид, а не исключение, поэтому оно оформлено как действие, а не как
+  извинение за пустоту.
+*/
+.tt-card__invite {
+  margin-block-start: auto;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tertiary);
+}
+
+/* ── Две колонки отобранного ──────────────────────────────────────────────── */
+
+.tt-home__curated {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.tt-col {
+  background: var(--secondary);
+  border: 1px solid var(--primary-low);
+  border-radius: 14px;
+  padding-block: 6px;
+  min-width: 0;
+}
+
+.tt-col__title {
+  display: block;
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  padding: 16px 22px 10px;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.tt-col__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 22px;
+  border-block-start: 1px solid var(--primary-low);
+  color: var(--primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--hover);
+    color: var(--primary);
+  }
+}
+
+.tt-col__name {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+
+.tt-col__meta {
+  font-size: 12px;
+  color: var(--primary-medium);
+}
+
+/* ── Лента ────────────────────────────────────────────────────────────────── */
+
+.tt-home__latest {
+  padding-block-end: clamp(40px, 4vw, 64px);
+}

@@ -32,3 +32,12 @@ ja:
     cookie_policy: "クッキー"
     licenses: "ライセンス"
     tagline: "TerryTrilla Club — 質問、分析、メンバーの作品。"
+  home:
+    sections: "セクション"
+    section_empty: "最初の質問をする"
+    section_topics: "トピック: %{count}"
+    curated_start: "はじめに"
+    curated_deep: "解説"
+    replies: "返信: %{count}"
+    latest: "最新"
+    all_topics: "すべてのトピック"

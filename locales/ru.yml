@@ -32,3 +32,12 @@ ru:
     cookie_policy: "Куки"
     licenses: "Лицензии"
     tagline: "Сообщество TerryTrilla — вопросы, разборы и работы участников."
+  home:
+    sections: "Разделы"
+    section_empty: "Задать первый вопрос"
+    section_topics: "Тем: %{count}"
+    curated_start: "С чего начать"
+    curated_deep: "Разборы"
+    replies: "Ответов: %{count}"
+    latest: "Последние"
+    all_topics: "Все темы"
