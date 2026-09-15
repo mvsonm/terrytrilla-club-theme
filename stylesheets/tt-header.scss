@@ -52,7 +52,23 @@ html:has(.tt-bar) .d-header .auth-buttons {
   display: none;
 }
 
-/* Название клуба рядом со знаком — добавляется к штатному логотипу, а не вместо. */
+/*
+  Название клуба справа от знака.
+
+  Врезка стоит в `header-contents__before`, то есть В РАЗМЕТКЕ идёт ПЕРЕД знаком:
+  wrapper-точку у самого знака занял плагин чата, и второй врезки она не допускает.
+  Порядок на экране правит флексбокс — знак получает order 1, название order 2.
+*/
+.d-header .contents {
+  .home-logo-wrapper-outlet {
+    order: 1;
+  }
+
+  .tt-club-name {
+    order: 2;
+  }
+}
+
 .tt-club-name {
   font-family: var(--heading-font-family);
   font-weight: 600;

@@ -5,9 +5,13 @@ import I18n, { i18n } from "discourse-i18n";
 /*
   Полоса продукта над форумом.
 
-  ⚠️ Точка `before-main-outlet` объявлена в КОРНЕВОМ шаблоне `application.gjs`,
-  а админка Discourse — маршрут того же приложения. Без проверки маршрута полоса
-  оказалась бы и на страницах `/admin`.
+  ⚠️ Точка — `above-site-header`, а НЕ `before-main-outlet`. В корневом шаблоне
+  `application.gjs` они стоят по разные стороны шапки: `above-site-header` (стр. 51)
+  выше `<GlimmerSiteHeader>`, а `before-main-outlet` (стр. 102) уже внутри области
+  содержимого. В первой редакции стояла вторая — и полоса продукта оказалась ПОД
+  шапкой форума, посреди страницы.
+
+  ⚠️ Точка корневая, то есть есть и в админке форума: маршрут проверяем ниже.
 
   Проверку делает геттер `visible`, а не `shouldRender`: `shouldRender` —
   фильтр на момент отрисовки аутлета (`plugin-connectors.js`:
@@ -56,8 +60,12 @@ export default class TtProductBar extends Component {
 
   // Ключ раздела совпадает с сегментом адреса на сайте: partimento → /partimento.
   // Подпись берём из строк темы, поэтому ключ приводим к виду bar.ear_training.
+  // ⚠️ Настройка типа list приходит СТРОКОЙ «a|b|c», а не массивом. Вызов
+  // .filter на ней бросал TypeError, и падение ломало отрисовку ВСЕЙ области
+  // содержимого: на экране оставалась шапка и пустота, а список тем исчезал.
   #items(list) {
-    return (list || [])
+    return String(list || "")
+      .split("|")
       .filter(Boolean)
       .map((key) => ({
         key,
