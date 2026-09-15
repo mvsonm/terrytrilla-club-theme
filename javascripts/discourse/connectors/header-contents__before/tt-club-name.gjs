@@ -1,25 +1,50 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
+import { i18n } from "discourse-i18n";
 
 /*
-  Название клуба рядом со знаком.
+  Название клуба и навигация по разделам в шапке (макет Header.dc.html).
 
   ⚠️ НЕ `home-logo-wrapper`. Та точка — wrapper, у неё допускается ровно ОДНА
   врезка, и её уже занимает плагин чата (`home-logo-wrapper/chat-header-…`).
   Движок в таком случае берёт первую, вторую молча отбрасывает и сыплет
-  администратору «Multiple connectors were registered». То есть выбор был не
-  «чат или мы», а «кто-то из двоих сломается».
+  администратору «Multiple connectors were registered».
 
-  `header-contents__before` — обычная точка, врезок допускает сколько угодно.
-  Название встаёт справа от знака порядком флексбокса, см. tt-header.scss.
+  `header-contents__before` — обычная точка. В разметке она идёт ПЕРЕД знаком,
+  порядок на экране правит флексбокс (см. tt-header.scss).
 
-  Название берётся из заголовка сайта, поэтому переводить здесь нечего: оно одно
-  на всех языках, как и имя продукта.
+  ⚠️ Название короткое — «Клуб», а не заголовок сайта. В макете рядом со знаком
+  стоит именно оно: длинное «TerryTrilla Community» вытесняло навигацию разделов
+  и дублировало полосу продукта, где имя продукта уже написано.
 */
+
+// Порядок разделов — из макета, а не из порядка в базе.
+const SECTIONS = [
+  "start-here",
+  "questions",
+  "theory",
+  "show-your-work",
+  "ideas",
+  "general",
+];
+
 export default class TtClubName extends Component {
-  @service siteSettings;
+  @service site;
+
+  get sections() {
+    const bySlug = new Map((this.site.categories || []).map((c) => [c.slug, c]));
+    return SECTIONS.map((slug) => bySlug.get(slug))
+      .filter(Boolean)
+      .map((c) => ({ name: c.name, href: `/c/${c.slug}/${c.id}` }));
+  }
 
   <template>
-    <span class="tt-club-name">{{this.siteSettings.title}}</span>
+    <span class="tt-club-name">{{i18n (themePrefix "header.club")}}</span>
+
+    <nav class="tt-club-nav">
+      {{#each this.sections as |s|}}
+        <a href={{s.href}}>{{s.name}}</a>
+      {{/each}}
+    </nav>
   </template>
 }

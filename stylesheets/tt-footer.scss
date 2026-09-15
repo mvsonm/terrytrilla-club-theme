@@ -155,3 +155,29 @@
   border-block-start: 1px solid var(--primary-low);
   padding-block-start: 20px;
 }
+
+/* ── Языки содержания и копирайт (макет Footer.dc.html) ───────────────────── */
+
+.tt-foot__langs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tt-foot__langs-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+
+  span {
+    font-size: 13px;
+    color: var(--primary-medium);
+  }
+}
+
+.tt-foot__note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  justify-content: space-between;
+}

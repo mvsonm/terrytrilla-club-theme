@@ -73,6 +73,47 @@ html:has(.tt-bar) .d-header .auth-buttons {
   .tt-club-name {
     order: -1;
   }
+
+  .tt-club-nav {
+    order: -1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+/*
+  Навигация по разделам прямо в шапке — из макета. Это не дубль боковой панели:
+  панель прячется на узком экране и у части людей свёрнута, а разделов всего
+  шесть, и они и есть форум.
+*/
+.tt-club-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 20px);
+  margin-inline-start: clamp(14px, 1.9vw, 28px);
+  overflow: hidden;
+
+  a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--header_primary);
+    opacity: 0.78;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+      opacity: 1;
+      color: var(--header_primary);
+    }
+  }
+}
+
+/* На узком экране разделы уходят в меню форума — там они уже есть. */
+@media (max-width: 1099px) {
+  .tt-club-nav {
+    display: none;
+  }
 }
 
 .tt-club-name {

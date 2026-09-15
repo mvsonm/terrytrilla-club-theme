@@ -3,14 +3,15 @@ import { service } from "@ember/service";
 import I18n, { i18n } from "discourse-i18n";
 
 /*
-  Призыв и подвал продукта (B4).
+  Призыв и подвал продукта (B4, макет Footer.dc.html).
 
-  ⚠️ Точка `above-footer` объявлена в корневом `application.gjs` — как и
-  `before-main-outlet`, она есть и на страницах админки форума. Видимость
-  проверяем тем же реактивным геттером, что и у полосы.
+  ⚠️ Призыв ведёт человека ДАЛЬШЕ ПО ЕГО ВОПРОСУ, а не рекламирует продукт.
+  В макете четыре двери: задать вопрос, справочник, Partimento, написать нам.
+  Первая моя версия звалась «Попробовать в TerryTrilla» и вела в четыре раздела
+  продукта — это реклама на странице, куда человек пришёл за ответом.
 
-  Все адреса проверены живьём 15.09: отвечают 200. Ключ = сегмент адреса, как и
-  в полосе продукта.
+  ⚠️ Точка `above-footer` объявлена в корневом `application.gjs` — она есть и на
+  страницах админки форума. Видимость проверяет реактивный геттер.
 */
 
 const SITE_PREFIX = {
@@ -28,13 +29,64 @@ const SITE_PREFIX = {
   uk: "/uk",
 };
 
-const DOORS = ["partimento", "harmonization", "scales", "ear-training"];
-const PRODUCT = ["partimento", "harmonization", "ear-training", "pricing"];
-const REFERENCE = ["scales", "chords", "circle-of-fifths", "blog"];
-const LEGAL = ["terms", "privacy-policy", "cookie-policy", "licenses"];
+/** Языки содержания — те же двенадцать, что у сайта и у форума. */
+const LANGS = [
+  ["en", "English"],
+  ["ru", "Русский"],
+  ["de", "Deutsch"],
+  ["es", "Español"],
+  ["fr", "Français"],
+  ["ar", "العربية"],
+  ["it", "Italiano"],
+  ["ja", "日本語"],
+  ["ko", "한국어"],
+  ["pl_PL", "Polski"],
+  ["pt_BR", "Português (Brasil)"],
+  ["uk", "Українська"],
+];
+
+/*
+  Двери призыва. Первая ведёт на форум (новая тема), остальные — на сайт.
+  Все адреса проверены живьём: отвечают 200.
+*/
+const DOORS = [
+  { key: "ask", forum: "/new-topic?category=questions" },
+  { key: "library", site: "/scales" },
+  { key: "partimento", site: "/partimento" },
+  { key: "contact", site: "/support" },
+];
+
+/*
+  Колонки подвала — состав из строк задания дизайнера. Ключ подписи и адрес
+  РАЗДЕЛЕНЫ: «Библиотека» и «Все лады» — разные подписи, и ведут они в разные
+  углы справочника. Все адреса проверены живьём: отвечают 200.
+*/
+const PRODUCT = [
+  ["partimento", "/partimento"],
+  ["library", "/chords"],
+  ["ear_training", "/ear-training"],
+  ["metronome", "/metronome"],
+  ["tuner", "/tuner"],
+  ["gallery", "/gallery"],
+];
+const MATERIALS = [
+  ["blog", "/blog"],
+  ["music", "/music-by-terry-trilla"],
+  ["circle", "/circle-of-fifths"],
+  ["all_scales", "/scales"],
+];
+const ACCOUNT = [
+  { key: "login", forum: "/login" },
+  { key: "pricing", site: "/pricing" },
+  { key: "rules", forum: "/guidelines" },
+  { key: "privacy", site: "/privacy-policy" },
+];
+
+const SECTIONS = ["start-here", "questions", "theory", "show-your-work", "ideas", "general"];
 
 export default class TtFooter extends Component {
   @service router;
+  @service site;
 
   get visible() {
     return !(this.router.currentRouteName || "").startsWith("admin");
@@ -48,33 +100,53 @@ export default class TtFooter extends Component {
     return SITE_PREFIX[I18n.locale] ?? "";
   }
 
-  #link(key, labelKey = `bar.${key.replace(/-/g, "_")}`) {
-    return {
-      key,
-      href: `${this.base}${this.prefix}/${key}`,
-      label: i18n(themePrefix(labelKey)),
-    };
+  #site(path) {
+    return `${this.base}${this.prefix}${path}`;
+  }
+
+  #link(key, path) {
+    return { key, href: this.#site(path), label: i18n(themePrefix(`footer.${key}`)) };
   }
 
   get doors() {
-    return DOORS.map((key) => ({
-      ...this.#link(key),
-      desc: i18n(themePrefix(`footer.door_${key.replace(/-/g, "_")}`)),
+    return DOORS.map((d) => ({
+      key: d.key,
+      href: d.forum ?? this.#site(d.site),
+      label: i18n(themePrefix(`footer.door_${d.key}`)),
+      desc: i18n(themePrefix(`footer.door_${d.key}_desc`)),
     }));
   }
 
   get product() {
-    return PRODUCT.map((key) => this.#link(key));
+    return PRODUCT.map(([key, path]) => this.#link(key, path));
   }
 
-  get reference() {
-    return REFERENCE.map((key) => this.#link(key));
+  get materials() {
+    return MATERIALS.map(([key, path]) => this.#link(key, path));
   }
 
-  get legal() {
-    return LEGAL.map((key) =>
-      this.#link(key, `footer.${key.replace(/-/g, "_")}`)
-    );
+  /* Разделы форума берём из самого форума: имена уже переведены. */
+  get club() {
+    const bySlug = new Map((this.site.categories || []).map((c) => [c.slug, c]));
+    return SECTIONS.map((slug) => bySlug.get(slug))
+      .filter(Boolean)
+      .map((c) => ({ key: c.slug, href: `/c/${c.slug}/${c.id}`, label: c.name }));
+  }
+
+  get account() {
+    return ACCOUNT.map((a) => ({
+      key: a.key,
+      href: a.forum ?? this.#site(a.site),
+      label: i18n(themePrefix(`footer.${a.key}`)),
+    }));
+  }
+
+  get langs() {
+    return LANGS.map(([code, name]) => ({ code, name }));
+  }
+
+  get year() {
+    return new Date().getFullYear();
   }
 
   <template>
@@ -106,16 +178,30 @@ export default class TtFooter extends Component {
               {{#each this.product as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
             </div>
             <div class="tt-foot__col">
-              <div class="tt-foot__title">{{i18n (themePrefix "footer.col_reference")}}</div>
-              {{#each this.reference as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
+              <div class="tt-foot__title">{{i18n (themePrefix "footer.col_materials")}}</div>
+              {{#each this.materials as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
             </div>
             <div class="tt-foot__col">
-              <div class="tt-foot__title">{{i18n (themePrefix "footer.col_legal")}}</div>
-              {{#each this.legal as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
+              <div class="tt-foot__title">{{i18n (themePrefix "footer.col_club")}}</div>
+              {{#each this.club as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
+            </div>
+            <div class="tt-foot__col">
+              <div class="tt-foot__title">{{i18n (themePrefix "footer.col_account")}}</div>
+              {{#each this.account as |l|}}<a href={{l.href}}>{{l.label}}</a>{{/each}}
             </div>
           </div>
 
-          <div class="tt-foot__note">{{i18n (themePrefix "footer.tagline")}}</div>
+          <div class="tt-foot__langs">
+            <div class="tt-foot__title">{{i18n (themePrefix "footer.langs_title")}}</div>
+            <div class="tt-foot__langs-row">
+              {{#each this.langs as |l|}}<span>{{l.name}}</span>{{/each}}
+            </div>
+          </div>
+
+          <div class="tt-foot__note">
+            <span>© {{this.year}} TerryTrilla</span>
+            <span>{{i18n (themePrefix "footer.domain")}}</span>
+          </div>
         </div>
       </footer>
     {{/if}}

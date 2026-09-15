@@ -24,6 +24,25 @@ import { i18n } from "discourse-i18n";
 */
 
 // Порядок карточек — из макета, а не из порядка разделов в базе.
+/*
+  Названия языков — на них самих, как в макете: «переведено с 日本語», а не
+  «переведено с ja». Коды у Discourse свои: pl_PL, pt_BR.
+*/
+const LANG_NAMES = {
+  en: "English",
+  ru: "Русский",
+  de: "Deutsch",
+  es: "Español",
+  fr: "Français",
+  ar: "العربية",
+  it: "Italiano",
+  ja: "日本語",
+  ko: "한국어",
+  pl_PL: "Polski",
+  pt_BR: "Português (BR)",
+  uk: "Українська",
+};
+
 const SECTIONS = [
   "start-here",
   "questions",
@@ -55,34 +74,55 @@ export default class TtHome extends Component {
   }
 
   get curated() {
-    const cols = this.args.outletArgs?.model?.curated || [];
+    const model = this.args.outletArgs?.model;
     const bySlug = new Map((this.site.categories || []).map((c) => [c.slug, c]));
 
-    return cols
-      .map((col) => {
-        // ⚠️ У каждого раздела есть служебная тема «About the … category»,
-        // которую движок заводит сам. В topic_count она НЕ входит, а в выборку
-        // попадает: без этой отсечки в подборках висели ровно они, и выглядело
-        // это как содержание, которого нет.
-        //
-        // ⚠️ Номер берём из `topic_url`, а не из `topic_id`: такого поля у
-        // категории в клиенте НЕТ. Первая версия сравнивала с undefined и не
-        // отсекала ничего — замер по DOM это и показал.
-        const aboutId = Number(
-          (bySlug.get(col.slug)?.topic_url || "").split("/").pop()
-        );
-        const items = (col.list?.topics || [])
-          .filter((t) => t.id !== aboutId)
-          .slice(0, 4);
+    /*
+      ⚠️ У каждого раздела есть служебная тема «About the … category», которую
+      движок заводит сам. В `topic_count` она НЕ входит, а в выборку попадает:
+      без этой отсечки в подборках висели ровно они, и выглядело это как
+      содержание, которого нет.
 
-        return {
-          key: col.key,
-          href: `/c/${col.slug}`,
-          title: i18n(themePrefix(`home.curated_${col.key}`)),
-          items,
-        };
-      })
-      .filter((col) => col.items.length > 0);
+      ⚠️ Номер берём из `topic_url`, а не из `topic_id`: такого поля у категории
+      в клиенте НЕТ. Первая версия сравнивала с undefined и не отсекала ничего.
+    */
+    const aboutId = Number(
+      (bySlug.get("start-here")?.topic_url || "").split("/").pop()
+    );
+
+    const starters = (model?.starters?.topics || [])
+      .filter((t) => t.id !== aboutId)
+      .slice(0, 3)
+      .map((t) => ({
+        title: t.title,
+        href: `/t/${t.slug}/${t.id}`,
+        meta: bySlug.get(
+          (this.site.categories || []).find((c) => c.id === t.category_id)?.slug
+        )?.name || "",
+      }));
+
+    /*
+      Вторая колонка — витрина главного, ради чего форум и затевался: тема
+      написана на чужом языке, а читается на твоём. Признак приходит в самой
+      ленте: `fancy_title_localized` = заголовок показан переводом, `locale` =
+      язык оригинала. Отдельный запрос не нужен.
+    */
+    const translated = (model?.latest?.topics || [])
+      .filter((t) => t.fancy_title_localized && t.locale)
+      .slice(0, 3)
+      .map((t) => ({
+        title: t.title,
+        href: `/t/${t.slug}/${t.id}`,
+        meta: i18n(themePrefix("home.translated_from"), {
+          lang: LANG_NAMES[t.locale] || t.locale,
+        }),
+        translated: true,
+      }));
+
+    return [
+      { key: "start", href: "/c/start-here", title: i18n(themePrefix("home.curated_start")), items: starters },
+      { key: "translated", href: "/latest", title: i18n(themePrefix("home.curated_translated")), items: translated },
+    ].filter((col) => col.items.length > 0);
   }
 
   get latest() {
@@ -121,11 +161,9 @@ export default class TtHome extends Component {
             <div class="tt-col">
               <a class="tt-col__title" href={{col.href}}>{{col.title}}</a>
               {{#each col.items as |t|}}
-                <a class="tt-col__item" href="/t/{{t.slug}}/{{t.id}}">
+                <a class="tt-col__item" href={{t.href}}>
                   <span class="tt-col__name">{{t.title}}</span>
-                  <span class="tt-col__meta">
-                    {{i18n (themePrefix "home.replies") count=t.reply_count}}
-                  </span>
+                  <span class="tt-col__meta">{{t.meta}}</span>
                 </a>
               {{/each}}
             </div>

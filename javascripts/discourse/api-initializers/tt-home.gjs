@@ -10,6 +10,11 @@ import { apiInitializer } from "discourse/lib/api";
 
   ⚠️ Списки грузим ОДНИМ заходом и отдаём готовыми: компонент главной должен
   оставаться без запросов, иначе каждый его перерендер дёргал бы сервер.
+
+  ⚠️ Колонка «Разборы на других языках» отдельного запроса НЕ требует: признак
+  перевода приходит в самой ленте — у темы есть `locale` (язык оригинала) и
+  `fancy_title_localized` (заголовок показан переводом). Проверено на живых
+  темах: две из семи пришли с `pt_BR` и `ja`.
 */
 export default apiInitializer((api) => {
   api.registerBehaviorTransformer("custom-homepage-model", ({ context }) => {
@@ -17,23 +22,17 @@ export default apiInitializer((api) => {
 
     const latest = store.findFiltered("topicList", {
       filter: "latest",
-      params: { per_page: 10 },
+      params: { per_page: 20 },
     });
 
-    // Подборки собираем из настоящих разделов, а не из придуманного списка:
-    // «С чего начать» — из `start-here`, «Разборы» — из `theory`.
-    const curated = ["start-here", "theory"].map((slug) =>
-      store
-        .findFiltered("topicList", { filter: `c/${slug}/l/latest` })
-        .catch(() => null)
-    );
+    // «С чего начать» — из раздела `start-here`, как в макете.
+    const starters = store
+      .findFiltered("topicList", { filter: "c/start-here/l/latest" })
+      .catch(() => null);
 
-    return Promise.all([latest, ...curated]).then(([list, start, deep]) => ({
+    return Promise.all([latest, starters]).then(([list, start]) => ({
       latest: list,
-      curated: [
-        { key: "start", slug: "start-here", list: start },
-        { key: "deep", slug: "theory", list: deep },
-      ],
+      starters: start,
       queryParams: context?.queryParams,
     }));
   });
