@@ -64,7 +64,13 @@ export default class TtHome extends Component {
         // которую движок заводит сам. В topic_count она НЕ входит, а в выборку
         // попадает: без этой отсечки в подборках висели ровно они, и выглядело
         // это как содержание, которого нет.
-        const aboutId = bySlug.get(col.slug)?.topic_id;
+        //
+        // ⚠️ Номер берём из `topic_url`, а не из `topic_id`: такого поля у
+        // категории в клиенте НЕТ. Первая версия сравнивала с undefined и не
+        // отсекала ничего — замер по DOM это и показал.
+        const aboutId = Number(
+          (bySlug.get(col.slug)?.topic_url || "").split("/").pop()
+        );
         const items = (col.list?.topics || [])
           .filter((t) => t.id !== aboutId)
           .slice(0, 4);
