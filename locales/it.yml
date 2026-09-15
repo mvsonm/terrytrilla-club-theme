@@ -44,3 +44,7 @@ it:
     replies: "Risposte: %{count}"
     latest: "Recenti"
     all_topics: "Tutte le discussioni"
+  profile:
+    empty: "Qui non c’è ancora nulla: il membro è appena arrivato. Il profilo si riempie da solo: prima risposta, primo grazie, primo distintivo."
+    account_note: "Nome, email e avatar arrivano dal tuo account TerryTrilla e si cambiano lì —"
+    account_link: "apri le impostazioni dell’account"

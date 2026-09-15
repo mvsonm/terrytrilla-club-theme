@@ -44,3 +44,7 @@ fr:
     replies: "Réponses : %{count}"
     latest: "Récents"
     all_topics: "Tous les sujets"
+  profile:
+    empty: "Rien ici pour l’instant : le membre vient d’arriver. Le profil se remplit tout seul : première réponse, premier merci, premier badge."
+    account_note: "Le nom, l’e-mail et l’avatar viennent de ton compte TerryTrilla et se modifient là-bas —"
+    account_link: "ouvrir les réglages du compte"

@@ -44,3 +44,7 @@ de:
     replies: "Antworten: %{count}"
     latest: "Neueste"
     all_topics: "Alle Themen"
+  profile:
+    empty: "Hier ist noch nichts — das Mitglied ist neu. Das Profil füllt sich von selbst: erste Antwort, erster Dank, erstes Abzeichen."
+    account_note: "Name, E-Mail und Avatar kommen aus deinem TerryTrilla-Konto und werden dort geändert —"
+    account_link: "Kontoeinstellungen öffnen"

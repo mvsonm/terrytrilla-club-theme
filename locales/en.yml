@@ -44,3 +44,7 @@ en:
     replies: "Replies: %{count}"
     latest: "Latest"
     all_topics: "All topics"
+  profile:
+    empty: "Nothing here yet — this is a new member. The profile fills in by itself: the first reply, the first thanks, the first badge."
+    account_note: "Name, email and avatar come from your TerryTrilla account and are changed there —"
+    account_link: "open account settings"
