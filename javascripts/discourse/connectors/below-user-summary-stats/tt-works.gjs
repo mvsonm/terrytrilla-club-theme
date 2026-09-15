@@ -25,8 +25,16 @@ export default class TtWorks extends Component {
     this.#load();
   }
 
-  get username() {
-    return this.args.outletArgs?.model?.user?.username || this.args.outletArgs?.user?.username;
+  /*
+    ⚠️ Спрашиваем по НАШЕМУ идентификатору, а не по имени на форуме. Он приезжает
+    полем профиля `tt_uid`: единый вход шлёт его как `custom.tt_uid`, форум
+    показывает как публичное поле. Прошлая версия ходила по имени, и нашему
+    серверу приходилось добывать связь из АДМИНСКОЙ выдачи форума — ради этого
+    на веб-сервере лежал бы ключ с полным доступом. Теперь ключа нет вовсе.
+  */
+  get externalId() {
+    const user = this.args.outletArgs?.model?.user;
+    return user?.custom_fields?.tt_uid || null;
   }
 
   get base() {
@@ -42,14 +50,14 @@ export default class TtWorks extends Component {
   }
 
   async #load() {
-    const username = this.username;
-    if (!username) {
+    const externalId = this.externalId;
+    if (!externalId) {
       return;
     }
 
     try {
       const res = await fetch(
-        `${this.base}/api/community/works?username=${encodeURIComponent(username)}&limit=4`,
+        `${this.base}/api/community/works?external_id=${encodeURIComponent(externalId)}&limit=4`,
         { headers: { Accept: "application/json" } }
       );
       if (!res.ok) {

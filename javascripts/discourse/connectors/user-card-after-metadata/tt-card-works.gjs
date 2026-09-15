@@ -22,8 +22,16 @@ export default class TtCardWorks extends Component {
     this.#load();
   }
 
-  get username() {
-    return this.args.outletArgs?.user?.username;
+  /*
+    ⚠️ Спрашиваем по НАШЕМУ идентификатору, а не по имени на форуме. Он приезжает
+    полем профиля `tt_uid`: единый вход шлёт его как `custom.tt_uid`, форум
+    показывает как публичное поле. Прошлая версия ходила по имени, и нашему
+    серверу приходилось добывать связь из АДМИНСКОЙ выдачи форума — ради этого
+    на веб-сервере лежал бы ключ с полным доступом. Теперь ключа нет вовсе.
+  */
+  get externalId() {
+    const user = this.args.outletArgs?.user;
+    return user?.custom_fields?.tt_uid || null;
   }
 
   get base() {
@@ -31,12 +39,12 @@ export default class TtCardWorks extends Component {
   }
 
   async #load() {
-    if (!this.username) {
+    if (!this.externalId) {
       return;
     }
     try {
       const res = await fetch(
-        `${this.base}/api/community/works?username=${encodeURIComponent(this.username)}&limit=1`,
+        `${this.base}/api/community/works?external_id=${encodeURIComponent(this.externalId)}&limit=1`,
         { headers: { Accept: "application/json" } }
       );
       if (res.ok) {
