@@ -1,0 +1,7 @@
+pl:
+  theme_metadata:
+    description: "Motyw społeczności TerryTrilla Club: pasek produktu, własna strona główna, karty działów i żywe koło skal w postach."
+    settings:
+      product_url: "Adres strony produktu, do której prowadzi pasek."
+      product_bar_links: "Działy produktu widoczne na pasku i ich kolejność."
+      sign_in_url: "Dokąd prowadzi przycisk „Zaloguj się” na pasku produktu."

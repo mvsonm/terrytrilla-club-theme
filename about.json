@@ -1,0 +1,45 @@
+{
+  "name": "TerryTrilla Club",
+  "component": false,
+  "authors": "TerryTrilla",
+  "about_url": "https://terrytrilla.com",
+  "license_url": "https://github.com/mvsonm/terrytrilla-community",
+  "theme_version": "0.1.0",
+  "minimum_discourse_version": "2026.8.0",
+  "modifiers": {
+    "only_theme_color_schemes": true
+  },
+  "theme_site_settings": {
+    "enable_welcome_banner": true
+  },
+  "color_schemes": {
+    "Crystal Day": {
+      "primary": "1A1D35",
+      "secondary": "F8F9FF",
+      "tertiary": "6366F1",
+      "quaternary": "06B6D4",
+      "header_background": "FFFFFF",
+      "header_primary": "1A1D35",
+      "highlight": "FDE68A",
+      "selected": "EEF2FF",
+      "hover": "F1F5FF",
+      "danger": "EF4444",
+      "success": "22C55E",
+      "love": "EC4899"
+    },
+    "Augmented Night": {
+      "primary": "E8EAF6",
+      "secondary": "0C0E1A",
+      "tertiary": "7C6FCD",
+      "quaternary": "4FC3F7",
+      "header_background": "141629",
+      "header_primary": "E8EAF6",
+      "highlight": "4A3F1B",
+      "selected": "1E2240",
+      "hover": "1A1D35",
+      "danger": "EF4444",
+      "success": "22C55E",
+      "love": "F472B6"
+    }
+  }
+}

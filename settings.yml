@@ -1,0 +1,18 @@
+# Настройки темы. Описания к ним — в locales/*.yml, ключ theme_metadata.settings.*
+#
+# ⚠️ Адреса продукта держим настройкой, а не литералом в разметке: маршруты сайта
+# меняются (за последний год трижды), и правка адреса не должна требовать правки
+# компонента.
+
+product_url:
+  type: string
+  default: "https://terrytrilla.com"
+
+product_bar_links:
+  type: list
+  list_type: simple
+  default: "partimento|library|ear-training|blog"
+
+sign_in_url:
+  type: string
+  default: "https://terrytrilla.com/signin"

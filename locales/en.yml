@@ -1,0 +1,7 @@
+en:
+  theme_metadata:
+    description: "Community theme for TerryTrilla Club: product bar, custom homepage, section cards and the live scale circle inside posts."
+    settings:
+      product_url: "Address of the product site that the bar links to."
+      product_bar_links: "Product sections shown in the bar, in order."
+      sign_in_url: "Where the “Sign in” button in the product bar leads."

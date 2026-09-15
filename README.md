@@ -1,0 +1,65 @@
+# Тема «TerryTrilla Club»
+
+Оформление форума `terrytrilla.club`. Ставится **из git**, а не правится в
+админке: правка в админке живёт до первого обновления темы и исчезает молча
+(решение Р-4).
+
+ТЗ, роадмап и методика — в основном репозитории, `docs/Discourse/`:
+[`TZ-THEME.md`](https://github.com/mvsonm/terrytrilla-v2/blob/main/docs/Discourse/TZ-THEME.md) ·
+[`ROADMAP-THEME.md`](https://github.com/mvsonm/terrytrilla-v2/blob/main/docs/Discourse/ROADMAP-THEME.md) ·
+[`THEME-METHOD.md`](https://github.com/mvsonm/terrytrilla-v2/blob/main/docs/Discourse/THEME-METHOD.md)
+
+---
+
+## Состав
+
+```
+├── about.json      — схемы, модификаторы, настройки ядра, границы версий
+├── settings.yml    — настройки темы (адреса продукта)
+└── locales/        — строки темы на двенадцати языках
+```
+
+Дальше по волнам добавляются `common/`, `javascripts/discourse/`, `assets/`
+и `spec/system/`.
+
+---
+
+## Установка на форум
+
+Админка → Customize → Themes → Install → **From a git repository**:
+
+```
+https://github.com/mvsonm/terrytrilla-club-theme
+```
+
+⚠️ **Тема обязана лежать в КОРНЕ репозитория.** Импортёр (`ThemeStore::GitImporter`)
+принимает только адрес, ветку и ключ — подкаталог он не умеет, и `about.json`
+ищет в корне. Ровно поэтому у темы свой репозиторий, а не папка в
+`terrytrilla-community`. Обновление — кнопкой «Update» в карточке темы; она
+подтягивает текущий `main`.
+
+⚠️ **Не делать тему темой по умолчанию, пока не закрыта волна C.** Модификатор
+`custom_homepage` (волна C) подменяет корень `/` на нашу страницу: объявить его
+раньше, чем готов компонент, — значит показать людям пустую главную.
+
+---
+
+## Две ловушки, уже стоившие проверки
+
+**`minimum_discourse_version` ниже текущей версии на порядок.** Движок сравнивает
+через `Gem::Version`, а наша версия — `2026.9.0-latest`, что нормализуется в
+`2026.9.0.pre.latest`, то есть **предрелиз**:
+
+```
+2026.9.0-latest >= 2026.9.0  →  false
+2026.9.0-latest >= 2026.8.0  →  true
+```
+
+Поставить порогом текущую версию значит объявить тему несовместимой с форумом,
+на котором она и работает. Поэтому в `about.json` стоит `2026.8.0`.
+
+**Светлую и тёмную схему движок различает сам** — по яркости: схема считается
+тёмной, если `primary` светлее, чем `secondary` (`ColorScheme#is_dark?`). При
+`only_theme_color_schemes` он же сам назначает пару: светлую в `color_scheme`,
+тёмную в `dark_color_scheme`. Ничего дополнительно объявлять не нужно, но и
+перепутать цвета местами нельзя — пара соберётся наоборот.

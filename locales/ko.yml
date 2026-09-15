@@ -1,0 +1,7 @@
+ko:
+  theme_metadata:
+    description: "TerryTrilla Club 커뮤니티 테마: 제품 바, 자체 홈, 섹션 카드, 게시글 안에서 작동하는 음계 서클."
+    settings:
+      product_url: "바가 연결되는 제품 사이트 주소."
+      product_bar_links: "바에 표시할 제품 섹션과 순서."
+      sign_in_url: "제품 바의 「로그인」 버튼이 향하는 곳."

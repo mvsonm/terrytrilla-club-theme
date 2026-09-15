@@ -1,0 +1,7 @@
+es:
+  theme_metadata:
+    description: "Tema de la comunidad TerryTrilla Club: barra de producto, portada propia, tarjetas de secciones y el círculo de escalas en vivo dentro de los mensajes."
+    settings:
+      product_url: "Dirección del sitio del producto al que enlaza la barra."
+      product_bar_links: "Secciones del producto que aparecen en la barra y su orden."
+      sign_in_url: "Destino del botón «Iniciar sesión» de la barra de producto."

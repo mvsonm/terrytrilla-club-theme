@@ -1,0 +1,7 @@
+de:
+  theme_metadata:
+    description: "Community-Theme für TerryTrilla Club: Produktleiste, eigene Startseite, Bereichskarten und der lebendige Tonleiterkreis in Beiträgen."
+    settings:
+      product_url: "Adresse der Produktseite, auf die die Leiste verweist."
+      product_bar_links: "Produktbereiche in der Leiste und ihre Reihenfolge."
+      sign_in_url: "Ziel der Schaltfläche „Anmelden“ in der Produktleiste."

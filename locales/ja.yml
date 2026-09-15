@@ -1,0 +1,7 @@
+ja:
+  theme_metadata:
+    description: "TerryTrilla Club コミュニティのテーマ：製品バー、独自のホーム、セクションカード、投稿内で動くスケールサークル。"
+    settings:
+      product_url: "バーのリンク先となる製品サイトのアドレス。"
+      product_bar_links: "バーに表示する製品セクションとその順序。"
+      sign_in_url: "製品バーの「ログイン」ボタンのリンク先。"
