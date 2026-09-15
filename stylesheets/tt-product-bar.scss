@@ -72,6 +72,16 @@
     color: var(--primary-medium);
     white-space: nowrap;
 
+    /*
+      ⚠️ Треугольник у <summary> снимается через ::marker, а НЕ через
+      list-style: none и не через ::-webkit-details-marker. Замер на живой
+      странице: list-style-type уже был none, а ::marker всё равно имел
+      content: normal и display: inline-block — стрелка рисовалась.
+    */
+    &::marker {
+      content: "";
+    }
+
     &::-webkit-details-marker {
       display: none;
     }
