@@ -73,15 +73,15 @@ const DOORS = [
 */
 const PRODUCT = [
   ["bar.partimento", "/partimento"],
-  ["footer.library", "/chords"],
+  ["bar.chords", "/chords"],
   ["bar.ear_training", "/ear-training"],
-  ["footer.metronome", "/metronome"],
-  ["footer.tuner", "/tuner"],
-  ["footer.gallery", "/gallery"],
+  ["bar.metronome", "/metronome"],
+  ["bar.tuner", "/tuner"],
+  ["bar.gallery", "/gallery"],
 ];
 const MATERIALS = [
   ["bar.blog", "/blog"],
-  ["footer.music", "/music-by-terry-trilla"],
+  ["bar.music_by_terry_trilla", "/music-by-terry-trilla"],
   ["bar.circle_of_fifths", "/circle-of-fifths"],
   ["footer.all_scales", "/scales"],
 ];

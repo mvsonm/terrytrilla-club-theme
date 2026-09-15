@@ -1,9 +1,12 @@
 # Настройки темы. Описания к ним — в locales/*.yml, ключ theme_metadata.settings.*
 #
 # ⚠️ Ключ раздела совпадает с сегментом адреса на сайте: partimento → /partimento.
-# Проверено живьём 15.09: /partimento, /scales, /chords, /ear-training, /blog,
-# /harmonization, /circle-of-fifths, /pricing отвечают 200. А вот /library,
-# стоявшего в первой редакции задания, на сайте НЕТ — ссылка вела бы в 404.
+# Состав полосы задаёт макет (strings.js, product.items):
+#   Partimento v3 | Библиотека | Развитие слуха | Блог
+# Проверено живьём 15.09: /partimento, /chords, /ear-training, /blog, /metronome,
+# /tuner, /music-by-terry-trilla, /gallery отвечают 200. А вот /library, которую
+# просит макет словом, на сайте НЕТ — 404. Поэтому «Библиотека» ведёт на /chords,
+# а подпись лежит в bar.chords: ключ здесь — АДРЕС, а не слово на кнопке.
 
 product_url:
   type: string
@@ -12,12 +15,12 @@ product_url:
 product_bar_links:
   type: list
   list_type: simple
-  default: "partimento|scales|chords|ear-training"
+  default: "partimento|chords|ear-training|blog"
 
 product_bar_more:
   type: list
   list_type: simple
-  default: "blog|harmonization|circle-of-fifths|pricing"
+  default: "metronome|tuner|music-by-terry-trilla|gallery"
 
 # ⚠️ Вход ведёт на /login ФОРУМА, а не на страницу входа сайта. С единым входом
 # (DiscourseConnect) маршрут /login форума сам отправляет человека к нам и
