@@ -1,7 +1,10 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import icon from "discourse/helpers/d-icon";
-import TopicList from "discourse/components/topic-list";
+// ⚠️ Именно `topic-list/list`, а не `topic-list`: второй — устаревшая обёртка,
+// движок пишет о ней администратору «код нужно обновить»
+// (id:discourse.legacy-topic-list). Сообщение поймано живым просмотром.
+import TopicList from "discourse/components/topic-list/list";
 import { i18n } from "discourse-i18n";
 
 /*
@@ -53,13 +56,26 @@ export default class TtHome extends Component {
 
   get curated() {
     const cols = this.args.outletArgs?.model?.curated || [];
+    const bySlug = new Map((this.site.categories || []).map((c) => [c.slug, c]));
+
     return cols
-      .map((col) => ({
-        key: col.key,
-        href: `/c/${col.slug}`,
-        title: i18n(themePrefix(`home.curated_${col.key}`)),
-        items: (col.list?.topics || []).slice(0, 4),
-      }))
+      .map((col) => {
+        // ⚠️ У каждого раздела есть служебная тема «About the … category»,
+        // которую движок заводит сам. В topic_count она НЕ входит, а в выборку
+        // попадает: без этой отсечки в подборках висели ровно они, и выглядело
+        // это как содержание, которого нет.
+        const aboutId = bySlug.get(col.slug)?.topic_id;
+        const items = (col.list?.topics || [])
+          .filter((t) => t.id !== aboutId)
+          .slice(0, 4);
+
+        return {
+          key: col.key,
+          href: `/c/${col.slug}`,
+          title: i18n(themePrefix(`home.curated_${col.key}`)),
+          items,
+        };
+      })
       .filter((col) => col.items.length > 0);
   }
 
