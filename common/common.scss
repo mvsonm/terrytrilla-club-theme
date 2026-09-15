@@ -110,6 +110,9 @@
 $tt-gutter: clamp(16px, 4.6vw, 130px);
 
 // Составные части оформления лежат в stylesheets/ и подключаются отсюда.
+// ⚠️ tt-deco первым: это примесь, и она обязана быть объявлена до тех файлов,
+// которые её зовут (обложка и призыв).
+@import "tt-deco";
 @import "tt-product-bar";
 @import "tt-header";
 @import "tt-footer";

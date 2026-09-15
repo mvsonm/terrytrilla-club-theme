@@ -1,0 +1,107 @@
+/*
+  Музыкальный узор фона — перенос с главной сайта.
+
+  Источник: `docs/Discourse/page-content.json`, секции Hero и Footer CTA, ключ
+  `styling.decorativeBackground` = `{ type: "music-glyphs" }`. Сам рисунок в JSON
+  не лежит — там только имя типа; отрисовка живёт в
+  `apps/web/src/features/editor/components/renderer/decorative/DecorativeBackground.tsx`.
+  Координаты нот, радиусы колец и цвета точек взяты оттуда ОДИН В ОДИН и запечены
+  в три файла `assets/tt-glyphs.svg`, `tt-orbit.svg`, `tt-orbit-dots.svg`.
+
+  ⚠️ Одноцветные слои применяются МАСКОЙ, а не картинкой. Причина: на обложке узор
+  должен быть белым (она всегда на фирменном градиенте), а на полосе призыва —
+  следовать схеме: в дневной полоса светлая и узор нужен тёмный, в ночной
+  наоборот. У картинки цвет запечён, у маски его задаёт CSS — один файл на оба
+  случая вместо двух наборов.
+
+  ⚠️ Цветные точки орбит идут ОБЫЧНОЙ картинкой: маска берёт альфу и цвет бы
+  потеряла, а эти шесть точек и есть единственное цветное пятно узора.
+
+  Движения нет намеренно. На сайте ноты плывут, а кольца вращаются за 90 с — на
+  глаз это почти неподвижно, а ради него пришлось бы держать четырнадцать
+  отдельных элементов в разметке вместо одного слоя фона.
+*/
+
+@mixin tt-music-deco($color, $ink: 0.1, $glow: false) {
+  position: relative;
+  isolation: isolate;
+
+  /* Одноцветные слои: точечная сетка, два кольца, поле нот. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: $color;
+    opacity: $ink;
+
+    $mask-image: url($tt-glyphs), url($tt-orbit), url($tt-orbit),
+      radial-gradient(circle, #000 1.5px, transparent 1.6px);
+    $mask-size: cover, 680px 680px, 420px 420px, 24px 24px;
+    $mask-position: center, right -190px top -210px, left -140px bottom -160px, 0 0;
+    $mask-repeat: no-repeat, no-repeat, no-repeat, repeat;
+
+    -webkit-mask-image: $mask-image;
+    mask-image: $mask-image;
+    -webkit-mask-size: $mask-size;
+    mask-size: $mask-size;
+    -webkit-mask-position: $mask-position;
+    mask-position: $mask-position;
+    -webkit-mask-repeat: $mask-repeat;
+    mask-repeat: $mask-repeat;
+  }
+
+  /* Цветное: точки на орбитах и, если попрошено, мягкие свечения. */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    @if $glow {
+      background-image: url($tt-orbit-dots), url($tt-orbit-dots),
+        radial-gradient(
+          circle at 88% 8%,
+          color-mix(in srgb, var(--quaternary) 22%, transparent),
+          transparent 58%
+        ),
+        radial-gradient(
+          circle at 6% 96%,
+          color-mix(in srgb, var(--tertiary) 18%, transparent),
+          transparent 62%
+        );
+      background-size: 680px 680px, 420px 420px, 100% 100%, 100% 100%;
+      background-position: right -190px top -210px, left -140px bottom -160px, 0 0, 0 0;
+      background-repeat: no-repeat;
+    } @else {
+      background-image: url($tt-orbit-dots), url($tt-orbit-dots);
+      background-size: 680px 680px, 420px 420px;
+      background-position: right -190px top -210px, left -140px bottom -160px;
+      background-repeat: no-repeat;
+    }
+  }
+
+  /*
+    На узком экране кольца не помещаются и лезут на текст — на сайте они по той
+    же причине скрыты до 768 px. Оставляем только сетку и ноты.
+  */
+  @media (max-width: 767px) {
+    &::before {
+      $mask-image: url($tt-glyphs), radial-gradient(circle, #000 1.5px, transparent 1.6px);
+      -webkit-mask-image: $mask-image;
+      mask-image: $mask-image;
+      -webkit-mask-size: cover, 24px 24px;
+      mask-size: cover, 24px 24px;
+      -webkit-mask-position: center, 0 0;
+      mask-position: center, 0 0;
+      -webkit-mask-repeat: no-repeat, repeat;
+      mask-repeat: no-repeat, repeat;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}

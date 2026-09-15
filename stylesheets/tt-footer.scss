@@ -14,8 +14,21 @@
   противоположный. «Ближе к фону страницы» верно в обеих.
 */
 .tt-cta {
+  /*
+    Тот же узор, что на обложке, но цвет берётся из схемы: в дневной полоса
+    светлая и узор нужен тёмный, в ночной наоборот. `--primary` — это цвет текста
+    страницы, он уже устроен ровно так.
+  */
+  @include tt-music-deco(var(--primary), 0.09, $glow: true);
+
   background: color-mix(in srgb, var(--tertiary) 24%, var(--secondary));
   border-block-start: 1px solid var(--primary-low);
+}
+
+/* Содержимое поверх узора: у слоёв узора z-index 0. */
+.tt-cta__inner {
+  position: relative;
+  z-index: 1;
 }
 
 .tt-cta__inner,
