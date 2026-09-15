@@ -3,8 +3,18 @@
   ширина содержимого 1110 px, карточки от 230 px, колонки от 160 px.
 */
 
+/*
+  Полоса насыщеннее, чем была (`--tertiary-low` — это 12 % акцента, почти цвет
+  страницы). Правило, по которому это работает у Asana и теперь у нас: ПОЛОСА
+  далеко от фона страницы, а КАРТОЧКА — близко к нему. Тогда карточка читается
+  как окно в страницу, а не как ещё один прямоугольник на цветном.
+
+  Сформулировано именно так, а не «карточки светлее полосы», потому что у нас две
+  схемы: в дневной страница светлая, в ночной тёмная, и «светлее» меняет смысл на
+  противоположный. «Ближе к фону страницы» верно в обеих.
+*/
 .tt-cta {
-  background: var(--tertiary-low);
+  background: color-mix(in srgb, var(--tertiary) 24%, var(--secondary));
   border-block-start: 1px solid var(--primary-low);
 }
 
@@ -24,30 +34,44 @@
   padding-block: clamp(48px, 5.4vw, 88px);
 }
 
+/*
+  Заголовок призыва — крупный. Прежние 24 px делали его подписью к карточкам, а
+  это единственный вопрос, который страница задаёт человеку прямо. Замер по
+  forum.asana.com: заголовок около 40 px и отбивка под ним около 58 px при окне
+  1900 — на неё и равняемся.
+*/
 .tt-cta__title {
   font-family: var(--heading-font-family);
   font-weight: 600;
-  font-size: clamp(20px, 1.7vw, 24px);
-  letter-spacing: -0.01em;
-  margin: 0 0 18px;
+  font-size: clamp(26px, 3.2vw, 42px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin: 0 0 clamp(28px, 3.2vw, 56px);
 }
 
 .tt-cta__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(16px, 1.4vw, 22px);
 }
 
+/*
+  ⚠️ Стрелка выровнена по ЦЕНТРУ карточки, а не по её верху. При `flex-start` она
+  вставала вровень с первой строкой названия, и у карточек с описанием в две
+  строки ряд стрелок шёл «лесенкой» — разной высоты в каждой двери.
+*/
 .tt-cta__door {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  padding: 20px;
+  gap: 16px;
+  padding: clamp(20px, 1.7vw, 28px);
+  min-height: clamp(104px, 8vw, 128px);
   min-width: 0;
   background: var(--secondary);
   border: 1px solid var(--primary-low);
-  border-radius: 14px;
+  border-radius: 16px;
   color: var(--primary);
   text-decoration: none;
 
@@ -61,19 +85,19 @@
 .tt-cta__text {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
 }
 
 .tt-cta__name {
   font-family: var(--heading-font-family);
   font-weight: 600;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.25;
 }
 
 .tt-cta__desc {
-  font-size: 13.5px;
+  font-size: 14px;
   line-height: 1.45;
   color: var(--primary-medium);
   text-wrap: pretty;
@@ -88,8 +112,8 @@
   flex: none;
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: var(--tertiary);
   color: var(--secondary);
