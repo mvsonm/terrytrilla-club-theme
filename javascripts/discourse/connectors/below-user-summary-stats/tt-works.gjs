@@ -33,7 +33,13 @@ export default class TtWorks extends Component {
     на веб-сервере лежал бы ключ с полным доступом. Теперь ключа нет вовсе.
   */
   get externalId() {
-    const user = this.args.outletArgs?.model?.user;
+    /*
+      ⚠️ Точка отдаёт { model, user } — человек лежит в `user`, а НЕ в
+      `model.user`. Первая версия читала второе, молча получала undefined и
+      блока не показывала вовсе: ошибок при этом ноль, потому что пустой блок —
+      штатное поведение по правилу пустоты. Такое ловится только просмотром.
+    */
+    const user = this.args.outletArgs?.user ?? this.args.outletArgs?.model?.user;
     return user?.custom_fields?.tt_uid || null;
   }
 
