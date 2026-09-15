@@ -1,0 +1,161 @@
+/*
+  Список тем (D1), сообщение (D2) и липкая шапка темы (D5).
+
+  ⚠️ Здесь нет ни одной точки расширения — всё это компоненты ЯДРА, и правила
+  идут по его классам. Это самый ломкий слой темы: имена классов не входят в
+  публичный договор и меняются без предупреждения. Поэтому весь такой CSS живёт
+  в ОДНОМ файле — после обновления Discourse проверять надо его, а не всю тему.
+
+  ⚠️ Структуру строки списка и шапки темы НЕ трогаем: только цвет, отступы,
+  шрифт и скругления. Раскладку задаёт движок, и он её меняет.
+*/
+
+/* ── D1. Список тем ───────────────────────────────────────────────────────── */
+
+.topic-list {
+  .topic-list-item {
+    border-block-end: 1px solid var(--primary-low);
+
+    &:hover {
+      background: var(--hover);
+    }
+  }
+
+  .topic-list-data {
+    padding-block: 14px;
+  }
+
+  .main-link .title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--primary);
+    text-wrap: pretty;
+
+    &:hover {
+      color: var(--tertiary);
+    }
+  }
+
+  /* Строка «прочитано» не должна выглядеть выключенной: приглушаем мягко. */
+  .visited .main-link .title:not(.badge-notification) {
+    color: var(--primary-high);
+  }
+
+  .badge-category__wrapper .badge-category {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .num,
+  .age {
+    font-size: 13px;
+    color: var(--primary-medium);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ── D2. Сообщение ────────────────────────────────────────────────────────── */
+
+.topic-post {
+  .topic-body {
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .names .username a {
+    font-weight: 600;
+    color: var(--primary);
+  }
+
+  .post-date {
+    color: var(--primary-medium);
+  }
+
+  /* Цитата: полоса цветом акцента вместо серой рамки. */
+  blockquote {
+    border-inline-start: 3px solid var(--tertiary-medium);
+    background: var(--primary-very-low);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+  }
+
+  pre code,
+  code {
+    font-family: var(--d-font-family--monospace, ui-monospace, monospace);
+    font-size: 0.92em;
+  }
+
+  pre {
+    border-radius: 10px;
+  }
+
+  .cooked img:not(.emoji, .avatar) {
+    border-radius: 10px;
+  }
+
+  /* Принятое решение — акцент успеха, а не серая плашка. */
+  &.accepted-answer {
+    .topic-body {
+      border-inline-start: 3px solid var(--success);
+      background: color-mix(in srgb, var(--success) 6%, transparent);
+    }
+  }
+}
+
+/* ── D5. Липкая шапка темы ────────────────────────────────────────────────── */
+
+/*
+  Подмену заголовка и переход на две строки при метках делает ЯДРО. Тема задаёт
+  только шрифт, цвет и высоту — ровно то, что записано в границах (§2 ТЗ).
+*/
+.d-header .extra-info-wrapper {
+  .topic-link {
+    font-family: var(--heading-font-family);
+    font-weight: 600;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--header_primary);
+  }
+
+  .badge-category__wrapper .badge-category {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .discourse-tags a {
+    font-size: 12px;
+    color: var(--header_primary);
+    opacity: 0.75;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* ── D6. Музыкальные термины (только по явной разметке автора) ────────────── */
+
+.tt-term {
+  display: inline;
+  font-family: var(--d-font-family--monospace, ui-monospace, monospace);
+  font-size: 0.92em;
+  padding: 0.08em 0.36em;
+  border-radius: 5px;
+  background: var(--tertiary-low);
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.tt-term__link {
+  color: inherit;
+  text-decoration: none;
+  border-block-end: 1px dotted var(--tertiary);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--tertiary);
+    border-block-end-style: solid;
+  }
+}
