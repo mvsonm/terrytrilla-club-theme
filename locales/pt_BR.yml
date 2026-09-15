@@ -33,6 +33,7 @@ pt_BR:
     licenses: "Licenças"
     tagline: "TerryTrilla Club — perguntas, análises e trabalhos dos membros."
   home:
+    cover_sub: "Pergunte no seu idioma: respondemos nele. Escalas, acordes e progressões, com o círculo vivo dentro do tópico."
     sections: "Seções"
     section_empty: "Faça a primeira pergunta"
     section_topics: "Tópicos: %{count}"

@@ -33,6 +33,7 @@ de:
     licenses: "Lizenzen"
     tagline: "TerryTrilla Club — Fragen, Analysen und Arbeiten der Mitglieder."
   home:
+    cover_sub: "Frage in deiner Sprache — wir antworten darin. Tonleitern, Akkorde und Wendungen, mit lebendigem Kreis direkt im Thema."
     sections: "Bereiche"
     section_empty: "Die erste Frage stellen"
     section_topics: "Themen: %{count}"

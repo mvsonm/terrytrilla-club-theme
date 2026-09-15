@@ -33,6 +33,7 @@ pl_PL:
     licenses: "Licencje"
     tagline: "TerryTrilla Club — pytania, analizy i prace uczestników."
   home:
+    cover_sub: "Pytaj w swoim języku — odpowiemy w nim. Skale, akordy i progresje, z żywym kołem prosto w temacie."
     sections: "Działy"
     section_empty: "Zadaj pierwsze pytanie"
     section_topics: "Tematy: %{count}"

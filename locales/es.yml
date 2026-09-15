@@ -33,6 +33,7 @@ es:
     licenses: "Licencias"
     tagline: "TerryTrilla Club: preguntas, análisis y trabajos de los miembros."
   home:
+    cover_sub: "Pregunta en tu idioma: respondemos en él. Escalas, acordes y progresiones, con el círculo vivo dentro del tema."
     sections: "Secciones"
     section_empty: "Haz la primera pregunta"
     section_topics: "Temas: %{count}"

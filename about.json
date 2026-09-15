@@ -61,6 +61,7 @@
     "rubik-cyrillic": "assets/fonts/rubik-cyrillic.woff2",
     "rubik-latin-ext": "assets/fonts/rubik-latin-ext.woff2",
     "rubik-latin": "assets/fonts/rubik-latin.woff2",
-    "icons-sprite": "assets/tt-icons.svg"
+    "icons-sprite": "assets/tt-icons.svg",
+    "tt-cover": "assets/tt-cover.svg"
   }
 }

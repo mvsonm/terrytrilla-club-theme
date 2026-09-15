@@ -33,6 +33,7 @@ en:
     licenses: "Licenses"
     tagline: "TerryTrilla Club — questions, breakdowns and work by members."
   home:
+    cover_sub: "Ask in your own language — we answer in it. Scales, chords and progressions, with a live circle right inside the topic."
     sections: "Sections"
     section_empty: "Ask the first question"
     section_topics: "Topics: %{count}"

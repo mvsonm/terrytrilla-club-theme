@@ -33,6 +33,7 @@ fr:
     licenses: "Licences"
     tagline: "TerryTrilla Club — questions, analyses et travaux des membres."
   home:
+    cover_sub: "Pose ta question dans ta langue — nous y répondons. Gammes, accords et enchaînements, avec le cercle vivant dans le sujet."
     sections: "Sections"
     section_empty: "Poser la première question"
     section_topics: "Sujets : %{count}"

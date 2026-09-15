@@ -33,6 +33,7 @@ ja:
     licenses: "ライセンス"
     tagline: "TerryTrilla Club — 質問、分析、メンバーの作品。"
   home:
+    cover_sub: "自分の言語で質問すれば、その言語で答えが返ります。スケール、コード、進行——トピック内で動くサークルつき。"
     sections: "セクション"
     section_empty: "最初の質問をする"
     section_topics: "トピック: %{count}"

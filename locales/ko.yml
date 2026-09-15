@@ -33,6 +33,7 @@ ko:
     licenses: "라이선스"
     tagline: "TerryTrilla Club — 질문, 분석, 회원들의 작업."
   home:
+    cover_sub: "자기 언어로 물으면 그 언어로 답이 옵니다. 스케일, 코드, 진행 — 글 안에서 움직이는 서클과 함께."
     sections: "섹션"
     section_empty: "첫 질문 올리기"
     section_topics: "주제: %{count}"
