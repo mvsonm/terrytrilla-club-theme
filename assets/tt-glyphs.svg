@@ -1,16 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" font-family="Georgia, 'Segoe UI Symbol', serif">
-  <text x="72.0" y="90.0" font-size="40" fill="#000" opacity="0.62">♪</text>
-  <text x="192.0" y="320.0" font-size="26" fill="#000" opacity="0.62">♫</text>
-  <text x="288.0" y="165.0" font-size="34" fill="#000" opacity="0.62">♬</text>
-  <text x="396.0" y="390.0" font-size="22" fill="#000" opacity="0.62">♭</text>
-  <text x="504.0" y="70.0" font-size="30" fill="#000" opacity="0.62">♯</text>
-  <text x="600.0" y="260.0" font-size="44" fill="#000" opacity="0.62">♪</text>
-  <text x="696.0" y="140.0" font-size="24" fill="#000" opacity="0.62">♫</text>
-  <text x="792.0" y="350.0" font-size="36" fill="#000" opacity="0.62">♬</text>
-  <text x="888.0" y="100.0" font-size="28" fill="#000" opacity="0.62">♭</text>
-  <text x="984.0" y="290.0" font-size="38" fill="#000" opacity="0.62">♯</text>
-  <text x="1080.0" y="180.0" font-size="24" fill="#000" opacity="0.62">♪</text>
-  <text x="144.0" y="440.0" font-size="30" fill="#000" opacity="0.62">♫</text>
-  <text x="576.0" y="420.0" font-size="26" fill="#000" opacity="0.62">♬</text>
-  <text x="1056.0" y="400.0" font-size="34" fill="#000" opacity="0.62">♭</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" font-family="Georgia, 'Segoe UI Symbol', serif">
+  <text x="46.0" y="54.0" font-size="40" fill="#000" opacity="0.62">♪</text>
+  <text x="144.0" y="99.0" font-size="34" fill="#000" opacity="0.62">♫</text>
+  <text x="252.0" y="44.0" font-size="30" fill="#000" opacity="0.62">♬</text>
+  <text x="348.0" y="84.0" font-size="24" fill="#000" opacity="0.62">♭</text>
+  <text x="444.0" y="60.0" font-size="28" fill="#000" opacity="0.62">♯</text>
+  <text x="540.0" y="108.0" font-size="24" fill="#000" opacity="0.62">♪</text>
+  <text x="288.0" y="252.0" font-size="26" fill="#000" opacity="0.62">♫</text>
 </svg>

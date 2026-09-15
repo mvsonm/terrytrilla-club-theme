@@ -36,11 +36,18 @@
     background-color: $color;
     opacity: $ink;
 
+    /*
+      ⚠️ Поле нот ПОВТОРЯЕТСЯ модулем 600×300, а не растягивается на весь блок.
+      Первая редакция брала одну картинку 1200×500 с `cover`; рендером проверено,
+      что на полосе примерно 1900×420 (4,5:1 против 2,4:1 у картинки) поле
+      обрезается по высоте и из четырнадцати нот остаются ТРИ. Растянуть вместо
+      обрезки нельзя — ноты раздавило бы вдвое по горизонтали.
+    */
     $mask-image: url($tt-glyphs), url($tt-orbit), url($tt-orbit),
       radial-gradient(circle, #000 1.5px, transparent 1.6px);
-    $mask-size: cover, 680px 680px, 420px 420px, 24px 24px;
-    $mask-position: center, right -190px top -210px, left -140px bottom -160px, 0 0;
-    $mask-repeat: no-repeat, no-repeat, no-repeat, repeat;
+    $mask-size: 600px 300px, 680px 680px, 420px 420px, 24px 24px;
+    $mask-position: 0 0, right -190px top -210px, left -140px bottom -160px, 0 0;
+    $mask-repeat: repeat, no-repeat, no-repeat, repeat;
 
     -webkit-mask-image: $mask-image;
     mask-image: $mask-image;
@@ -92,12 +99,12 @@
       $mask-image: url($tt-glyphs), radial-gradient(circle, #000 1.5px, transparent 1.6px);
       -webkit-mask-image: $mask-image;
       mask-image: $mask-image;
-      -webkit-mask-size: cover, 24px 24px;
-      mask-size: cover, 24px 24px;
-      -webkit-mask-position: center, 0 0;
-      mask-position: center, 0 0;
-      -webkit-mask-repeat: no-repeat, repeat;
-      mask-repeat: no-repeat, repeat;
+      -webkit-mask-size: 600px 300px, 24px 24px;
+      mask-size: 600px 300px, 24px 24px;
+      -webkit-mask-position: 0 0, 0 0;
+      mask-position: 0 0, 0 0;
+      -webkit-mask-repeat: repeat, repeat;
+      mask-repeat: repeat, repeat;
     }
 
     &::after {
