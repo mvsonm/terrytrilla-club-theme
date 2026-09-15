@@ -23,10 +23,9 @@
   border-bottom: 1px solid var(--primary-low);
 }
 
+// Во всю ширину экрана с общим боковым полем — см. $tt-gutter в common.scss.
 .tt-bar__inner {
-  max-width: 1110px;
-  margin: 0 auto;
-  padding-inline: clamp(16px, 1.7vw, 24px);
+  padding-inline: $tt-gutter;
   height: 52px;
   display: flex;
   align-items: center;

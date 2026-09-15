@@ -31,13 +31,12 @@
   background-position: right clamp(-150px, -10vw, -70px) top clamp(-130px, -9vw, -50px), 0 0;
   background-size: clamp(260px, 39vw, 560px) clamp(260px, 39vw, 560px), cover;
 
+  // Текст и поиск идут во всю ширину, вровень с шапками — см. $tt-gutter.
   .welcome-banner__inner-wrapper,
   .welcome-banner__wrap {
     position: relative;
     z-index: 1;
-    max-width: 1110px;
-    margin: 0 auto;
-    padding-inline: clamp(16px, 1.7vw, 24px);
+    padding-inline: $tt-gutter;
     padding-block: clamp(36px, 4.6vw, 68px) clamp(32px, 4.2vw, 60px);
   }
 
@@ -78,10 +77,16 @@
     одинаковые в обеих схемах намеренно: поле лежит НА акценте, а не на фоне
     страницы, и от схемы не зависит.
   */
+  /*
+    Поле поиска растёт вместе с окном. В макете стоит 680 px, и на 1280 это
+    ровно оно; но при ширине 1920 фиксированные 680 — уже треть экрана, и поле
+    читается как щель. У forum.asana.com поле держит около 54 % ширины окна при
+    любом размере — здесь то же, с нижней границей по макету.
+  */
   .search-menu,
   .search-menu-container,
   .welcome-banner__search {
-    max-width: 680px;
+    max-width: clamp(680px, 54vw, 1100px);
   }
 
   .search-input,
