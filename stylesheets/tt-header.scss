@@ -1,0 +1,71 @@
+/*
+  Шапка форума: B2 — оформление штатного переключателя языка, B3 — скрытие
+  штатной кнопки входа.
+
+  ⚠️ Это правила по классам ЯДРА, а не по точкам расширения. Имена классов не
+  входят в публичный договор движка и меняются без предупреждения — значит это
+  первое место, которое проверяется после каждого обновления Discourse. Держим
+  их в одном файле именно поэтому.
+*/
+
+/*
+  B2. Переключатель языка СТРОИТЬ НЕ НАДО — он штатный
+  (`content_localization_language_switcher = all`) и уже стоит в шапке. Здесь
+  только приводим его к макету: высота 36, скругление 10, рамка по `primary-low`.
+
+  ⚠️ Убирать его нельзя ни при каком оформлении: это единственный способ сменить
+  язык содержания, а не украшение.
+*/
+.d-header {
+  .language-switcher-trigger,
+  .header-dropdown-toggle.language-switcher .icon {
+    height: 36px;
+    padding-inline: 8px 10px;
+    border: 1px solid var(--primary-low);
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--header_primary);
+
+    &:hover,
+    &:focus-visible {
+      background: var(--hover);
+      color: var(--header_primary);
+    }
+  }
+
+  .language-switcher__locale {
+    letter-spacing: 0.04em;
+  }
+}
+
+/*
+  B3. Штатная кнопка входа прячется только тогда, когда НАША полоса на экране.
+
+  Условие `:has(.tt-bar)` здесь не украшение, а страховка: если компонент полосы
+  не отрисовался — ошибка в теме, отказ CSP, админский маршрут, — штатная кнопка
+  остаётся на месте. Простое правило `.auth-buttons { display: none }` в тех же
+  обстоятельствах оставило бы форум вообще без двери, а вход у нас единый: другой
+  двери нет.
+*/
+html:has(.tt-bar) .d-header .auth-buttons {
+  display: none;
+}
+
+/* Название клуба рядом со знаком — добавляется к штатному логотипу, а не вместо. */
+.tt-club-name {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--header_primary);
+  white-space: nowrap;
+  margin-inline-start: 10px;
+  align-self: center;
+}
+
+@media (max-width: 767px) {
+  .tt-club-name {
+    display: none;
+  }
+}

@@ -1,0 +1,157 @@
+/*
+  Призыв и подвал продукта (B4). Раскладка — артборд Footer.dc.html:
+  ширина содержимого 1110 px, карточки от 230 px, колонки от 160 px.
+*/
+
+.tt-cta {
+  background: var(--tertiary-low);
+  border-block-start: 1px solid var(--primary-low);
+}
+
+.tt-cta__inner,
+.tt-foot__inner {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 1.7vw, 24px);
+}
+
+.tt-cta__inner {
+  padding-block: clamp(32px, 3.3vw, 48px);
+}
+
+.tt-cta__title {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: clamp(20px, 1.7vw, 24px);
+  letter-spacing: -0.01em;
+  margin: 0 0 18px;
+}
+
+.tt-cta__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.tt-cta__door {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 20px;
+  min-width: 0;
+  background: var(--secondary);
+  border: 1px solid var(--primary-low);
+  border-radius: 14px;
+  color: var(--primary);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--tertiary-medium);
+    color: var(--primary);
+  }
+}
+
+.tt-cta__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.tt-cta__name {
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.tt-cta__desc {
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--primary-medium);
+  text-wrap: pretty;
+}
+
+/*
+  Стрелка — текстовый символ, а не значок из набора: направление она берёт от
+  письменности. В арабской раскладке «→» разворачивается сама, и отдельного
+  зеркалирования не требует.
+*/
+.tt-cta__arrow {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--tertiary);
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.tt-foot {
+  background: var(--header_background);
+  border-block-start: 1px solid var(--primary-low);
+}
+
+.tt-foot__inner {
+  padding-block: clamp(32px, 3.3vw, 48px) 28px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 2.8vw, 40px);
+}
+
+/* Тот же фирменный градиент, что в полосе и в шапке сайта. */
+.tt-foot__brand {
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  align-self: flex-start;
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.tt-foot__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 28px 24px;
+}
+
+.tt-foot__col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+
+  a {
+    font-size: 14px;
+    color: var(--primary-high);
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--tertiary);
+    }
+  }
+}
+
+.tt-foot__title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--primary-medium);
+}
+
+.tt-foot__note {
+  font-size: 13px;
+  color: var(--primary-medium);
+  border-block-start: 1px solid var(--primary-low);
+  padding-block-start: 20px;
+}
