@@ -74,8 +74,8 @@
 .tt-works {
   margin-block: 20px;
   padding: 18px 20px;
-  background: var(--tt-card);
-  border: 1px solid var(--tt-card-border);
+  background: var(--tt-card, var(--secondary));
+  border: 1px solid var(--tt-card-border, var(--primary-low));
   border-radius: 14px;
 }
 

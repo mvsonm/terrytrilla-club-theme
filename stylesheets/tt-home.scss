@@ -75,8 +75,8 @@
   gap: 16px;
   padding: 22px 22px 20px;
   min-width: 0;
-  background: var(--tt-card);
-  border: 1px solid var(--tt-card-border);
+  background: var(--tt-card, var(--secondary));
+  border: 1px solid var(--tt-card-border, var(--primary-low));
   border-radius: 14px;
   color: var(--primary);
   text-decoration: none;
@@ -166,8 +166,8 @@
 }
 
 .tt-col {
-  background: var(--tt-card);
-  border: 1px solid var(--tt-card-border);
+  background: var(--tt-card, var(--secondary));
+  border: 1px solid var(--tt-card-border, var(--primary-low));
   border-radius: 14px;
   padding-block: 6px;
   min-width: 0;
