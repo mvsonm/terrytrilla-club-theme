@@ -1,0 +1,6 @@
+# Тема разбирается на Linux: концы строк всегда LF, иначе YAML и SCSS
+# приезжают на сервер с  и ведут себя непредсказуемо.
+* text=auto eol=lf
+*.png binary
+*.woff2 binary
+*.svg text eol=lf
