@@ -4,4 +4,17 @@ en:
     settings:
       product_url: "Address of the product site that the bar links to."
       product_bar_links: "Product sections shown in the bar, in order."
+      product_bar_more: "Sections hidden under “More”."
       sign_in_url: "Where the “Sign in” button in the product bar leads."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Scales"
+    chords: "Chords"
+    ear_training: "Ear training"
+    blog: "Blog"
+    harmonization: "Harmonization"
+    circle_of_fifths: "Circle of fifths"
+    pricing: "Pricing"
+    more: "More"
+    login: "Sign in"
+    account: "My account"

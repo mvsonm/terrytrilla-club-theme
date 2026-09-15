@@ -4,4 +4,17 @@ ko:
     settings:
       product_url: "바가 연결되는 제품 사이트 주소."
       product_bar_links: "바에 표시할 제품 섹션과 순서."
+      product_bar_more: "「더 보기」에 숨길 섹션."
       sign_in_url: "제품 바의 「로그인」 버튼이 향하는 곳."
+  bar:
+    partimento: "Partimento v3"
+    scales: "스케일"
+    chords: "코드"
+    ear_training: "청음 훈련"
+    blog: "블로그"
+    harmonization: "화성 붙이기"
+    circle_of_fifths: "5도권"
+    pricing: "요금제"
+    more: "더 보기"
+    login: "로그인"
+    account: "내 계정"

@@ -4,4 +4,17 @@ ja:
     settings:
       product_url: "バーのリンク先となる製品サイトのアドレス。"
       product_bar_links: "バーに表示する製品セクションとその順序。"
+      product_bar_more: "「その他」に隠すセクション。"
       sign_in_url: "製品バーの「ログイン」ボタンのリンク先。"
+  bar:
+    partimento: "Partimento v3"
+    scales: "スケール"
+    chords: "コード"
+    ear_training: "聴音トレーニング"
+    blog: "ブログ"
+    harmonization: "ハーモナイゼーション"
+    circle_of_fifths: "五度圏"
+    pricing: "料金"
+    more: "その他"
+    login: "ログイン"
+    account: "マイアカウント"

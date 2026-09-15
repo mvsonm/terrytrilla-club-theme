@@ -4,4 +4,17 @@ ar:
     settings:
       product_url: "عنوان موقع المنتج الذي يشير إليه الشريط."
       product_bar_links: "أقسام المنتج الظاهرة في الشريط وترتيبها."
+      product_bar_more: "الأقسام المخفية ضمن «المزيد»."
       sign_in_url: "وجهة زر «تسجيل الدخول» في شريط المنتج."
+  bar:
+    partimento: "Partimento v3"
+    scales: "السلالم"
+    chords: "الأوتار"
+    ear_training: "تدريب الأذن"
+    blog: "المدونة"
+    harmonization: "التوزيع الهارموني"
+    circle_of_fifths: "دائرة الخامسات"
+    pricing: "الأسعار"
+    more: "المزيد"
+    login: "تسجيل الدخول"
+    account: "حسابي"

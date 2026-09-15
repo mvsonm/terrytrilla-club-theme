@@ -4,4 +4,17 @@ uk:
     settings:
       product_url: "Адреса сайту продукту, на який веде смуга."
       product_bar_links: "Розділи продукту у смузі та їхній порядок."
+      product_bar_more: "Розділи, сховані під «Ще»."
       sign_in_url: "Куди веде кнопка «Увійти» у смузі продукту."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Лади"
+    chords: "Акорди"
+    ear_training: "Розвиток слуху"
+    blog: "Блог"
+    harmonization: "Гармонізація"
+    circle_of_fifths: "Коло квінт"
+    pricing: "Тарифи"
+    more: "Ще"
+    login: "Увійти"
+    account: "Мій акаунт"

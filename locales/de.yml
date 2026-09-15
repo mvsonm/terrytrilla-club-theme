@@ -4,4 +4,17 @@ de:
     settings:
       product_url: "Adresse der Produktseite, auf die die Leiste verweist."
       product_bar_links: "Produktbereiche in der Leiste und ihre Reihenfolge."
+      product_bar_more: "Bereiche unter „Mehr“."
       sign_in_url: "Ziel der Schaltfläche „Anmelden“ in der Produktleiste."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Tonleitern"
+    chords: "Akkorde"
+    ear_training: "Gehörbildung"
+    blog: "Blog"
+    harmonization: "Harmonisierung"
+    circle_of_fifths: "Quintenzirkel"
+    pricing: "Preise"
+    more: "Mehr"
+    login: "Anmelden"
+    account: "Mein Konto"

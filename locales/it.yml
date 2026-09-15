@@ -4,4 +4,17 @@ it:
     settings:
       product_url: "Indirizzo del sito del prodotto a cui rimanda la barra."
       product_bar_links: "Sezioni del prodotto mostrate nella barra e il loro ordine."
+      product_bar_more: "Sezioni nascoste sotto «Altro»."
       sign_in_url: "Destinazione del pulsante «Accedi» nella barra del prodotto."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Scale"
+    chords: "Accordi"
+    ear_training: "Educazione dell’orecchio"
+    blog: "Blog"
+    harmonization: "Armonizzazione"
+    circle_of_fifths: "Circolo delle quinte"
+    pricing: "Prezzi"
+    more: "Altro"
+    login: "Accedi"
+    account: "Il mio account"

@@ -4,4 +4,17 @@ pl_PL:
     settings:
       product_url: "Adres strony produktu, do której prowadzi pasek."
       product_bar_links: "Działy produktu widoczne na pasku i ich kolejność."
+      product_bar_more: "Działy ukryte pod „Więcej”."
       sign_in_url: "Dokąd prowadzi przycisk „Zaloguj się” na pasku produktu."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Skale"
+    chords: "Akordy"
+    ear_training: "Kształcenie słuchu"
+    blog: "Blog"
+    harmonization: "Harmonizacja"
+    circle_of_fifths: "Koło kwintowe"
+    pricing: "Cennik"
+    more: "Więcej"
+    login: "Zaloguj się"
+    account: "Moje konto"

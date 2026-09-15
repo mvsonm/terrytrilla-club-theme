@@ -4,4 +4,17 @@ ru:
     settings:
       product_url: "Адрес сайта продукта, на который ведёт полоса."
       product_bar_links: "Разделы продукта в полосе и их порядок."
+      product_bar_more: "Разделы, спрятанные под «Ещё»."
       sign_in_url: "Куда ведёт кнопка «Войти» в полосе продукта."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Лады"
+    chords: "Аккорды"
+    ear_training: "Развитие слуха"
+    blog: "Блог"
+    harmonization: "Гармонизация"
+    circle_of_fifths: "Круг квинт"
+    pricing: "Тарифы"
+    more: "Ещё"
+    login: "Войти"
+    account: "Мой аккаунт"

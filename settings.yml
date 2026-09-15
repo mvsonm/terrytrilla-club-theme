@@ -1,8 +1,9 @@
 # Настройки темы. Описания к ним — в locales/*.yml, ключ theme_metadata.settings.*
 #
-# ⚠️ Адреса продукта держим настройкой, а не литералом в разметке: маршруты сайта
-# меняются (за последний год трижды), и правка адреса не должна требовать правки
-# компонента.
+# ⚠️ Ключ раздела совпадает с сегментом адреса на сайте: partimento → /partimento.
+# Проверено живьём 15.09: /partimento, /scales, /chords, /ear-training, /blog,
+# /harmonization, /circle-of-fifths, /pricing отвечают 200. А вот /library,
+# стоявшего в первой редакции задания, на сайте НЕТ — ссылка вела бы в 404.
 
 product_url:
   type: string
@@ -11,8 +12,17 @@ product_url:
 product_bar_links:
   type: list
   list_type: simple
-  default: "partimento|library|ear-training|blog"
+  default: "partimento|scales|chords|ear-training"
 
+product_bar_more:
+  type: list
+  list_type: simple
+  default: "blog|harmonization|circle-of-fifths|pricing"
+
+# ⚠️ Вход ведёт на /login ФОРУМА, а не на страницу входа сайта. С единым входом
+# (DiscourseConnect) маршрут /login форума сам отправляет человека к нам и
+# возвращает обратно уже вошедшим. Ссылка на terrytrilla.com/login залогинила бы
+# его на сайте и оставила гостем на форуме — а после B3 это единственная дверь.
 sign_in_url:
   type: string
-  default: "https://terrytrilla.com/signin"
+  default: "/login"

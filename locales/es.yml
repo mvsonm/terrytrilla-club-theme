@@ -4,4 +4,17 @@ es:
     settings:
       product_url: "Dirección del sitio del producto al que enlaza la barra."
       product_bar_links: "Secciones del producto que aparecen en la barra y su orden."
+      product_bar_more: "Secciones ocultas bajo «Más»."
       sign_in_url: "Destino del botón «Iniciar sesión» de la barra de producto."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Escalas"
+    chords: "Acordes"
+    ear_training: "Educación auditiva"
+    blog: "Blog"
+    harmonization: "Armonización"
+    circle_of_fifths: "Círculo de quintas"
+    pricing: "Precios"
+    more: "Más"
+    login: "Iniciar sesión"
+    account: "Mi cuenta"

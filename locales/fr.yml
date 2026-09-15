@@ -4,4 +4,17 @@ fr:
     settings:
       product_url: "Adresse du site produit vers lequel pointe la barre."
       product_bar_links: "Sections du produit affichées dans la barre, dans l’ordre."
+      product_bar_more: "Sections masquées sous « Plus »."
       sign_in_url: "Destination du bouton « Se connecter » de la barre produit."
+  bar:
+    partimento: "Partimento v3"
+    scales: "Gammes"
+    chords: "Accords"
+    ear_training: "Formation de l’oreille"
+    blog: "Blog"
+    harmonization: "Harmonisation"
+    circle_of_fifths: "Cycle des quintes"
+    pricing: "Tarifs"
+    more: "Plus"
+    login: "Se connecter"
+    account: "Mon compte"

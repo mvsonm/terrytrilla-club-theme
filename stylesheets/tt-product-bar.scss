@@ -1,0 +1,167 @@
+/*
+  Полоса продукта над форумом (B1). Раскладка — артборд Header.dc.html:
+  высота 52 px, ширина содержимого 1110 px, разрыв 28 px.
+
+  ⚠️ Полоса НЕ липкая — весь эффект прокрутки в том, что она уезжает, а шапка
+  форума остаётся. Это требование ТЗ, а не упущение.
+*/
+
+.tt-bar {
+  background: var(--secondary);
+  border-bottom: 1px solid var(--primary-low);
+}
+
+.tt-bar__inner {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding-inline: clamp(16px, 1.7vw, 24px);
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/*
+  Знак — текстовое написание с градиентом, как в шапке самого сайта
+  (GuestLandingHeader.tsx). Цвета градиента заданы литералом намеренно: это
+  фирменный знак, он обязан выглядеть одинаково в обеих схемах, поэтому из
+  слотов схемы не выводится.
+*/
+.tt-bar__brand {
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  text-decoration: none;
+  background: linear-gradient(90deg, #7c3aed, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.tt-bar__nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex: 1;
+  min-width: 0;
+}
+
+.tt-bar__link {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--primary-medium);
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--primary);
+  }
+}
+
+/* «Ещё» на <details>: раскрытие без своего состояния и с клавиатуры из коробки. */
+.tt-bar__more {
+  position: relative;
+
+  > summary {
+    list-style: none;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--primary-medium);
+    white-space: nowrap;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      display: inline-block;
+      width: 0.42em;
+      height: 0.42em;
+      margin-inline-start: 0.42em;
+      border-inline-end: 1.6px solid currentcolor;
+      border-block-end: 1.6px solid currentcolor;
+      transform: rotate(45deg) translateY(-0.12em);
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--primary);
+    }
+  }
+}
+
+.tt-bar__menu {
+  position: absolute;
+  inset-block-start: calc(100% + 10px);
+  inset-inline-start: 0;
+  z-index: z("dropdown");
+  min-width: 13rem;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border: 1px solid var(--primary-low);
+  border-radius: 12px;
+  background: var(--secondary);
+  box-shadow: shadow("dropdown");
+
+  a {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    color: var(--primary);
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--hover);
+    }
+  }
+}
+
+.tt-bar__end {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/*
+  Подпись кнопки — `--secondary`, а не белый: в светлой схеме это почти белый,
+  в тёмной — тёмный, и контраст держится в обеих. Белый литерал на тёмном
+  `--tertiary` (#7C6FCD) дал бы 4.1 и не прошёл бы порог.
+*/
+.tt-bar__cta {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding-inline: 16px;
+  border-radius: 10px;
+  background: var(--tertiary);
+  color: var(--secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--tertiary-hover);
+    color: var(--secondary);
+  }
+}
+
+/* На узком экране остаются знак и кнопка: разделы продукта — в меню форума. */
+@media (max-width: 767px) {
+  .tt-bar__nav {
+    display: none;
+  }
+
+  .tt-bar__inner {
+    gap: 12px;
+  }
+}
