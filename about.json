@@ -8,11 +8,7 @@
   "minimum_discourse_version": "2026.8.0",
   "modifiers": {
     "only_theme_color_schemes": true,
-    "custom_homepage": true,
-    "csp_extensions": [
-      "connect-src https://terrytrilla.com",
-      "script-src https://terrytrilla.com"
-    ]
+    "custom_homepage": true
   },
   "theme_site_settings": {
     "enable_welcome_banner": true

@@ -409,8 +409,64 @@ console.log('\n8 · закрытость от поиска');
 }
 
 // ── 9–10. Виджет в посте и в письме — волна F ───────────────────────────────
+/*
+  Круг ладов живёт в статьях, и проверять его можно только там, где он стоит:
+  адрес темы — переменной TT_CIRCLE_TOPIC (например /t/topic/23).
+
+  Неприменимость здесь бывает трёх видов, и все честные: темы с кругом нет;
+  бандла /embed/circle.js на сайте ещё нет (тема выкатывается раньше сайта);
+  тема — черновик, а прогон гостевой. Во всех трёх проверять нечего, и зелёным
+  это не считается.
+*/
 console.log('\n9–10 · виджет в посте и в письме');
-console.log('  ⏸ отложено: волна F не построена, проверять нечего');
+{
+  const ТЕМА = process.env.TT_CIRCLE_TOPIC || null;
+  const САЙТ = process.env.TT_SITE || 'https://terrytrilla.com';
+  const бандл = await fetch(`${САЙТ}/embed/circle.js`, { method: 'HEAD' }).then((r) => r.status).catch(() => 0);
+
+  if (!ТЕМА) {
+    пропуск('круг в посте', 'не задан TT_CIRCLE_TOPIC — темы с кругом для проверки нет');
+  } else if (бандл !== 200) {
+    пропуск('круг в посте', `бандла ${САЙТ}/embed/circle.js нет (HTTP ${бандл}) — сайт ещё не выкатан`);
+  } else {
+    const { ctx, page, ошибки } = await открыть(browser, ТЕМА, { wait: 1500 });
+    await page.evaluate(() => {
+      window.__csp = [];
+      document.addEventListener('securitypolicyviolation', (e) => window.__csp.push(`${e.violatedDirective} ${e.blockedURI}`));
+    });
+    const блоков = await page.locator("[data-wrap='tt-circle']").count();
+    if (блоков === 0) {
+      пропуск('круг в посте', `в ${ТЕМА} нет блока [wrap=tt-circle] (или тема не видна этому прогону)`);
+    } else {
+      const блок = page.locator("[data-wrap='tt-circle']").first();
+      await блок.scrollIntoViewIfNeeded();
+      await page.waitForFunction(() => {
+        const n = document.querySelector("[data-wrap='tt-circle']");
+        return n && ['live', 'error'].includes(n.dataset.ttCircle);
+      }, null, { timeout: 30000 }).catch(() => {});
+      const состояние = await блок.getAttribute('data-tt-circle');
+      const нот = await блок.locator('.scale-circle-note-label').count();
+      проверка('круг в посте ожил', состояние === 'live' && нот === 12, `состояние ${состояние}, меток нот ${нот}`);
+
+      // КОНТРОЛЬ детектора: нажатие обязано изменить круг, иначе «12 меток»
+      // проверяло бы картинку, а не живой виджет.
+      if (состояние === 'live') {
+        const до = await блок.locator('.scale-circle-note-label').evaluateAll((g) => g.map((x) => x.getAttribute('class')).join());
+        await блок.locator('.scale-circle-note-label').nth(1).locator('circle').first().click({ force: true });
+        await page.waitForTimeout(600);
+        const после = await блок.locator('.scale-circle-note-label').evaluateAll((g) => g.map((x) => x.getAttribute('class')).join());
+        проверка('нажатие на ноту меняет круг', до !== после);
+        const картинок = await блок.locator(':scope > p img, :scope > img').evaluateAll((els) => els.filter((e) => e.offsetParent !== null).length);
+        проверка('запасная картинка спрятана у живого круга', картинок === 0, `видимых картинок ${картинок}`);
+      }
+      const csp = await page.evaluate(() => window.__csp);
+      проверка('нарушений CSP нет', csp.length === 0, csp.slice(0, 3).join('; '));
+      проверка('ошибок скрипта нет', ошибки.length === 0, ошибки.slice(0, 2).join('; '));
+    }
+    await ctx.close();
+  }
+  пропуск('картинка в письме', 'F5 — запасная картинка по API ещё не построена');
+}
 
 await browser.close();
 

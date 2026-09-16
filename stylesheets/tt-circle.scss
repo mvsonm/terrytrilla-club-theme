@@ -1,0 +1,22 @@
+// Живой Круг ладов в сообщении (волна F). Раскладку и цвета самого круга даёт
+// бандл сайта (`.tt-circle`, токены --widget-sc-*); здесь — только место в посте
+// и запасная картинка.
+
+.cooked .tt-circle-embed {
+  display: block; // однострочный [wrap] даёт <span> — круг всё равно блок
+  margin: 1.5em auto;
+  max-width: 480px;
+
+  // Картинка внутри блока — вид для писем и на случай сбоя. Пока круг не
+  // ожил, она видна; ожил — прячем, но из разметки не убираем.
+  &[data-tt-circle="live"] > :not(.tt-circle) {
+    display: none;
+  }
+
+  img {
+    display: block;
+    margin-inline: auto;
+    max-width: 100%;
+    height: auto;
+  }
+}
