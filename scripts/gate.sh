@@ -111,8 +111,8 @@ ssh $FORUM "sudo docker cp /tmp/gate_revoke_src.rb app:/tmp/gate_revoke.rb >/dev
 # ⚠️ Значение сеанса НЕ печатается: оно идёт из контейнера сразу в файл 600.
 ssh $FORUM "sudo docker cp /tmp/gate_session.rb app:/tmp/gate_session.rb >/dev/null \
   && sudo docker exec app rails runner /tmp/gate_session.rb >/dev/null 2>&1 \
-  && umask 077 && sudo docker cp app:/tmp/.gate_out ${SESSION_FILE} >/dev/null \
-  && chmod 600 ${SESSION_FILE} && sudo chown deploy:deploy ${SESSION_FILE} \
+  && sudo docker cp app:/tmp/.gate_out ${SESSION_FILE} >/dev/null \
+  && sudo chown deploy:deploy ${SESSION_FILE} && chmod 600 ${SESSION_FILE} \
   && sudo docker exec app rm -f /tmp/.gate_out" \
   || stop "не удалось выпустить сеанс"
 
