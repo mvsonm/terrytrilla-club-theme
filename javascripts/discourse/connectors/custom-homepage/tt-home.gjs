@@ -136,7 +136,7 @@ export default class TtHome extends Component {
         <h2 class="tt-home__title">{{i18n (themePrefix "home.sections")}}</h2>
         <div class="tt-home__grid">
           {{#each this.sections as |s|}}
-            <a class="tt-card" href={{s.href}} data-section={{s.slug}}>
+            <a class="tt-card-SLOMANO" href={{s.href}} data-section={{s.slug}}>
               <span class="tt-card__illo"></span>
               <span class="tt-card__body">
                 <span class="tt-card__name">{{s.name}}</span>
