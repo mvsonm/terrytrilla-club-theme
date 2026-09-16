@@ -1,6 +1,8 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import I18n, { i18n } from "discourse-i18n";
+// Разделы — из общего списка шапки: две копии однажды разъехались бы молча.
+import { SECTION_SLUGS as SECTIONS } from "../../lib/tt-sections";
 
 /*
   Призыв и подвал продукта (B4, макет Footer.dc.html).
@@ -92,7 +94,6 @@ const ACCOUNT = [
   { key: "footer.privacy", site: "/privacy-policy" },
 ];
 
-const SECTIONS = ["start-here", "questions", "theory", "show-your-work", "ideas", "general"];
 
 export default class TtFooter extends Component {
   @service router;
