@@ -5,6 +5,7 @@ import icon from "discourse/helpers/d-icon";
 // движок пишет о ней администратору «код нужно обновить»
 // (id:discourse.legacy-topic-list). Сообщение поймано живым просмотром.
 import TopicList from "discourse/components/topic-list/list";
+import { htmlSafe } from "@ember/template";
 import { i18n } from "discourse-i18n";
 
 /*
@@ -70,6 +71,18 @@ export default class TtHome extends Component {
         empty: (c.topic_count ?? 0) === 0,
         href: `/c/${c.slug}/${c.id}`,
         iconId: `tt-${c.slug}`,
+        /*
+          ⚠️ Цвет раздела приходит ИЗ ДАННЫХ категории и отдаётся строчным
+          стилем — ровно так же, как это делает само ядро для значка категории
+          в ленте (`--category-badge-color` на элементе).
+
+          Прежде здесь была ставка на `--category-<slug>-color`, которую движок
+          якобы объявляет сам. ТАКОЙ ПЕРЕМЕННОЙ НЕТ: замер на живой странице —
+          пусто и на корне, и на карточке, — и запасной цвет срабатывал для всех
+          шести значков сразу. То есть покраска по разделам не работала НИ РАЗУ,
+          и выглядело это как задуманное единообразие.
+        */
+        стиль: c.color ? htmlSafe(`--tt-cat: #${c.color}`) : null,
       }));
   }
 
@@ -138,7 +151,7 @@ export default class TtHome extends Component {
         <h2 class="tt-home__title">{{i18n (themePrefix "home.sections")}}</h2>
         <div class="tt-home__grid">
           {{#each this.sections as |s|}}
-            <a class="tt-card" href={{s.href}} data-section={{s.slug}}>
+            <a class="tt-card" href={{s.href}} data-section={{s.slug}} style={{s.стиль}}>
               <span class="tt-card__icon">{{icon s.iconId}}</span>
               <span class="tt-card__body">
                 <span class="tt-card__name">{{s.name}}</span>
