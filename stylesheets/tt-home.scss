@@ -76,10 +76,14 @@
   ТРИ в ряд. Порог 380 и есть «три»: при доступных 1272 (1320 минус поля)
   три × 380 + 2 × 24 = 1188 влезают, четыре × 380 + 3 × 24 = 1592 — нет.
   Уже — сами встают в две колонки, потом в одну; отдельных правил не нужно.
+
+  ⚠️ `min(380px, 100%)`, а не просто 380. Дорожка `minmax` ниже своего минимума
+  НЕ сжимается: на экране 390 px доступно 358, колонка оставалась 380 — и
+  страница уезжала вбок. Замерено браузером (`scrollWidth > clientWidth`).
 */
 .tt-home__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -201,9 +205,10 @@
 
 /* ── Две колонки отобранного ──────────────────────────────────────────────── */
 
+/* То же `min()`, что и у сетки разделов, и по той же причине. */
 .tt-home__curated {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
   gap: 18px;
 }
 
