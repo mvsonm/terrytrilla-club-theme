@@ -1,11 +1,11 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
-import icon from "discourse/helpers/d-icon";
 // ⚠️ Именно `topic-list/list`, а не `topic-list`: второй — устаревшая обёртка,
 // движок пишет о ней администратору «код нужно обновить»
 // (id:discourse.legacy-topic-list). Сообщение поймано живым просмотром.
 import TopicList from "discourse/components/topic-list/list";
 import { htmlSafe } from "@ember/template";
+import { иллюстрация } from "../../lib/tt-illustrations";
 import { i18n } from "discourse-i18n";
 
 /*
@@ -70,7 +70,6 @@ export default class TtHome extends Component {
         // Поэтому у пустого не «0 тем», а приглашение написать первым (C6).
         empty: (c.topic_count ?? 0) === 0,
         href: `/c/${c.slug}/${c.id}`,
-        iconId: `tt-${c.slug}`,
         /*
           ⚠️ Цвет раздела приходит ИЗ ДАННЫХ категории и отдаётся строчным
           стилем — ровно так же, как это делает само ядро для значка категории
@@ -83,6 +82,14 @@ export default class TtHome extends Component {
           и выглядело это как задуманное единообразие.
         */
         стиль: c.color ? htmlSafe(`--tt-cat: #${c.color}`) : null,
+        /*
+          ⚠️ Разметка ВСТАВЛЯЕТСЯ в страницу, а не подключается файлом.
+          Картинки красятся переменными темы, а переменные страницы не доходят
+          до SVG, подключённого как `background-image` или `<img>`: он рисуется
+          в отдельном окружении и берёт запасные значения, зашитые в файле. Они
+          светлые — в ночной схеме вышли бы белые пятна.
+        */
+        рисунок: htmlSafe(иллюстрация(c.slug) || ""),
       }));
   }
 
@@ -152,7 +159,7 @@ export default class TtHome extends Component {
         <div class="tt-home__grid">
           {{#each this.sections as |s|}}
             <a class="tt-card" href={{s.href}} data-section={{s.slug}} style={{s.стиль}}>
-              <span class="tt-card__icon">{{icon s.iconId}}</span>
+              <span class="tt-card__illo">{{s.рисунок}}</span>
               <span class="tt-card__body">
                 <span class="tt-card__name">{{s.name}}</span>
                 <span class="tt-card__desc">{{s.description}}</span>

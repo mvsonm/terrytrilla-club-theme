@@ -1,6 +1,7 @@
 /*
-  Своя главная (C3, C5, C6). Раскладка — артборды Home.dc.html и SectionCards.dc.html:
-  содержимое 1110 px, карточки от 290 px, колонки отобранного от 300 px.
+  Своя главная (C3, C5, C6). Раскладка — артборды выгрузки v2, 3a и 3b
+  («Блоки разделов — иллюстрация слева»): содержимое 1110 px, карточки-строки
+  ДВА В РЯД от 480 px, колонки отобранного от 300 px.
 */
 
 /*
@@ -61,92 +62,141 @@
   padding-block-start: clamp(28px, 3vw, 44px);
 }
 
+/*
+  Карточки разделов — по артбордам 3a/3b выгрузки v2 («Блоки разделов —
+  иллюстрация слева»): ДВА В РЯД при содержимом 1110 px, а не три.
+
+  Порог 480 px и есть «два в ряд»: 2 × 480 + 24 = 984 ≤ 1110, а три не влезают.
+  Ниже 984 карточки сами встают в одну колонку.
+*/
 .tt-home__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  gap: 24px;
 }
 
 /* ── Карточка раздела ─────────────────────────────────────────────────────── */
 
+/*
+  Карточка-строка: иллюстрация слева, текст справа. Числа с артборда RowCard —
+  колонка 132 px, разрыв 24, поле 28/30/28/24, скругление 12.
+*/
 .tt-card {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 22px 22px 20px;
+  /*
+    Цвета иллюстрации. Формулы — с артбордов; доли осветления приходят из
+    `color_definitions.scss`, потому что они РАЗНЫЕ в дневной и ночной схеме.
+
+    ⚠️ Объявлены на КАРТОЧКЕ, а не на корне: `--tt-cat` — цвет конкретного
+    раздела, его ставит компонент строчным стилем здесь же. На корне он был бы
+    один на все шесть.
+  */
+  --ill-cat: color-mix(in srgb, var(--tt-cat, var(--tertiary)) var(--tt-ill-cat-mix, 100%), #fff);
+  --ill-cat-hi: color-mix(in srgb, var(--ill-cat) var(--tt-ill-hi-mix, 55%), #fff);
+  --ill-cat-soft: color-mix(
+    in srgb,
+    var(--ill-cat) var(--tt-ill-soft-mix, 18%),
+    var(--tt-card, var(--secondary))
+  );
+  --ill-tint: color-mix(
+    in srgb,
+    var(--tertiary) var(--tt-ill-tint-mix, 14%),
+    var(--tt-card, var(--secondary))
+  );
+
+  /*
+    Эти две формулы одинаковы в обеих схемах — они и так выведены из цвета
+    карточки, который схемой уже подменён.
+
+    ⚠️ Нужны обязательно: без них контурные детали возьмут запасные значения,
+    зашитые в сами файлы, а те СВЕТЛЫЕ — в ночной схеме получились бы белые
+    штрихи. Нашлось сверкой списка `var(--…)` внутри картинок со списком
+    объявленных здесь: глазами такое не видно, пока не откроешь ночную схему.
+  */
+  --ill-line: color-mix(in srgb, var(--primary) 72%, var(--tt-card, var(--secondary)));
+  --ill-card: var(--tt-card, var(--secondary));
+
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 28px 30px 28px 24px;
   min-width: 0;
   background: var(--tt-card, var(--secondary));
   border: 1px solid var(--tt-card-border, var(--primary-low));
-  border-radius: 14px;
+  border-radius: 12px;
   color: var(--primary);
   text-decoration: none;
 
   &:hover,
   &:focus-visible {
     border-color: var(--tertiary-medium);
-    background: var(--hover);
     color: var(--primary);
+  }
+
+  /*
+    ⚠️ На узком экране иллюстрация в 132 px съедает половину строки. Уводим её
+    наверх и уменьшаем: текст читается, рисунок остаётся.
+  */
+  @media (max-width: 599px) {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px 20px 22px;
+
+    .tt-card__illo {
+      width: 104px;
+    }
   }
 }
 
 /*
-  Значок красится цветом РАЗДЕЛА.
-
-  ⚠️ Цвет приходит переменной `--tt-cat`, которую компонент ставит на саму
-  карточку строчным стилем из данных категории — ровно так же, как это делает
-  ядро для значка категории в ленте (`--category-badge-color` на элементе).
-
-  Раньше здесь стоял перебор по слагам с `--category-<slug>-color`, «которую
-  движок объявляет сам». ТАКОЙ ПЕРЕМЕННОЙ НЕТ. Замер на живой странице: пусто и
-  на корне, и на карточке; срабатывал запасной цвет, и все шесть значков
-  выходили ОДИНАКОВЫМИ. Дефект прожил незамеченным именно потому, что выглядел
-  как задуманное единообразие — непокрашенное и «покрашенное в один цвет» на
-  экране неразличимы.
-
-  Запасной цвет оставлен намеренно: у категории может не быть своего цвета.
+  Пропорция 200×140 — из самих файлов (их `viewBox`). Задаём её здесь, а не
+  надеемся на размеры внутри SVG: у них `width="100%" height="100%"`, то есть
+  своей высоты нет вовсе, и без `aspect-ratio` картинка схлопнулась бы в ноль.
 */
-.tt-card__icon {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 46px;
-  height: 46px;
-  border-radius: 11px;
-  background: color-mix(in srgb, var(--tt-cat, var(--tertiary)) 12%, var(--secondary));
-  color: var(--tt-cat, var(--tertiary));
+.tt-card__illo {
+  display: block;
+  width: 132px;
+  aspect-ratio: 200 / 140;
 
-  .d-icon {
-    width: 28px;
-    height: 28px;
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
 
 .tt-card__body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   min-width: 0;
 }
 
 .tt-card__name {
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
   overflow-wrap: anywhere;
 }
 
 .tt-card__desc {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--primary-medium);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--primary-high);
   text-wrap: pretty;
 }
 
+/*
+  ⚠️ `margin-block-start: auto` убран. В колонке он прижимал счётчик к низу
+  карточки, а в строке колонка выровнена по центру — и «авто» растянуло бы
+  разрыв, оторвав счётчик от описания.
+*/
 .tt-card__count {
-  margin-block-start: auto;
-  font-size: 13px;
+  margin-block-start: 4px;
+  font-size: 13.5px;
   color: var(--primary-medium);
 }
 
@@ -156,8 +206,8 @@
   извинение за пустоту.
 */
 .tt-card__invite {
-  margin-block-start: auto;
-  font-size: 13px;
+  margin-block-start: 4px;
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--tertiary);
 }
