@@ -43,6 +43,10 @@
 # Запуск из корня репозитория темы:
 #   bash scripts/gate.sh            — проверить и, если зелено, выкатить
 #   bash scripts/gate.sh --check    — только проверить, в бой не выкатывать
+#
+# Живой Круг ладов (волна F) проверяется в теме, где он стоит:
+#   TT_CIRCLE_TOPIC=/t/topic/23 bash scripts/gate.sh
+# Без переменной проверки круга честно «неприменимы».
 set -uo pipefail
 
 FORUM="-i $HOME/.ssh/tt_train -p 2222 deploy@159.195.137.243"
@@ -129,7 +133,7 @@ scp -q -i "$HOME/.ssh/id_rsa" -P 2222 spec/acceptance.mjs \
   deploy@159.195.13.167:~/browser-probe/acceptance.mjs \
   || stop "не удалось положить приёмку на машину с браузером"
 
-ssh $WEB "cd ~/browser-probe && TT_PREVIEW_THEME_ID=${THEME_STAGING} TT_SESSION_FILE=${SESSION_FILE} node acceptance.mjs"
+ssh $WEB "cd ~/browser-probe && TT_PREVIEW_THEME_ID=${THEME_STAGING} TT_SESSION_FILE=${SESSION_FILE} TT_CIRCLE_TOPIC=${TT_CIRCLE_TOPIC:-} node acceptance.mjs"
 CODE=$?
 [ "${CODE}" -eq 0 ] || stop "приёмка не прошла — в бой НИЧЕГО не поехало. Правьте и гоняйте снова."
 
