@@ -57,6 +57,12 @@
     "rubik-cyrillic": "assets/fonts/rubik-cyrillic.woff2",
     "rubik-latin-ext": "assets/fonts/rubik-latin-ext.woff2",
     "rubik-latin": "assets/fonts/rubik-latin.woff2",
+    "ill-start-here": "assets/illustrations/start-here.png",
+    "ill-questions": "assets/illustrations/questions.webp",
+    "ill-theory": "assets/illustrations/theory.png",
+    "ill-show-your-work": "assets/illustrations/show-your-work.webp",
+    "ill-ideas": "assets/illustrations/ideas.png",
+    "ill-general": "assets/illustrations/general.png",
     "tt-glyphs": "assets/tt-glyphs.svg",
     "tt-orbit": "assets/tt-orbit.svg",
     "tt-orbit-dots": "assets/tt-orbit-dots.svg"

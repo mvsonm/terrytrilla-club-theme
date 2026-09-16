@@ -4,8 +4,6 @@ import { service } from "@ember/service";
 // движок пишет о ней администратору «код нужно обновить»
 // (id:discourse.legacy-topic-list). Сообщение поймано живым просмотром.
 import TopicList from "discourse/components/topic-list/list";
-import { htmlSafe } from "@ember/template";
-import { иллюстрация } from "../../lib/tt-illustrations";
 import { i18n } from "discourse-i18n";
 
 /*
@@ -70,26 +68,6 @@ export default class TtHome extends Component {
         // Поэтому у пустого не «0 тем», а приглашение написать первым (C6).
         empty: (c.topic_count ?? 0) === 0,
         href: `/c/${c.slug}/${c.id}`,
-        /*
-          ⚠️ Цвет раздела приходит ИЗ ДАННЫХ категории и отдаётся строчным
-          стилем — ровно так же, как это делает само ядро для значка категории
-          в ленте (`--category-badge-color` на элементе).
-
-          Прежде здесь была ставка на `--category-<slug>-color`, которую движок
-          якобы объявляет сам. ТАКОЙ ПЕРЕМЕННОЙ НЕТ: замер на живой странице —
-          пусто и на корне, и на карточке, — и запасной цвет срабатывал для всех
-          шести значков сразу. То есть покраска по разделам не работала НИ РАЗУ,
-          и выглядело это как задуманное единообразие.
-        */
-        стиль: c.color ? htmlSafe(`--tt-cat: #${c.color}`) : null,
-        /*
-          ⚠️ Разметка ВСТАВЛЯЕТСЯ в страницу, а не подключается файлом.
-          Картинки красятся переменными темы, а переменные страницы не доходят
-          до SVG, подключённого как `background-image` или `<img>`: он рисуется
-          в отдельном окружении и берёт запасные значения, зашитые в файле. Они
-          светлые — в ночной схеме вышли бы белые пятна.
-        */
-        рисунок: htmlSafe(иллюстрация(c.slug) || ""),
       }));
   }
 
@@ -158,8 +136,8 @@ export default class TtHome extends Component {
         <h2 class="tt-home__title">{{i18n (themePrefix "home.sections")}}</h2>
         <div class="tt-home__grid">
           {{#each this.sections as |s|}}
-            <a class="tt-card" href={{s.href}} data-section={{s.slug}} style={{s.стиль}}>
-              <span class="tt-card__illo">{{s.рисунок}}</span>
+            <a class="tt-card" href={{s.href}} data-section={{s.slug}}>
+              <span class="tt-card__illo"></span>
               <span class="tt-card__body">
                 <span class="tt-card__name">{{s.name}}</span>
                 <span class="tt-card__desc">{{s.description}}</span>

@@ -1,7 +1,8 @@
 /*
   Своя главная (C3, C5, C6). Раскладка — артборды выгрузки v2, 3a и 3b
-  («Блоки разделов — иллюстрация слева»): содержимое 1110 px, карточки-строки
-  ДВА В РЯД от 480 px, колонки отобранного от 300 px.
+  («Блоки разделов — иллюстрация слева»), но по решению владельца ШИРЕ и по ТРИ
+  в ряд: содержимое 1320 px, карточки-строки от 380 px, колонки отобранного
+  от 300 px. Иллюстрации — растровые исходники владельца, квадратные.
 */
 
 /*
@@ -22,8 +23,17 @@
   padding-inline: 0;
 }
 
+/*
+  Полоса главной шире прежних 1110: при трёх карточках в ряду на 1110 каждая
+  выходила 344 px, и текст рядом со 112-пиксельной картинкой становился колонкой
+  в 180 px — заголовок «Теория и гармония» ломался на три строки.
+
+  1320 даёт карточку 408 и текст 228. Шире брать некуда: шапка и обложка идут во
+  всю ширину с полем 4,6 % (см. $tt-gutter), и лента тем при 1400+ читается
+  хуже — строка становится длиннее удобного.
+*/
 .tt-home {
-  max-width: 1110px;
+  max-width: 1320px;
   margin: 0 auto;
   padding-inline: clamp(16px, 1.7vw, 24px);
   display: flex;
@@ -63,63 +73,29 @@
 }
 
 /*
-  Карточки разделов — по артбордам 3a/3b выгрузки v2 («Блоки разделов —
-  иллюстрация слева»): ДВА В РЯД при содержимом 1110 px, а не три.
-
-  Порог 480 px и есть «два в ряд»: 2 × 480 + 24 = 984 ≤ 1110, а три не влезают.
-  Ниже 984 карточки сами встают в одну колонку.
+  ТРИ в ряд. Порог 380 и есть «три»: при доступных 1272 (1320 минус поля)
+  три × 380 + 2 × 24 = 1188 влезают, четыре × 380 + 3 × 24 = 1592 — нет.
+  Уже — сами встают в две колонки, потом в одну; отдельных правил не нужно.
 */
 .tt-home__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 24px;
 }
 
 /* ── Карточка раздела ─────────────────────────────────────────────────────── */
 
 /*
-  Карточка-строка: иллюстрация слева, текст справа. Числа с артборда RowCard —
-  колонка 132 px, разрыв 24, поле 28/30/28/24, скругление 12.
+  Карточка-строка: иллюстрация слева, текст справа. Числа артборда RowCard
+  ужаты под три в ряд: колонка 112 вместо 132, разрыв 20 вместо 24, поле
+  24/26/24/22 вместо 28/30/28/24. Скругление 12 как в артборде.
 */
 .tt-card {
-  /*
-    Цвета иллюстрации. Формулы — с артбордов; доли осветления приходят из
-    `color_definitions.scss`, потому что они РАЗНЫЕ в дневной и ночной схеме.
-
-    ⚠️ Объявлены на КАРТОЧКЕ, а не на корне: `--tt-cat` — цвет конкретного
-    раздела, его ставит компонент строчным стилем здесь же. На корне он был бы
-    один на все шесть.
-  */
-  --ill-cat: color-mix(in srgb, var(--tt-cat, var(--tertiary)) var(--tt-ill-cat-mix, 100%), #fff);
-  --ill-cat-hi: color-mix(in srgb, var(--ill-cat) var(--tt-ill-hi-mix, 55%), #fff);
-  --ill-cat-soft: color-mix(
-    in srgb,
-    var(--ill-cat) var(--tt-ill-soft-mix, 18%),
-    var(--tt-card, var(--secondary))
-  );
-  --ill-tint: color-mix(
-    in srgb,
-    var(--tertiary) var(--tt-ill-tint-mix, 14%),
-    var(--tt-card, var(--secondary))
-  );
-
-  /*
-    Эти две формулы одинаковы в обеих схемах — они и так выведены из цвета
-    карточки, который схемой уже подменён.
-
-    ⚠️ Нужны обязательно: без них контурные детали возьмут запасные значения,
-    зашитые в сами файлы, а те СВЕТЛЫЕ — в ночной схеме получились бы белые
-    штрихи. Нашлось сверкой списка `var(--…)` внутри картинок со списком
-    объявленных здесь: глазами такое не видно, пока не откроешь ночную схему.
-  */
-  --ill-line: color-mix(in srgb, var(--primary) 72%, var(--tt-card, var(--secondary)));
-  --ill-card: var(--tt-card, var(--secondary));
-
   display: grid;
-  grid-template-columns: 132px minmax(0, 1fr);
-  gap: 24px;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 20px;
   align-items: center;
-  padding: 28px 30px 28px 24px;
+  padding: 24px 26px 24px 22px;
   min-width: 0;
   background: var(--tt-card, var(--secondary));
   border: 1px solid var(--tt-card-border, var(--primary-low));
@@ -134,7 +110,7 @@
   }
 
   /*
-    ⚠️ На узком экране иллюстрация в 132 px съедает половину строки. Уводим её
+    ⚠️ На узком экране иллюстрация в 112 px съедает половину строки. Уводим её
     наверх и уменьшаем: текст читается, рисунок остаётся.
   */
   @media (max-width: 599px) {
@@ -143,27 +119,38 @@
     padding: 20px 20px 22px;
 
     .tt-card__illo {
-      width: 104px;
+      width: 88px;
     }
   }
 }
 
 /*
-  Пропорция 200×140 — из самих файлов (их `viewBox`). Задаём её здесь, а не
-  надеемся на размеры внутри SVG: у них `width="100%" height="100%"`, то есть
-  своей высоты нет вовсе, и без `aspect-ratio` картинка схлопнулась бы в ноль.
+  Держатель иллюстрации. Исходники КВАДРАТНЫЕ (1254×1254), поэтому и слот
+  квадратный — прежние 200×140 остались от набора SVG.
+
+  ⚠️ Растр подключается фоном, а не вставляется в разметку. Со старым набором
+  было наоборот, и на то была причина — до SVG-в-файле не доходят переменные
+  цвета темы. Здесь причины нет: пиксели перекрасить нечем в любом случае.
+  Значит рисунок обязан читаться на обеих схемах КАК ЕСТЬ.
+
+  `contain` — чтобы не обрезать: квадрат в квадрате, но правило переживёт
+  замену картинки на непропорциональную.
 */
 .tt-card__illo {
   display: block;
-  width: 132px;
-  aspect-ratio: 200 / 140;
-
-  svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+  width: 112px;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
+
+.tt-card[data-section="start-here"] .tt-card__illo { background-image: url($ill-start-here); }
+.tt-card[data-section="questions"] .tt-card__illo { background-image: url($ill-questions); }
+.tt-card[data-section="theory"] .tt-card__illo { background-image: url($ill-theory); }
+.tt-card[data-section="show-your-work"] .tt-card__illo { background-image: url($ill-show-your-work); }
+.tt-card[data-section="ideas"] .tt-card__illo { background-image: url($ill-ideas); }
+.tt-card[data-section="general"] .tt-card__illo { background-image: url($ill-general); }
 
 .tt-card__body {
   display: flex;
@@ -175,7 +162,7 @@
 .tt-card__name {
   font-family: var(--heading-font-family);
   font-weight: 500;
-  font-size: 21px;
+  font-size: 19px;
   line-height: 1.2;
   letter-spacing: -0.015em;
   text-wrap: balance;
