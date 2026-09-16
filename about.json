@@ -9,14 +9,6 @@
   "modifiers": {
     "only_theme_color_schemes": true,
     "custom_homepage": true,
-    "svg_icons": [
-      "tt-start-here",
-      "tt-questions",
-      "tt-theory",
-      "tt-show-your-work",
-      "tt-ideas",
-      "tt-general"
-    ],
     "csp_extensions": [
       "connect-src https://terrytrilla.com",
       "script-src https://terrytrilla.com"
@@ -65,7 +57,6 @@
     "rubik-cyrillic": "assets/fonts/rubik-cyrillic.woff2",
     "rubik-latin-ext": "assets/fonts/rubik-latin-ext.woff2",
     "rubik-latin": "assets/fonts/rubik-latin.woff2",
-    "icons-sprite": "assets/tt-icons.svg",
     "tt-glyphs": "assets/tt-glyphs.svg",
     "tt-orbit": "assets/tt-orbit.svg",
     "tt-orbit-dots": "assets/tt-orbit-dots.svg"
