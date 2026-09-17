@@ -101,3 +101,9 @@ pl_PL:
     preview_failed: "Podgląd się nie wczytał. Widżet i tak zostanie wstawiony."
     insert: "Wstaw"
     update: "Zaktualizuj"
+  consent:
+    label: "Zasady społeczności"
+    description: "Przeczytałem(-am) i akceptuję %{guidelines}, %{terms} i %{privacy} TerryTrilla."
+    guidelines: "zasady społeczności"
+    terms: "Warunki korzystania"
+    privacy: "Politykę prywatności"

@@ -99,3 +99,9 @@ pt_BR:
     preview_failed: "A prévia não carregou. O widget será inserido mesmo assim."
     insert: "Inserir"
     update: "Atualizar"
+  consent:
+    label: "Regras da comunidade"
+    description: "Li e aceito as %{guidelines}, os %{terms} e a %{privacy} do TerryTrilla."
+    guidelines: "regras da comunidade"
+    terms: "Termos de Serviço"
+    privacy: "Política de Privacidade"

@@ -98,3 +98,9 @@ ko:
     preview_failed: "미리보기를 불러오지 못했습니다. 위젯은 그대로 들어갑니다."
     insert: "넣기"
     update: "업데이트"
+  consent:
+    label: "커뮤니티 규칙"
+    description: "TerryTrilla의 %{guidelines}, %{terms}, %{privacy}을 읽었고 동의해요."
+    guidelines: "커뮤니티 규칙"
+    terms: "이용약관"
+    privacy: "개인정보처리방침"

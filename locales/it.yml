@@ -99,3 +99,9 @@ it:
     preview_failed: "L’anteprima non si è caricata. Il widget verrà comunque inserito."
     insert: "Inserisci"
     update: "Aggiorna"
+  consent:
+    label: "Regole della community"
+    description: "Ho letto e accetto le %{guidelines}, i %{terms} e l’%{privacy} di TerryTrilla."
+    guidelines: "regole della community"
+    terms: "Termini di servizio"
+    privacy: "Informativa sulla privacy"

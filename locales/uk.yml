@@ -101,3 +101,9 @@ uk:
     preview_failed: "Попередній перегляд не завантажився. Віджет усе одно вставиться."
     insert: "Вставити"
     update: "Оновити"
+  consent:
+    label: "Правила спільноти"
+    description: "Я прочитав(-ла) і приймаю %{guidelines}, %{terms} та %{privacy} TerryTrilla."
+    guidelines: "правила спільноти"
+    terms: "Умови використання"
+    privacy: "Політику конфіденційності"

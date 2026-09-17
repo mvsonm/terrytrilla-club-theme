@@ -99,3 +99,9 @@ es:
     preview_failed: "La vista previa no cargó. El widget se insertará igualmente."
     insert: "Insertar"
     update: "Actualizar"
+  consent:
+    label: "Normas de la comunidad"
+    description: "He leído y acepto las %{guidelines}, los %{terms} y la %{privacy} de TerryTrilla."
+    guidelines: "normas de la comunidad"
+    terms: "Términos del servicio"
+    privacy: "Política de privacidad"

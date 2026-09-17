@@ -99,3 +99,9 @@ de:
     preview_failed: "Die Vorschau wurde nicht geladen. Das Widget wird trotzdem eingefügt."
     insert: "Einfügen"
     update: "Aktualisieren"
+  consent:
+    label: "Community-Regeln"
+    description: "Ich habe die %{guidelines}, die %{terms} und die %{privacy} von TerryTrilla gelesen und akzeptiere sie."
+    guidelines: "Community-Regeln"
+    terms: "Nutzungsbedingungen"
+    privacy: "Datenschutzerklärung"

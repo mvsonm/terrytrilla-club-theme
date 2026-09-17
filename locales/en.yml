@@ -99,3 +99,9 @@ en:
     preview_failed: "The preview didn't load. The widget will still be inserted."
     insert: "Insert"
     update: "Update"
+  consent:
+    label: "Community rules"
+    description: "I have read and accept the %{guidelines}, the %{terms} and the %{privacy} of TerryTrilla."
+    guidelines: "community guidelines"
+    terms: "Terms of Service"
+    privacy: "Privacy Policy"

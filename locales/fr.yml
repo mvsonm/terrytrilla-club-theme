@@ -99,3 +99,9 @@ fr:
     preview_failed: "L’aperçu ne s’est pas chargé. Le widget sera quand même inséré."
     insert: "Insérer"
     update: "Mettre à jour"
+  consent:
+    label: "Règles de la communauté"
+    description: "J’ai lu et j’accepte les %{guidelines}, les %{terms} et la %{privacy} de TerryTrilla."
+    guidelines: "règles de la communauté"
+    terms: "Conditions d’utilisation"
+    privacy: "Politique de confidentialité"

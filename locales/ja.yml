@@ -98,3 +98,9 @@ ja:
     preview_failed: "プレビューを読み込めませんでした。ウィジェットはそのまま挿入されます。"
     insert: "挿入"
     update: "更新"
+  consent:
+    label: "コミュニティガイドライン"
+    description: "TerryTrilla の %{guidelines}、%{terms}、%{privacy} を読み、同意します。"
+    guidelines: "コミュニティガイドライン"
+    terms: "利用規約"
+    privacy: "プライバシーポリシー"

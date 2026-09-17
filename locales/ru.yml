@@ -101,3 +101,9 @@ ru:
     preview_failed: "Предпросмотр не загрузился. Виджет всё равно вставится."
     insert: "Вставить"
     update: "Обновить"
+  consent:
+    label: "Правила сообщества"
+    description: "Я прочитал(а) и принимаю %{guidelines}, %{terms} и %{privacy} TerryTrilla."
+    guidelines: "правила сообщества"
+    terms: "Условия использования"
+    privacy: "Политику конфиденциальности"

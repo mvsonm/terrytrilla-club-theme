@@ -103,3 +103,9 @@ ar:
     preview_failed: "لم تُحمَّل المعاينة. ستُدرج الأداة على أي حال."
     insert: "إدراج"
     update: "تحديث"
+  consent:
+    label: "قواعد المجتمع"
+    description: "قرأت %{guidelines} و%{terms} و%{privacy} الخاصة بـ TerryTrilla وأوافق عليها."
+    guidelines: "قواعد المجتمع"
+    terms: "شروط الخدمة"
+    privacy: "سياسة الخصوصية"
