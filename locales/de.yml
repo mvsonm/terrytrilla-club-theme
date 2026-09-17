@@ -1,6 +1,6 @@
 de:
   theme_metadata:
-    description: "Community-Theme für TerryTrilla Club: Produktleiste, eigene Startseite, Bereichskarten und der lebendige Tonleiterkreis in Beiträgen."
+    description: "Community-Theme für TerryTrilla Community: Produktleiste, eigene Startseite, Bereichskarten und der lebendige Tonleiterkreis in Beiträgen."
     settings:
       product_url: "Adresse der Produktseite, auf die die Leiste verweist."
       product_bar_links: "Produktbereiche in der Leiste und ihre Reihenfolge."
@@ -33,11 +33,11 @@ de:
     door_contact: "Schreib uns"
     door_contact_desc: "Wenn etwas nicht funktioniert."
     col_materials: "Materialien"
-    col_club: "Klub"
+    col_club: "Community"
     col_account: "Konto"
     circle: "Quintenzirkel"
     all_scales: "Alle Tonleitern"
-    rules: "Klubregeln"
+    rules: "Community-Regeln"
     privacy: "Datenschutz"
     langs_title: "Inhalte in 12 Sprachen"
     domain: "terrytrilla.club — Community von terrytrilla.com"
@@ -67,7 +67,7 @@ de:
     account_note: "Name, E-Mail und Avatar kommen aus deinem TerryTrilla-Konto und werden dort geändert —"
     account_link: "Kontoeinstellungen öffnen"
   header:
-    club: "Klub"
+    club: "Community"
   tt_widgets:
     button_title: "TerryTrilla-Widgets"
     modal_title: "TerryTrilla-Widget einfügen"

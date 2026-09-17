@@ -1,6 +1,6 @@
 ar:
   theme_metadata:
-    description: "سمة مجتمع TerryTrilla Club: شريط المنتج، صفحة رئيسية خاصة، بطاقات الأقسام، ودائرة السلالم الموسيقية الحية داخل المشاركات."
+    description: "سمة مجتمع TerryTrilla Community: شريط المنتج، صفحة رئيسية خاصة، بطاقات الأقسام، ودائرة السلالم الموسيقية الحية داخل المشاركات."
     settings:
       product_url: "عنوان موقع المنتج الذي يشير إليه الشريط."
       product_bar_links: "أقسام المنتج الظاهرة في الشريط وترتيبها."
@@ -33,11 +33,11 @@ ar:
     door_contact: "راسلنا"
     door_contact_desc: "إذا كان هناك خلل."
     col_materials: "المواد"
-    col_club: "النادي"
+    col_club: "المجتمع"
     col_account: "الحساب"
     circle: "دائرة الخامسات"
     all_scales: "كل السلالم"
-    rules: "قواعد النادي"
+    rules: "قواعد المجتمع"
     privacy: "الخصوصية"
     langs_title: "المحتوى بـ12 لغة"
     domain: "terrytrilla.club — مجتمع terrytrilla.com"
@@ -71,7 +71,7 @@ ar:
     account_note: "الاسم والبريد والصورة تأتي من حسابك في TerryTrilla وتُغيَّر هناك —"
     account_link: "فتح إعدادات الحساب"
   header:
-    club: "النادي"
+    club: "المجتمع"
   tt_widgets:
     button_title: "أدوات TerryTrilla"
     modal_title: "إدراج أداة TerryTrilla"

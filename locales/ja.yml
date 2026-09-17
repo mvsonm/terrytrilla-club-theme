@@ -1,6 +1,6 @@
 ja:
   theme_metadata:
-    description: "TerryTrilla Club コミュニティのテーマ：製品バー、独自のホーム、セクションカード、投稿内で動くスケールサークル。"
+    description: "TerryTrilla Community のテーマ：製品バー、独自のホーム、セクションカード、投稿内で動くスケールサークル。"
     settings:
       product_url: "バーのリンク先となる製品サイトのアドレス。"
       product_bar_links: "バーに表示する製品セクションとその順序。"
@@ -33,11 +33,11 @@ ja:
     door_contact: "お問い合わせ"
     door_contact_desc: "不具合があれば。"
     col_materials: "資料"
-    col_club: "クラブ"
+    col_club: "コミュニティ"
     col_account: "アカウント"
     circle: "五度圏"
     all_scales: "すべてのスケール"
-    rules: "クラブの規約"
+    rules: "コミュニティガイドライン"
     privacy: "プライバシー"
     langs_title: "12言語のコンテンツ"
     domain: "terrytrilla.club — terrytrilla.com のコミュニティ"
@@ -66,7 +66,7 @@ ja:
     account_note: "名前・メール・アバターは TerryTrilla のアカウントから来ており、変更もそちらで行います——"
     account_link: "アカウント設定を開く"
   header:
-    club: "クラブ"
+    club: "コミュニティ"
   tt_widgets:
     button_title: "TerryTrilla ウィジェット"
     modal_title: "TerryTrilla ウィジェットを挿入"

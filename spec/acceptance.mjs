@@ -577,6 +577,73 @@ console.log('\n11 · кнопка виджетов в редакторе');
   }
 }
 
+// ── 12. Имя «Community» (C4 ТЗ-FORUM-LAUNCH, Р-11) ─────────────────────────
+console.log('\n12 · открытый форум называется сообществом, а не клубом');
+{
+  /*
+    «Клуб» по решению Р-11 — только закрытая платная часть. Открытый форум в шапке,
+    подвале, обложке и описаниях разделов называется сообществом, словом из словарей
+    сайта (`community` в apps/web/src/i18n/locales). Проверяется то, что ВИДИТ
+    посетитель, а не ключи в yml: строку разделов, например, пишет не тема, а
+    CategoryLocalization на форуме.
+
+    ⚠️ Длина. «Клуб» был в 4 знака, «Сообщество» и «Społeczność» — в 11. Название
+    стоит в одной строке шапки с навигацией разделов, поэтому мерится и перенос
+    названия, и перелив шапки, на широком экране и на телефоне.
+
+    В предвыкатном прогоне язык страницы — из профиля сотрудника (как в проверке 2),
+    поэтому там один язык; все двенадцать гостем проверяет боевой прогон.
+  */
+  const ИМЯ = {
+    en: 'Community', ru: 'Сообщество', uk: 'Спільнота', de: 'Community', fr: 'Communauté',
+    es: 'Comunidad', pt: 'Comunidade', it: 'Community', pl: 'Społeczność', ar: 'المجتمع',
+    ja: 'コミュニティ', ko: '커뮤니티',
+  };
+  const КЛУБ = /(^|[^a-z])(club|clube|klub)([^a-z]|$)|клуб|クラブ|클럽|النادي/i;
+  const снять = async (locale, viewport) => {
+    const { ctx, page, ошибки } = await открыть(browser, '/', { locale, viewport });
+    const r = await page.evaluate(() => {
+      const текст = (s) => [...document.querySelectorAll(s)].map((e) => e.innerText || '').join(' ');
+      const имя = document.querySelector('.tt-club-name');
+      const шапка = document.querySelector('.d-header');
+      const стиль = имя ? getComputedStyle(имя) : null;
+      return {
+        lang: document.documentElement.lang,
+        имя: имя ? имя.textContent.trim() : null,
+        // одна строка: высота не больше полутора высот строки
+        перенос: имя ? имя.getBoundingClientRect().height > parseFloat(стиль.lineHeight || стиль.fontSize) * 1.5 : null,
+        переливШапки: шапка ? шапка.scrollWidth > шапка.clientWidth + 1 : null,
+        видимое: [текст('.d-header'), текст('.tt-foot, .tt-footer'), текст('.tt-cover'), текст('.tt-card')]
+          .join(' ')
+          .replace(/terrytrilla\.club/gi, ''),
+      };
+    });
+    await ctx.close();
+    return { ...r, ошибки: ошибки.length };
+  };
+
+  // КОНТРОЛЬ детектора: он обязан узнавать прежние строки, иначе «клуба нет» ничего не доказывает
+  проверка('детектор узнаёт «Правила клуба», «Club rules», «Klub» (контроль)',
+    ['Правила клуба', 'Club rules', 'Klub', 'クラブの規約'].every((s) => КЛУБ.test(s)) && !КЛУБ.test('TerryTrilla Community · Сообщество'));
+
+  const языки = ПРЕВЬЮ ? [null] : Object.keys(ИМЯ);
+  for (const loc of языки) {
+    const r = await снять(loc === 'pt' ? 'pt-BR' : loc === 'pl' ? 'pl-PL' : loc, undefined);
+    const код = (r.lang || '').split(/[-_]/)[0];
+    const ждём = ИМЯ[код];
+    const метка = loc ?? `${код} (профиль)`;
+    проверка(`${метка}: в шапке «${ждём}»`, !!ждём && r.имя === ждём, `lang=${r.lang}, в шапке «${r.имя}»`);
+    const найдено = r.видимое.match(КЛУБ);
+    проверка(`${метка}: «клуба» нет в шапке, подвале, обложке, разделах`, !найдено, найдено ? `…${r.видимое.slice(Math.max(0, найдено.index - 30), найдено.index + 30)}…` : '');
+    проверка(`${метка}: название в одну строку, шапка без перелива`, r.перенос === false && r.переливШапки === false, `перенос ${r.перенос}, перелив ${r.переливШапки}`);
+  }
+  // Телефон — на самых длинных названиях (или на языке профиля в предвыкатном прогоне)
+  for (const loc of ПРЕВЬЮ ? [null] : ['ru', 'pl', 'fr']) {
+    const r = await снять(loc === 'pl' ? 'pl-PL' : loc, { width: 390, height: 844 });
+    проверка(`телефон ${loc ?? 'профиль'}: шапка без перелива`, r.переливШапки === false && r.перенос !== true, `перенос ${r.перенос}, перелив ${r.переливШапки}, «${r.имя}»`);
+  }
+}
+
 await browser.close();
 
 const пропущены = итоги.filter((i) => i.пропущено);

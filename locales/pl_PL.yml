@@ -1,6 +1,6 @@
 pl_PL:
   theme_metadata:
-    description: "Motyw społeczności TerryTrilla Club: pasek produktu, własna strona główna, karty działów i żywe koło skal w postach."
+    description: "Motyw społeczności TerryTrilla Community: pasek produktu, własna strona główna, karty działów i żywe koło skal w postach."
     settings:
       product_url: "Adres strony produktu, do której prowadzi pasek."
       product_bar_links: "Działy produktu widoczne na pasku i ich kolejność."
@@ -33,11 +33,11 @@ pl_PL:
     door_contact: "Napisz do nas"
     door_contact_desc: "Jeśli coś nie działa."
     col_materials: "Materiały"
-    col_club: "Klub"
+    col_club: "Społeczność"
     col_account: "Konto"
     circle: "Koło kwintowe"
     all_scales: "Wszystkie skale"
-    rules: "Regulamin klubu"
+    rules: "Zasady społeczności"
     privacy: "Prywatność"
     langs_title: "Treści w 12 językach"
     domain: "terrytrilla.club — społeczność terrytrilla.com"
@@ -69,7 +69,7 @@ pl_PL:
     account_note: "Imię, e-mail i awatar pochodzą z konta TerryTrilla i tam się je zmienia —"
     account_link: "otwórz ustawienia konta"
   header:
-    club: "Klub"
+    club: "Społeczność"
   tt_widgets:
     button_title: "Widżety TerryTrilla"
     modal_title: "Wstaw widżet TerryTrilla"

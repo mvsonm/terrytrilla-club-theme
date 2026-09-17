@@ -1,6 +1,6 @@
 ko:
   theme_metadata:
-    description: "TerryTrilla Club 커뮤니티 테마: 제품 바, 자체 홈, 섹션 카드, 게시글 안에서 작동하는 음계 서클."
+    description: "TerryTrilla Community 테마: 제품 바, 자체 홈, 섹션 카드, 게시글 안에서 작동하는 음계 서클."
     settings:
       product_url: "바가 연결되는 제품 사이트 주소."
       product_bar_links: "바에 표시할 제품 섹션과 순서."
@@ -33,11 +33,11 @@ ko:
     door_contact: "문의하기"
     door_contact_desc: "무언가 작동하지 않으면."
     col_materials: "자료"
-    col_club: "클럽"
+    col_club: "커뮤니티"
     col_account: "계정"
     circle: "5도권"
     all_scales: "모든 스케일"
-    rules: "클럽 규칙"
+    rules: "커뮤니티 규칙"
     privacy: "개인정보"
     langs_title: "12개 언어의 콘텐츠"
     domain: "terrytrilla.club — terrytrilla.com 커뮤니티"
@@ -66,7 +66,7 @@ ko:
     account_note: "이름·이메일·아바타는 TerryTrilla 계정에서 오며 거기서 바꿉니다 —"
     account_link: "계정 설정 열기"
   header:
-    club: "클럽"
+    club: "커뮤니티"
   tt_widgets:
     button_title: "TerryTrilla 위젯"
     modal_title: "TerryTrilla 위젯 넣기"

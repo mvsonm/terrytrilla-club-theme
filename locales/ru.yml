@@ -1,6 +1,6 @@
 ru:
   theme_metadata:
-    description: "Тема сообщества TerryTrilla Club: полоса продукта, своя главная, карточки разделов и живой круг ладов в сообщениях."
+    description: "Тема сообщества TerryTrilla Community: полоса продукта, своя главная, карточки разделов и живой круг ладов в сообщениях."
     settings:
       product_url: "Адрес сайта продукта, на который ведёт полоса."
       product_bar_links: "Разделы продукта в полосе и их порядок."
@@ -33,11 +33,11 @@ ru:
     door_contact: "Написать нам"
     door_contact_desc: "Если что-то не работает."
     col_materials: "Материалы"
-    col_club: "Клуб"
+    col_club: "Сообщество"
     col_account: "Аккаунт"
     circle: "Круг квинт"
     all_scales: "Все лады"
-    rules: "Правила клуба"
+    rules: "Правила сообщества"
     privacy: "Конфиденциальность"
     langs_title: "Содержание на 12 языках"
     domain: "terrytrilla.club — сообщество terrytrilla.com"
@@ -69,7 +69,7 @@ ru:
     account_note: "Имя, почта и аватар приходят из вашей учётной записи TerryTrilla и меняются там —"
     account_link: "открыть настройки аккаунта"
   header:
-    club: "Клуб"
+    club: "Сообщество"
   tt_widgets:
     button_title: "Виджеты TerryTrilla"
     modal_title: "Вставить виджет TerryTrilla"

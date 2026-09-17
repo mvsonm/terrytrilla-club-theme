@@ -1,6 +1,6 @@
 uk:
   theme_metadata:
-    description: "Тема спільноти TerryTrilla Club: смуга продукту, власна головна, картки розділів і живе коло ладів у дописах."
+    description: "Тема спільноти TerryTrilla Community: смуга продукту, власна головна, картки розділів і живе коло ладів у дописах."
     settings:
       product_url: "Адреса сайту продукту, на який веде смуга."
       product_bar_links: "Розділи продукту у смузі та їхній порядок."
@@ -33,11 +33,11 @@ uk:
     door_contact: "Написати нам"
     door_contact_desc: "Якщо щось не працює."
     col_materials: "Матеріали"
-    col_club: "Клуб"
+    col_club: "Спільнота"
     col_account: "Акаунт"
     circle: "Коло квінт"
     all_scales: "Усі лади"
-    rules: "Правила клубу"
+    rules: "Правила спільноти"
     privacy: "Приватність"
     langs_title: "Вміст 12 мовами"
     domain: "terrytrilla.club — спільнота terrytrilla.com"
@@ -69,7 +69,7 @@ uk:
     account_note: "Ім’я, пошта й аватар надходять із вашого облікового запису TerryTrilla і змінюються там —"
     account_link: "відкрити налаштування акаунта"
   header:
-    club: "Клуб"
+    club: "Спільнота"
   tt_widgets:
     button_title: "Віджети TerryTrilla"
     modal_title: "Вставити віджет TerryTrilla"

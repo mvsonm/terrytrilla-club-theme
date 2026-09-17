@@ -1,6 +1,6 @@
 fr:
   theme_metadata:
-    description: "Thème de la communauté TerryTrilla Club : barre produit, accueil personnalisé, cartes de sections et le cercle des gammes vivant dans les messages."
+    description: "Thème de la communauté TerryTrilla Community : barre produit, accueil personnalisé, cartes de sections et le cercle des gammes vivant dans les messages."
     settings:
       product_url: "Adresse du site produit vers lequel pointe la barre."
       product_bar_links: "Sections du produit affichées dans la barre, dans l’ordre."
@@ -33,11 +33,11 @@ fr:
     door_contact: "Écris-nous"
     door_contact_desc: "Si quelque chose ne marche pas."
     col_materials: "Ressources"
-    col_club: "Club"
+    col_club: "Communauté"
     col_account: "Compte"
     circle: "Cycle des quintes"
     all_scales: "Toutes les gammes"
-    rules: "Règles du club"
+    rules: "Règles de la communauté"
     privacy: "Confidentialité"
     langs_title: "Contenu en 12 langues"
     domain: "terrytrilla.club — communauté de terrytrilla.com"
@@ -67,7 +67,7 @@ fr:
     account_note: "Le nom, l’e-mail et l’avatar viennent de ton compte TerryTrilla et se modifient là-bas —"
     account_link: "ouvrir les réglages du compte"
   header:
-    club: "Club"
+    club: "Communauté"
   tt_widgets:
     button_title: "Widgets TerryTrilla"
     modal_title: "Insérer un widget TerryTrilla"
