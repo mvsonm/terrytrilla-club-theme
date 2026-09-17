@@ -1,5 +1,5 @@
 /*
-  ПРИЁМКА ПОВЕДЕНИЕМ (G3) — десять проверок §6 ТЗ против ЖИВОГО форума.
+  ПРИЁМКА ПОВЕДЕНИЕМ (G3) — одиннадцать проверок §6 ТЗ против ЖИВОГО форума.
 
   ⚠️ Почему не `discourse_theme rspec .`, как написано в ТЗ. Замер боевого
   контейнера 15.09: `rspec` не установлен вовсе (production-сборка идёт без
@@ -481,6 +481,79 @@ console.log('\n9–10 · виджет в посте и в письме');
       }
     }
     await ctx.close();
+  }
+}
+
+// ── 11. Кнопка «Виджеты TerryTrilla» в редакторе — волна F, F4 ──────────────
+/*
+  Автор нажимает кнопку, выбирает лад и тонику из списков, и в текст встаёт
+  готовый блок с картинкой-запаской. Здесь — короткая проверка того, что
+  цепочка жива на настоящем сайте: кнопка есть, справочник пришёл, вставка
+  дала блок. Правку одинаковых блоков в обоих режимах редактора разбирает
+  подробный пробник и spec/markup.test.mjs; сюда она не тянется, чтобы
+  приёмка оставалась быстрой.
+
+  Неприменимо: прогон гостевой (кнопка только у авторов), справочника на
+  сайте ещё нет (тема выкатывается раньше сайта), не задана тема для ответа.
+  ⚠️ Текст в редакторе стирается в конце — черновик ответа не остаётся.
+*/
+console.log('\n11 · кнопка виджетов в редакторе');
+{
+  const ТЕМА = process.env.TT_CIRCLE_TOPIC || null;
+  const САЙТ = process.env.TT_SITE || 'https://terrytrilla.com';
+  const справочник = await fetch(`${САЙТ}/api/embed/catalog?widget=circle&locale=ru`, {
+    headers: { origin: БАЗА },
+  }).then((r) => r.status).catch(() => 0);
+
+  if (!СЕАНС) {
+    пропуск('кнопка виджетов', 'гостевой прогон — кнопка только у авторов базы знаний');
+  } else if (!ТЕМА) {
+    пропуск('кнопка виджетов', 'не задан TT_CIRCLE_TOPIC — негде открыть редактор');
+  } else if (справочник !== 200) {
+    пропуск('кнопка виджетов', `справочника ${САЙТ}/api/embed/catalog нет (HTTP ${справочник}) — сайт ещё не выкатан`);
+  } else {
+    const { ctx, page, ошибки } = await открыть(browser, ТЕМА, { wait: 3000 });
+    const поле = page.locator('textarea.d-editor-input');
+    try {
+      await page.locator('.topic-footer-main-buttons button.create, button.reply-to-post').first().click();
+      await page.locator('.d-editor').waitFor({ timeout: 20000 });
+      if ((await page.locator('.d-editor .ProseMirror').count()) > 0) {
+        await page.locator('.composer-toggle-switch').first().click();
+        await поле.waitFor({ timeout: 10000 });
+      }
+      await поле.fill('');
+      проверка('контроль: в пустом ответе блока нет', !(await поле.inputValue()).includes('[wrap=tt-circle'));
+
+      const кнопка = page.locator('.d-editor-button-bar button.tt-widgets');
+      проверка('кнопка «Виджеты TerryTrilla» на панели', (await кнопка.count()) === 1);
+      await кнопка.click();
+      const лад = page.locator('.tt-widget-modal select[data-field="scale"]');
+      await лад.waitFor({ timeout: 20000 });
+      const ладов = await лад.locator('option').count();
+      проверка('справочник сайта пришёл: лады в списке', ладов > 50, `ладов ${ладов}`);
+
+      await лад.selectOption('dorian');
+      await page.locator('.tt-widget-modal .tt-wm__root[data-root="D"]').click();
+      const сцена = await page.waitForFunction(
+        () => document.querySelector('.tt-wm__stage svg'), null, { timeout: 30000 }
+      ).then(() => true).catch(() => false);
+      проверка('живой предпросмотр в окне', сцена);
+
+      await page.locator('.tt-widget-modal .tt-wm__apply').click();
+      await page.locator('.tt-widget-modal').waitFor({ state: 'detached', timeout: 10000 });
+      const текст = await поле.inputValue();
+      проверка(
+        'вставлен блок с картинкой-запаской',
+        /\[wrap=tt-circle[^\]\n]* scale=dorian root=D\]\n!\[[^\]]+\]\([^)]*\/api\/embed\/circle-image\?[^)]*scale=dorian&root=D[^)]*\)\n\[\/wrap\]/.test(текст),
+        текст.slice(0, 160)
+      );
+      проверка('ошибок скрипта нет', ошибки.length === 0, ошибки.slice(0, 2).join('; '));
+    } catch (e) {
+      проверка('кнопка виджетов', false, String(e).slice(0, 160));
+    } finally {
+      await поле.fill('').catch(() => {});
+      await ctx.close();
+    }
   }
 }
 
