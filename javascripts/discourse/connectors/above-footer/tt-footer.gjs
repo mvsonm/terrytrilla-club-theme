@@ -87,9 +87,15 @@ const MATERIALS = [
   ["bar.circle_of_fifths", "/circle-of-fifths"],
   ["footer.all_scales", "/scales"],
 ];
+/*
+  ⚠️ Ссылки на цены и оплату здесь НЕТ и быть не должно (Р-13 ТЗ-FORUM-LAUNCH):
+  форум открывается из приложения, а Apple 3.1.3 и Google Play не разрешают вести
+  оттуда к покупке. До 17.09 здесь стоял пункт «Тарифы» → /pricing. Нейтральные
+  ссылки на сайт (справочник, блог, условия) допустимы. Сторожит проверка 13
+  приёмки — по ссылкам в браузере и по тексту JS темы.
+*/
 const ACCOUNT = [
   { key: "bar.login", forum: "/login" },
-  { key: "bar.pricing", site: "/pricing" },
   { key: "footer.rules", forum: "/guidelines" },
   { key: "footer.privacy", site: "/privacy-policy" },
 ];

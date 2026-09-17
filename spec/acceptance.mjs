@@ -678,6 +678,53 @@ console.log('\n12 · открытый форум называется сообщ
   }
 }
 
+// ── 13. Прямых ссылок на цены нет (C1 ТЗ-FORUM-LAUNCH, Р-13) ────────────────
+console.log('\n13 · прямых ссылок на цены и оплату нет');
+{
+  /*
+    Apple 3.1.3 и правила Google Play: из приложения через форум нельзя вести к
+    покупке. Нейтральные ссылки на сайт (справочник, блог, условия) допустимы,
+    прямые на цены и оплату — нет. До 17.09 в подвале темы стоял пункт «Тарифы».
+
+    ⚠️ Проверяется БРАУЗЕРОМ: ссылки подвала рисует JS темы, и curl по HTML их не
+    видит — дал бы ложный зелёный. Второй слой — текст собранного JS темы: ссылка
+    может жить в коде и появляться только в другом состоянии страницы.
+  */
+  const ЦЕНЫ = /\/(pricing|checkout|subscribe|plans)(\b|\/|\?|$)/i;
+  проверка('детектор узнаёт /pricing, /checkout?x, но не /scales (контроль)',
+    ЦЕНЫ.test('https://terrytrilla.com/pricing') && ЦЕНЫ.test('/checkout?plan=1') && !ЦЕНЫ.test('https://terrytrilla.com/scales'));
+
+  for (const путь of ['/', '/t/topic/15']) {
+    const { ctx, page } = await открыть(browser, путь, { гость: !ПРЕВЬЮ });
+    const r = await page.evaluate(() => ({
+      ссылок: document.querySelectorAll('a[href]').length,
+      адреса: [...document.querySelectorAll('a[href]')].map((a) => a.href),
+      // ⚠️ Не только <script src>: JS темы лежит в нескольких файлах, часть грузится
+      // модулем. Первая редакция 17.09 брала теги, видела 1 файл из 2 и была зелёной
+      // при живом "/pricing" в коде. Журнал загрузок браузера видит все.
+      скрипты: [...new Set([
+        ...[...document.querySelectorAll('script[src], link[href]')].map((e) => e.src || e.href),
+        ...performance.getEntriesByType('resource').map((e) => e.name),
+      ])].filter((u) => u.includes('/theme-javascripts/')),
+      подвал: !!document.querySelector('.tt-foot'),
+    }));
+    const найдено = r.адреса.filter((h) => ЦЕНЫ.test(h));
+    проверка(`${путь}: подвал отрисовался, ссылки собраны (контроль)`, r.подвал && r.ссылок > 20, `ссылок ${r.ссылок}`);
+    проверка(`${путь}: ссылок на цены нет`, найдено.length === 0, найдено.slice(0, 3).join(' '));
+    if (путь === '/') {
+      let вКоде = [];
+      for (const src of r.скрипты) {
+        const текст = await page.evaluate((u) => fetch(u).then((x) => x.text()), src).catch(() => '');
+        const m = текст.match(/["'`][^"'`\n]*\/(pricing|checkout|subscribe|plans)\b[^"'`\n]*["'`]/gi) || [];
+        вКоде = вКоде.concat(m);
+      }
+      проверка('JS темы загружен — не меньше двух файлов (контроль)', r.скрипты.length >= 2, `файлов ${r.скрипты.length}`);
+      проверка('в JS темы адресов цен нет', вКоде.length === 0, вКоде.slice(0, 3).join(' '));
+    }
+    await ctx.close();
+  }
+}
+
 await browser.close();
 
 const пропущены = итоги.filter((i) => i.пропущено);
