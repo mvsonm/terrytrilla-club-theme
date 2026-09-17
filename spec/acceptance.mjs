@@ -456,16 +456,32 @@ console.log('\n9–10 · виджет в посте и в письме');
         await page.waitForTimeout(600);
         const после = await блок.locator('.scale-circle-note-label').evaluateAll((g) => g.map((x) => x.getAttribute('class')).join());
         проверка('нажатие на ноту меняет круг', до !== после);
-        const картинок = await блок.locator(':scope > p img, :scope > img').evaluateAll((els) => els.filter((e) => e.offsetParent !== null).length);
+        // ⚠️ Любые картинки блока, а не `:scope > p img`: ядро оборачивает
+        // картинку в свой контейнер (lightbox), и прежний селектор не находил её
+        // вовсе — проверка зеленела, ничего не проверяя.
+        const картинок = await блок.locator('img').evaluateAll((els) => els.filter((e) => e.offsetParent !== null).length);
         проверка('запасная картинка спрятана у живого круга', картинок === 0, `видимых картинок ${картинок}`);
       }
       const csp = await page.evaluate(() => window.__csp);
       проверка('нарушений CSP нет', csp.length === 0, csp.slice(0, 3).join('; '));
       проверка('ошибок скрипта нет', ошибки.length === 0, ошибки.slice(0, 2).join('; '));
+
+      /*
+        Письмо. Живого круга в нём не бывает; туда уходит картинка из блока (F5).
+        Форум скачивает её к себе (download_remote_images_to_local) и подменяет
+        адрес при обработке поста — в письме должна стоять копия с форума, а не
+        адрес сайта, который дёргался бы на каждое открытие письма.
+      */
+      const адреса = await блок.locator('img').evaluateAll((els) => els.map((e) => e.getAttribute('src') || ''));
+      if (адреса.length === 0) {
+        пропуск('картинка в письме', 'в блоке круга нет картинки-запаски');
+      } else {
+        const локальных = адреса.filter((a) => a.includes('/uploads/')).length;
+        проверка('картинка-запаска — копия на форуме (уйдёт в письмо)', локальных === адреса.length, `локальных ${локальных} из ${адреса.length}`);
+      }
     }
     await ctx.close();
   }
-  пропуск('картинка в письме', 'F5 — запасная картинка по API ещё не построена');
 }
 
 await browser.close();
