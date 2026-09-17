@@ -6,6 +6,7 @@ ja:
       product_bar_links: "バーに表示する製品セクションとその順序。"
       product_bar_more: "「その他」に隠すセクション。"
       sign_in_url: "製品バーの「ログイン」ボタンのリンク先。"
+      tt_widgets_groups: "投稿エディタで「TerryTrilla ウィジェット」ボタンを表示するグループ（スタッフは常に表示）。"
   bar:
     partimento: "Partimento v3"
     metronome: "メトロノーム"
@@ -66,3 +67,35 @@ ja:
     account_link: "アカウント設定を開く"
   header:
     club: "クラブ"
+  tt_widgets:
+    button_title: "TerryTrilla ウィジェット"
+    modal_title: "TerryTrilla ウィジェットを挿入"
+    modal_title_edit: "ウィジェットを設定"
+    widgets:
+      circle:
+        name: "スケールサークル"
+        description: "生きたサークル：スケール、主音、タップで音"
+        caption: "スケールサークル：%{scale}、主音 %{root}"
+        preview_hint: "記事にはこのように表示されます。音符をタップすると鳴ります。"
+    field:
+      scale: "スケール"
+      root: "主音"
+      preset: "見た目"
+      sound: "サウンド"
+      caption: "キャプション"
+    notes_group: "%{count}音のスケール"
+    unknown_value: "不明：%{value}"
+    preset_none: "サイトの既定の見た目"
+    preset_group_forum: "フォーラム用"
+    preset_group_other: "その他の公開済み"
+    preset_site_default: "（サイトの既定）"
+    preset_hint: "ウィジェットファクトリーでフォーラム用に印を付けるには、ルート /@forum を追加します。"
+    sound_none: "音なし"
+    caption_hint: "メールや、ウィジェットが読み込めないときに表示されます。"
+    caption_reset: "作り直す"
+    loading: "terrytrilla.com から一覧を読み込み中…"
+    load_error: "terrytrilla.com から一覧を読み込めませんでした。"
+    retry: "再試行"
+    preview_failed: "プレビューを読み込めませんでした。ウィジェットはそのまま挿入されます。"
+    insert: "挿入"
+    update: "更新"

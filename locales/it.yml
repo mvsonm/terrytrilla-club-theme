@@ -6,6 +6,7 @@ it:
       product_bar_links: "Sezioni del prodotto mostrate nella barra e il loro ordine."
       product_bar_more: "Sezioni nascoste sotto «Altro»."
       sign_in_url: "Destinazione del pulsante «Accedi» nella barra del prodotto."
+      tt_widgets_groups: "Gruppi che vedono il pulsante «Widget TerryTrilla» nell’editor (lo staff sempre)."
   bar:
     partimento: "Partimento v3"
     metronome: "Metronomo"
@@ -67,3 +68,35 @@ it:
     account_link: "apri le impostazioni dell’account"
   header:
     club: "Club"
+  tt_widgets:
+    button_title: "Widget TerryTrilla"
+    modal_title: "Inserisci un widget TerryTrilla"
+    modal_title_edit: "Configura il widget"
+    widgets:
+      circle:
+        name: "Cerchio delle scale"
+        description: "Un cerchio vivo: scala, tonica, suono al tocco"
+        caption: "Cerchio delle scale: %{scale}, tonica %{root}"
+        preview_hint: "Così il cerchio apparirà nell’articolo. Tocca una nota per ascoltarla."
+    field:
+      scale: "Scala"
+      root: "Tonica"
+      preset: "Aspetto"
+      sound: "Suono"
+      caption: "Didascalia"
+    notes_group: "Scale di %{count} note"
+    unknown_value: "Sconosciuto: %{value}"
+    preset_none: "Aspetto predefinito del sito"
+    preset_group_forum: "Per il forum"
+    preset_group_other: "Altri pubblicati"
+    preset_site_default: " (predefinito sul sito)"
+    preset_hint: "Segna un aspetto per il forum nella fabbrica dei widget: aggiungi la route /@forum."
+    sound_none: "Senza suono"
+    caption_hint: "Visibile nelle email e se il widget non si carica."
+    caption_reset: "Rigenera"
+    loading: "Carico gli elenchi da terrytrilla.com…"
+    load_error: "Impossibile caricare gli elenchi da terrytrilla.com."
+    retry: "Riprova"
+    preview_failed: "L’anteprima non si è caricata. Il widget verrà comunque inserito."
+    insert: "Inserisci"
+    update: "Aggiorna"

@@ -6,6 +6,7 @@ pl_PL:
       product_bar_links: "Działy produktu widoczne na pasku i ich kolejność."
       product_bar_more: "Działy ukryte pod „Więcej”."
       sign_in_url: "Dokąd prowadzi przycisk „Zaloguj się” na pasku produktu."
+      tt_widgets_groups: "Grupy, które widzą przycisk „Widżety TerryTrilla” w edytorze wpisu (zespół zawsze)."
   bar:
     partimento: "Partimento v3"
     metronome: "Metronom"
@@ -69,3 +70,35 @@ pl_PL:
     account_link: "otwórz ustawienia konta"
   header:
     club: "Klub"
+  tt_widgets:
+    button_title: "Widżety TerryTrilla"
+    modal_title: "Wstaw widżet TerryTrilla"
+    modal_title_edit: "Ustaw widżet"
+    widgets:
+      circle:
+        name: "Koło skal"
+        description: "Żywe koło: skala, tonika, dźwięk po dotknięciu"
+        caption: "Koło skal: %{scale}, tonika %{root}"
+        preview_hint: "Tak koło pojawi się w artykule. Dotknij nuty, aby ją usłyszeć."
+    field:
+      scale: "Skala"
+      root: "Tonika"
+      preset: "Wygląd"
+      sound: "Dźwięk"
+      caption: "Podpis"
+    notes_group: "Skale z %{count} dźwięków"
+    unknown_value: "Nieznane: %{value}"
+    preset_none: "Domyślny wygląd serwisu"
+    preset_group_forum: "Dla forum"
+    preset_group_other: "Pozostałe opublikowane"
+    preset_site_default: " (domyślny w serwisie)"
+    preset_hint: "Wygląd dla forum oznaczysz w fabryce widżetów: dodaj trasę /@forum."
+    sound_none: "Bez dźwięku"
+    caption_hint: "Widoczny w e-mailach i gdy widżet się nie wczyta."
+    caption_reset: "Utwórz ponownie"
+    loading: "Wczytuję listy z terrytrilla.com…"
+    load_error: "Nie udało się wczytać list z terrytrilla.com."
+    retry: "Spróbuj ponownie"
+    preview_failed: "Podgląd się nie wczytał. Widżet i tak zostanie wstawiony."
+    insert: "Wstaw"
+    update: "Zaktualizuj"

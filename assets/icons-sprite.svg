@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <!-- Значки темы. Имя ассета `icons-sprite` ядро распознаёт само
+       (SvgSprite::THEME_SPRITE_VAR_NAME) и добавляет символы в набор значков. -->
+  <symbol id="tt-widgets" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3 3h8v8H3zm2 2v4h4V5zm8-2h8v8h-8zm2 2v4h4V5zM3 13h8v8H3zm2 2v4h4v-4zm12-2h2v3h3v2h-3v3h-2v-3h-3v-2h3z"/>
+  </symbol>
+  <symbol id="tt-scale-circle" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/>
+    <path fill="currentColor" d="M12 5.5l1.6 4.7h4.9l-4 2.9 1.5 4.7-4-2.9-4 2.9 1.5-4.7-4-2.9h4.9z"/>
+  </symbol>
+</svg>

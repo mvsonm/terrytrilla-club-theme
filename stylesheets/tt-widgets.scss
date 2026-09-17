@@ -1,0 +1,150 @@
+// Окно «Виджеты TerryTrilla» в редакторе поста (F4).
+// Цвета — только переменные схемы форума: окно живёт в обеих схемах и в RTL.
+// Раскладка: виджеты | настройка | предпросмотр; на узком экране — столбиком.
+
+.tt-widget-modal {
+  .d-modal__container {
+    max-width: min(1080px, 96vw);
+    width: 100%;
+  }
+}
+
+.tt-wm {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) minmax(260px, 1fr) minmax(260px, 360px);
+  gap: 1.25rem;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+
+  &__widgets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &__widget {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.5rem;
+    width: 100%;
+    padding: 0.6rem 0.7rem;
+    text-align: start;
+    background: var(--secondary);
+    color: var(--primary);
+    border: 1px solid var(--primary-low);
+    border-radius: 10px;
+    cursor: pointer;
+
+    .d-icon {
+      grid-row: span 2;
+      align-self: center;
+      font-size: 1.4em;
+      color: var(--tertiary);
+    }
+
+    &.--active {
+      border-color: var(--tertiary);
+      background: var(--tertiary-very-low);
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+  }
+
+  &__widget-name {
+    font-weight: 600;
+  }
+
+  &__widget-desc {
+    font-size: var(--font-down-1);
+    color: var(--primary-medium);
+  }
+
+  &__settings {
+    display: grid;
+    gap: 0.9rem;
+    min-width: 0;
+  }
+
+  &__field {
+    display: grid;
+    gap: 0.3rem;
+    margin: 0;
+  }
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__select,
+  &__input {
+    width: 100%;
+    margin: 0;
+  }
+
+  &__roots {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.3rem;
+  }
+
+  &__root {
+    padding: 0.45rem 0;
+    background: var(--secondary);
+    color: var(--primary);
+    border: 1px solid var(--primary-low);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--tertiary-medium);
+    }
+
+    &.--active {
+      background: var(--tertiary);
+      border-color: var(--tertiary);
+      color: var(--secondary);
+    }
+  }
+
+  &__hint {
+    font-size: var(--font-down-1);
+    color: var(--primary-medium);
+  }
+
+  &__reset {
+    margin-inline-start: 0.35rem;
+    padding: 0;
+  }
+
+  &__error,
+  &__loading {
+    color: var(--primary-medium);
+  }
+
+  &__error p {
+    color: var(--danger);
+  }
+
+  &__preview {
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &__stage {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 1px solid var(--primary-low);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}

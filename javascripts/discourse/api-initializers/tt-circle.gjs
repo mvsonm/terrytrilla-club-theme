@@ -1,5 +1,10 @@
 import I18n from "discourse-i18n";
 import { apiInitializer } from "discourse/lib/api";
+import {
+  currentTheme,
+  loadCircle,
+  productBase,
+} from "../lib/tt-circle-runtime";
 
 /*
   Живой Круг ладов в сообщении (ТЗ-THEME, волна F: F2 + F3, решение Р-13).
@@ -20,12 +25,9 @@ import { apiInitializer } from "discourse/lib/api";
   Картинка внутри блока — запасной вид (F5): письма, сбой скрипта, предпросмотр
   редактора. Живой круг её прячет, но не удаляет.
 
-  ── Почему скрипт вставляется кодом, а не разрешением в CSP (F2) ──
-  Модификатор `csp_extensions` адреса сайтов НЕ пропускает: ядро
-  (`lib/content_security_policy/builder.rb`) выкидывает из script-src всё, что
-  не ключевое слово в кавычках. Форум работает с 'strict-dynamic', поэтому
-  скрипт, созданный доверенным кодом темы, загружается без разрешения. Цена —
-  зависимость от strict-dynamic; сторож в приёмке: «ни одного нарушения CSP».
+  Загрузчик бандла и схема форума (и почему скрипт вставляется кодом, а не
+  разрешением в CSP) — lib/tt-circle-runtime.js: они общие с окном виджетов
+  в редакторе (F4).
 
   ── Жизненный цикл ──
   - `onlyStream`: в предпросмотре редактора ядро не вызывает очистку, и круг
@@ -36,46 +38,8 @@ import { apiInitializer } from "discourse/lib/api";
   - Возвращённая функция размонтирует круг при перерисовке и уходе со страницы.
 */
 
-let loader = null;
-
-function loadCircle(base) {
-  if (window.TTCircle) {
-    return Promise.resolve(window.TTCircle);
-  }
-  if (!loader) {
-    loader = new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = `${base}/embed/circle.js`;
-      script.async = true;
-      script.onload = () =>
-        window.TTCircle ? resolve(window.TTCircle) : reject(new Error("TTCircle не объявлен"));
-      script.onerror = () => reject(new Error("circle.js не загрузился"));
-      document.head.appendChild(script);
-    });
-    loader.catch(() => {
-      loader = null;
-    });
-  }
-  return loader;
-}
-
-/*
-  Схема форума: светлая или тёмная. Спрашиваем не настройку, а то, что
-  действительно нарисовано, — фон страницы (--secondary). Настроек у Discourse
-  три слоя (схема по умолчанию, выбор человека, системная тема), а фон один.
-*/
-function currentTheme() {
-  const raw = getComputedStyle(document.documentElement).getPropertyValue("--secondary").trim();
-  const hex = raw.replace("#", "");
-  if (!/^[0-9a-f]{6}$/i.test(hex)) {
-    return "light";
-  }
-  const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 0.5 ? "dark" : "light";
-}
-
 export default apiInitializer((api) => {
-  const base = (settings.product_url || "").replace(/\/+$/, "");
+  const base = productBase();
 
   api.decorateCookedElement(
     (element) => {

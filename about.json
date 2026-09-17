@@ -61,6 +61,7 @@
     "ill-general": "assets/illustrations/general.png",
     "tt-glyphs": "assets/tt-glyphs.svg",
     "tt-orbit": "assets/tt-orbit.svg",
-    "tt-orbit-dots": "assets/tt-orbit-dots.svg"
+    "tt-orbit-dots": "assets/tt-orbit-dots.svg",
+    "icons-sprite": "assets/icons-sprite.svg"
   }
 }

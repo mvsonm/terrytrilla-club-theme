@@ -6,6 +6,7 @@ uk:
       product_bar_links: "Розділи продукту у смузі та їхній порядок."
       product_bar_more: "Розділи, сховані під «Ще»."
       sign_in_url: "Куди веде кнопка «Увійти» у смузі продукту."
+      tt_widgets_groups: "Групи, яким видно кнопку «Віджети TerryTrilla» у редакторі допису (співробітникам — завжди)."
   bar:
     partimento: "Partimento v3"
     metronome: "Метроном"
@@ -69,3 +70,35 @@ uk:
     account_link: "відкрити налаштування акаунта"
   header:
     club: "Клуб"
+  tt_widgets:
+    button_title: "Віджети TerryTrilla"
+    modal_title: "Вставити віджет TerryTrilla"
+    modal_title_edit: "Налаштувати віджет"
+    widgets:
+      circle:
+        name: "Коло ладів"
+        description: "Живе коло: лад, тоніка, звук за натисканням"
+        caption: "Коло ладів: %{scale}, тоніка %{root}"
+        preview_hint: "Так коло стане в статтю. Натисніть на ноту — прозвучить."
+    field:
+      scale: "Лад"
+      root: "Тоніка"
+      preset: "Вигляд"
+      sound: "Звук"
+      caption: "Підпис"
+    notes_group: "Лади з %{count} звуків"
+    unknown_value: "Невідомо: %{value}"
+    preset_none: "Вигляд за замовчуванням на сайті"
+    preset_group_forum: "Для форуму"
+    preset_group_other: "Інші опубліковані"
+    preset_site_default: " (за замовчуванням на сайті)"
+    preset_hint: "Позначити вигляд для форуму можна у фабриці віджетів: додайте маршрут /@forum."
+    sound_none: "Без звуку"
+    caption_hint: "Видно в листах і якщо віджет не завантажиться."
+    caption_reset: "Зібрати знову"
+    loading: "Завантажую списки з terrytrilla.com…"
+    load_error: "Не вдалося завантажити списки з terrytrilla.com."
+    retry: "Повторити"
+    preview_failed: "Попередній перегляд не завантажився. Віджет усе одно вставиться."
+    insert: "Вставити"
+    update: "Оновити"

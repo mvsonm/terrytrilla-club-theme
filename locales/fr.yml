@@ -6,6 +6,7 @@ fr:
       product_bar_links: "Sections du produit affichées dans la barre, dans l’ordre."
       product_bar_more: "Sections masquées sous « Plus »."
       sign_in_url: "Destination du bouton « Se connecter » de la barre produit."
+      tt_widgets_groups: "Groupes qui voient le bouton « Widgets TerryTrilla » dans l’éditeur (l’équipe, toujours)."
   bar:
     partimento: "Partimento v3"
     metronome: "Métronome"
@@ -67,3 +68,35 @@ fr:
     account_link: "ouvrir les réglages du compte"
   header:
     club: "Club"
+  tt_widgets:
+    button_title: "Widgets TerryTrilla"
+    modal_title: "Insérer un widget TerryTrilla"
+    modal_title_edit: "Configurer le widget"
+    widgets:
+      circle:
+        name: "Cercle des gammes"
+        description: "Un cercle vivant : gamme, tonique, son au toucher"
+        caption: "Cercle des gammes : %{scale}, tonique %{root}"
+        preview_hint: "Voici le cercle tel qu’il apparaîtra dans l’article. Touchez une note pour l’entendre."
+    field:
+      scale: "Gamme"
+      root: "Tonique"
+      preset: "Apparence"
+      sound: "Son"
+      caption: "Légende"
+    notes_group: "Gammes de %{count} notes"
+    unknown_value: "Inconnu : %{value}"
+    preset_none: "Apparence par défaut du site"
+    preset_group_forum: "Pour le forum"
+    preset_group_other: "Autres publiées"
+    preset_site_default: " (par défaut sur le site)"
+    preset_hint: "Marquez une apparence pour le forum dans la fabrique de widgets : ajoutez la route /@forum."
+    sound_none: "Sans son"
+    caption_hint: "Visible dans les e-mails et si le widget ne se charge pas."
+    caption_reset: "Régénérer"
+    loading: "Chargement des listes depuis terrytrilla.com…"
+    load_error: "Impossible de charger les listes depuis terrytrilla.com."
+    retry: "Réessayer"
+    preview_failed: "L’aperçu ne s’est pas chargé. Le widget sera quand même inséré."
+    insert: "Insérer"
+    update: "Mettre à jour"

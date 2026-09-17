@@ -6,6 +6,7 @@ en:
       product_bar_links: "Product sections shown in the bar, in order."
       product_bar_more: "Sections hidden under “More”."
       sign_in_url: "Where the “Sign in” button in the product bar leads."
+      tt_widgets_groups: "Groups that see the “TerryTrilla widgets” button in the post editor (staff always do)."
   bar:
     partimento: "Partimento v3"
     metronome: "Metronome"
@@ -67,3 +68,35 @@ en:
     account_link: "open account settings"
   header:
     club: "Club"
+  tt_widgets:
+    button_title: "TerryTrilla widgets"
+    modal_title: "Insert a TerryTrilla widget"
+    modal_title_edit: "Edit the widget"
+    widgets:
+      circle:
+        name: "Scale circle"
+        description: "A live circle: scale, tonic, sound on tap"
+        caption: "Scale circle: %{scale}, tonic %{root}"
+        preview_hint: "This is how the circle will look in the post. Tap a note to hear it."
+    field:
+      scale: "Scale"
+      root: "Tonic"
+      preset: "Look"
+      sound: "Sound"
+      caption: "Caption"
+    notes_group: "%{count}-note scales"
+    unknown_value: "Unknown: %{value}"
+    preset_none: "Site default look"
+    preset_group_forum: "For the forum"
+    preset_group_other: "Other published looks"
+    preset_site_default: " (site default)"
+    preset_hint: "Mark a look for the forum in the widget factory: add the route /@forum."
+    sound_none: "No sound"
+    caption_hint: "Shown in emails and if the widget fails to load."
+    caption_reset: "Generate again"
+    loading: "Loading lists from terrytrilla.com…"
+    load_error: "Couldn't load the lists from terrytrilla.com."
+    retry: "Try again"
+    preview_failed: "The preview didn't load. The widget will still be inserted."
+    insert: "Insert"
+    update: "Update"

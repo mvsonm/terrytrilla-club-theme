@@ -6,6 +6,7 @@ ar:
       product_bar_links: "أقسام المنتج الظاهرة في الشريط وترتيبها."
       product_bar_more: "الأقسام المخفية ضمن «المزيد»."
       sign_in_url: "وجهة زر «تسجيل الدخول» في شريط المنتج."
+      tt_widgets_groups: "المجموعات التي ترى زر «أدوات TerryTrilla» في محرر المشاركة (الفريق دائمًا)."
   bar:
     partimento: "Partimento v3"
     metronome: "المترونوم"
@@ -71,3 +72,35 @@ ar:
     account_link: "فتح إعدادات الحساب"
   header:
     club: "النادي"
+  tt_widgets:
+    button_title: "أدوات TerryTrilla"
+    modal_title: "إدراج أداة TerryTrilla"
+    modal_title_edit: "ضبط الأداة"
+    widgets:
+      circle:
+        name: "دائرة المقامات"
+        description: "دائرة حية: المقام والقرار وصوت عند اللمس"
+        caption: "دائرة المقامات: %{scale}، القرار %{root}"
+        preview_hint: "هكذا ستظهر الدائرة في المقال. المس نغمة لتسمعها."
+    field:
+      scale: "المقام"
+      root: "القرار"
+      preset: "المظهر"
+      sound: "الصوت"
+      caption: "التسمية"
+    notes_group: "مقامات من %{count} نغمات"
+    unknown_value: "غير معروف: %{value}"
+    preset_none: "المظهر الافتراضي للموقع"
+    preset_group_forum: "للمنتدى"
+    preset_group_other: "منشورات أخرى"
+    preset_site_default: " (افتراضي في الموقع)"
+    preset_hint: "علّم مظهرًا للمنتدى في مصنع الأدوات: أضف المسار ‎/@forum."
+    sound_none: "بلا صوت"
+    caption_hint: "تظهر في الرسائل البريدية وعند تعذّر تحميل الأداة."
+    caption_reset: "إنشاء من جديد"
+    loading: "جارٍ تحميل القوائم من terrytrilla.com…"
+    load_error: "تعذّر تحميل القوائم من terrytrilla.com."
+    retry: "أعد المحاولة"
+    preview_failed: "لم تُحمَّل المعاينة. ستُدرج الأداة على أي حال."
+    insert: "إدراج"
+    update: "تحديث"

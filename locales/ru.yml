@@ -6,6 +6,7 @@ ru:
       product_bar_links: "Разделы продукта в полосе и их порядок."
       product_bar_more: "Разделы, спрятанные под «Ещё»."
       sign_in_url: "Куда ведёт кнопка «Войти» в полосе продукта."
+      tt_widgets_groups: "Группы, которым видна кнопка «Виджеты TerryTrilla» в редакторе поста (сотрудникам — всегда)."
   bar:
     partimento: "Partimento v3"
     metronome: "Метроном"
@@ -69,3 +70,35 @@ ru:
     account_link: "открыть настройки аккаунта"
   header:
     club: "Клуб"
+  tt_widgets:
+    button_title: "Виджеты TerryTrilla"
+    modal_title: "Вставить виджет TerryTrilla"
+    modal_title_edit: "Настроить виджет"
+    widgets:
+      circle:
+        name: "Круг ладов"
+        description: "Живой круг: лад, тоника, звук по нажатию"
+        caption: "Круг ладов: %{scale}, тоника %{root}"
+        preview_hint: "Так круг встанет в статью. Нажмите на ноту — прозвучит."
+    field:
+      scale: "Лад"
+      root: "Тоника"
+      preset: "Вид"
+      sound: "Звук"
+      caption: "Подпись"
+    notes_group: "Лады из %{count} звуков"
+    unknown_value: "Неизвестно: %{value}"
+    preset_none: "Вид по умолчанию на сайте"
+    preset_group_forum: "Для форума"
+    preset_group_other: "Остальные опубликованные"
+    preset_site_default: " (по умолчанию на сайте)"
+    preset_hint: "Пометить вид для форума можно в фабрике виджетов: добавьте маршрут /@forum."
+    sound_none: "Без звука"
+    caption_hint: "Видна в письмах и если виджет не загрузится."
+    caption_reset: "Собрать заново"
+    loading: "Загружаю списки с terrytrilla.com…"
+    load_error: "Не удалось загрузить списки с terrytrilla.com."
+    retry: "Повторить"
+    preview_failed: "Предпросмотр не загрузился. Виджет всё равно вставится."
+    insert: "Вставить"
+    update: "Обновить"

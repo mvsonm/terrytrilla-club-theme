@@ -6,6 +6,7 @@ de:
       product_bar_links: "Produktbereiche in der Leiste und ihre Reihenfolge."
       product_bar_more: "Bereiche unter „Mehr“."
       sign_in_url: "Ziel der Schaltfläche „Anmelden“ in der Produktleiste."
+      tt_widgets_groups: "Gruppen, die im Beitragseditor die Schaltfläche „TerryTrilla-Widgets“ sehen (Team immer)."
   bar:
     partimento: "Partimento v3"
     metronome: "Metronom"
@@ -67,3 +68,35 @@ de:
     account_link: "Kontoeinstellungen öffnen"
   header:
     club: "Klub"
+  tt_widgets:
+    button_title: "TerryTrilla-Widgets"
+    modal_title: "TerryTrilla-Widget einfügen"
+    modal_title_edit: "Widget bearbeiten"
+    widgets:
+      circle:
+        name: "Skalenkreis"
+        description: "Ein lebendiger Kreis: Skala, Grundton, Klang beim Antippen"
+        caption: "Skalenkreis: %{scale}, Grundton %{root}"
+        preview_hint: "So erscheint der Kreis im Beitrag. Tippe eine Note an, um sie zu hören."
+    field:
+      scale: "Skala"
+      root: "Grundton"
+      preset: "Aussehen"
+      sound: "Klang"
+      caption: "Bildunterschrift"
+    notes_group: "Skalen mit %{count} Tönen"
+    unknown_value: "Unbekannt: %{value}"
+    preset_none: "Standardaussehen der Website"
+    preset_group_forum: "Für das Forum"
+    preset_group_other: "Weitere veröffentlichte"
+    preset_site_default: " (Standard der Website)"
+    preset_hint: "Ein Aussehen markierst du in der Widget-Fabrik für das Forum: Route /@forum hinzufügen."
+    sound_none: "Ohne Klang"
+    caption_hint: "Sichtbar in E-Mails und wenn das Widget nicht lädt."
+    caption_reset: "Neu erzeugen"
+    loading: "Listen werden von terrytrilla.com geladen…"
+    load_error: "Die Listen von terrytrilla.com konnten nicht geladen werden."
+    retry: "Erneut versuchen"
+    preview_failed: "Die Vorschau wurde nicht geladen. Das Widget wird trotzdem eingefügt."
+    insert: "Einfügen"
+    update: "Aktualisieren"

@@ -29,3 +29,11 @@ product_bar_more:
 sign_in_url:
   type: string
   default: "/login"
+
+# Кнопка «Виджеты TerryTrilla» в редакторе поста (F4). Сотрудникам видна всегда,
+# остальным — участникам этих групп. Решение mvsonm 17.09: начинаем с авторов
+# базы знаний.
+tt_widgets_groups:
+  type: list
+  list_type: simple
+  default: "kb_authors"
