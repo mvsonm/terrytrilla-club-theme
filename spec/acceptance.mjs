@@ -748,7 +748,9 @@ console.log('\n14 · «Поделиться» несёт язык читател
     языкСсылки("https://x/t/a/1?tl=ru") === "ru" && языкСсылки("https://x/t/a/1?u=b&tl=ja") === "ja" && языкСсылки("https://x/t/a/1") === null);
 
   for (const [путь, переведена] of [["/t/17", true], ["/t/10", false]]) {
-    const { ctx, page } = await открыть(browser, путь, { гость: true, locale: "ru" });
+    // ⚠️ Гостем шёл бы прогон по БОЕВОЙ теме: предпросмотр работает только у
+    // сотрудника. Первая редакция так и проверяла старую тему и краснела на новой правке.
+    const { ctx, page } = await открыть(browser, путь, { гость: !ПРЕВЬЮ, locale: "ru" });
     const r = await page.evaluate(() => ({
       постов: document.querySelectorAll("article[data-post-id], .topic-post").length,
       ссылки: [...document.querySelectorAll("a.post-date")].map((a) => a.getAttribute("href")),
