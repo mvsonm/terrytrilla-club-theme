@@ -128,6 +128,28 @@ const открыть = async (browser, путь, опции = {}) => {
   return { ctx, page, ошибки };
 };
 
+/*
+  Ожидание условия на странице — опросом через `page.evaluate`, а НЕ
+  `page.waitForFunction`.
+
+  ⚠️ `waitForFunction` компилирует условие из строки, а CSP страниц форума у
+  вошедшего не разрешает 'unsafe-eval': вызов падает мгновенно с EvalError.
+  Обёрнутый в `.catch`, он выглядит как «не дождались» — а на деле не ждал ни
+  миллисекунды. 17.09 так покраснела проверка 11 («предпросмотра нет»), хотя
+  журнал монтирований показал живой круг через 50 мс; проверка 9–10 с тем же
+  приёмом зеленела лишь потому, что круг успевал ожить к следующей строке.
+  Контроль «на главной гостем работает» гипотезу не опроверг: там CSP другая.
+  `page.evaluate` идёт через протокол отладки и CSP не подчиняется.
+*/
+const дождаться = async (page, условие, мс = 30000) => {
+  const до = Date.now() + мс;
+  while (Date.now() < до) {
+    if (await page.evaluate(условие).catch(() => false)) return true;
+    await page.waitForTimeout(250);
+  }
+  return false;
+};
+
 const browser = await chromium.launch();
 
 // ── 1. Главная в светлой и тёмной ───────────────────────────────────────────
@@ -440,10 +462,10 @@ console.log('\n9–10 · виджет в посте и в письме');
     } else {
       const блок = page.locator("[data-wrap='tt-circle']").first();
       await блок.scrollIntoViewIfNeeded();
-      await page.waitForFunction(() => {
+      await дождаться(page, () => {
         const n = document.querySelector("[data-wrap='tt-circle']");
-        return n && ['live', 'error'].includes(n.dataset.ttCircle);
-      }, null, { timeout: 30000 }).catch(() => {});
+        return !!n && ['live', 'error'].includes(n.dataset.ttCircle);
+      }, 30000);
       const состояние = await блок.getAttribute('data-tt-circle');
       const нот = await блок.locator('.scale-circle-note-label').count();
       проверка('круг в посте ожил', состояние === 'live' && нот === 12, `состояние ${состояние}, меток нот ${нот}`);
@@ -534,9 +556,7 @@ console.log('\n11 · кнопка виджетов в редакторе');
 
       await лад.selectOption('dorian');
       await page.locator('.tt-widget-modal .tt-wm__root[data-root="D"]').click();
-      const сцена = await page.waitForFunction(
-        () => document.querySelector('.tt-wm__stage svg'), null, { timeout: 30000 }
-      ).then(() => true).catch(() => false);
+      const сцена = await дождаться(page, () => !!document.querySelector('.tt-wm__stage svg'), 30000);
       проверка('живой предпросмотр в окне', сцена);
 
       await page.locator('.tt-widget-modal .tt-wm__apply').click();
