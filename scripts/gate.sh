@@ -181,27 +181,30 @@ echo "${LIVE}" | grep -q "${SHORT}" || stop "боевая тема не вста
 #
 # Поэтому заслон не верит «cache=cleared», а СРАВНИВАЕТ: какой файл считает
 # текущим ядро и какой отдаёт живая страница. Разошлись — перезапуск и повтор.
+# ⚠️ Имена переменных ЛАТИНИЦЕЙ — об этом написано в шапке файла, и я всё равно
+# наступил: кириллица даёт «command not found», а сравнение двух ПУСТЫХ строк
+# печатает «✓». Сторож, который всегда зелёный, хуже отсутствующего.
 step "6. Сверяю стили на живой странице"
-ЖДЁМ="$(ssh $FORUM "sudo docker exec app rails runner '
+EXPECTED_CSS="$(ssh $FORUM "sudo docker exec app rails runner '
 t = Theme.find(${THEME_LIVE})
 cs = t.color_scheme
 b = Stylesheet::Manager::Builder.new(target: :color_definitions, theme: t, color_scheme: cs, manager: Stylesheet::Manager.new(theme_id: t.id))
 puts b.stylesheet_filename
 '" 2>/dev/null | tr -d '\r' | tail -1)"
-echo "  ядро считает текущим: ${ЖДЁМ}"
+echo "  ядро считает текущим: ${EXPECTED_CSS}"
 
-сверить() { curl -s "https://terrytrilla.club/?gate=$(date +%s)" | grep -o 'color_definitions[^"?]*' | head -1; }
-ОТДАЁТ="$(сверить)"
-if [ "${ОТДАЁТ}" != "${ЖДЁМ}" ]; then
-  echo "  страница отдаёт ${ОТДАЁТ} — перезапускаю рабочие процессы"
+serve_check() { curl -s "https://terrytrilla.club/?gate=$(date +%s)" | grep -o 'color_definitions[^"?]*' | head -1; }
+SERVED_CSS="$(serve_check)"
+if [ "${SERVED_CSS}" != "${EXPECTED_CSS}" ]; then
+  echo "  страница отдаёт ${SERVED_CSS} — перезапускаю рабочие процессы"
   ssh $FORUM "sudo docker exec app sv restart unicorn" >/dev/null 2>&1
   for _ in 1 2 3 4 5 6 7 8 9 10; do
     sleep 10
-    ОТДАЁТ="$(сверить)"
-    [ "${ОТДАЁТ}" = "${ЖДЁМ}" ] && break
+    SERVED_CSS="$(serve_check)"
+    [ "${SERVED_CSS}" = "${EXPECTED_CSS}" ] && break
   done
 fi
-[ "${ОТДАЁТ}" = "${ЖДЁМ}" ] || stop "живая страница отдаёт ${ОТДАЁТ}, а ядро считает текущим ${ЖДЁМ} — стили не доехали"
+[ "${SERVED_CSS}" = "${EXPECTED_CSS}" ] || stop "живая страница отдаёт ${SERVED_CSS}, а ядро считает текущим ${EXPECTED_CSS} — стили не доехали"
 echo "  живая страница отдаёт тот же файл ✓"
 
 echo
