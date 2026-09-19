@@ -859,6 +859,44 @@ console.log('\n14 · «Поделиться» несёт язык читател
   }
 }
 
+
+// ── Значок вкладки идёт за активной схемой (B18-бис) ─────────────────────────
+// Владелец 19.09: «смена фавикона при смене темы не сделана». Сервер печатает
+// три значка, но выбирает из них браузер — по системной схеме. Переключатель на
+// форуме правит `media` у таблиц стилей, и значок оставался прежним.
+//
+// ⚠️ Проверяем ПОВЕДЕНИЕМ: перещёлкиваем `media` так же, как это делает
+// переключатель интерфейса, и требуем, чтобы адрес базового значка сменился.
+console.log('\n15 · значок следует за активной схемой');
+{
+  const { ctx, page } = await открыть(browser, '/', { colorScheme: 'light' });
+  const снять = () =>
+    page.evaluate(() => {
+      const базовый = [...document.querySelectorAll('link[rel~="icon"]')].find(
+        (l) => !l.getAttribute('media')
+      );
+      return базовый ? базовый.href.split('/').pop() : null;
+    });
+  const светлый = await снять();
+  // КОНТРОЛЬ: варианты вообще напечатаны сервером, иначе проверять нечего.
+  const вариантов = await page.evaluate(
+    () => document.querySelectorAll('link[rel~="icon"][media]').length
+  );
+  проверка('сервер печатает варианты значка (контроль)', вариантов >= 2, `вариантов ${вариантов}`);
+
+  // Так переключает схему сам Discourse: media у таблиц становится all/none.
+  await page.evaluate(() => {
+    document.querySelector('link.light-scheme')?.setAttribute('media', 'none');
+    document.querySelector('link.dark-scheme')?.setAttribute('media', 'all');
+  });
+  await page.waitForTimeout(500);
+  const тёмный = await снять();
+
+  проверка('значок сменился при переключении схемы', светлый && тёмный && светлый !== тёмный,
+    `было ${светлый}, стало ${тёмный}`);
+  await ctx.close();
+}
+
 await browser.close();
 
 const пропущены = итоги.filter((i) => i.пропущено);
