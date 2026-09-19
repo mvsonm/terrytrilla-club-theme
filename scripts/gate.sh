@@ -86,6 +86,13 @@ t = Theme.find(${THEME_STAGING})
 t.remote_theme.update_from_remote
 t.reload
 puts "local=#{t.remote_theme.local_version.to_s[0,8]}"
+# ⚠️ Перепечь поля ОБЯЗАТЕЛЬНО. Отпечаток файла цветовой схемы ядро считает из
+# ЗАПЕЧЁННОГО поля color_definitions (builder.rb: resolve_baked_field), и без
+# перепекания имя файла не меняется: тема обновилась, а таблица цветов осталась
+# прежней. 19.09 из-за этого новые токены не доехали и кнопка потеряла заливку,
+# а «cache=cleared» в выводе выглядело успехом.
+t.theme_fields.each { |f| f.ensure_baked! }
+t.save!
 Stylesheet::Manager.clear_theme_cache!
 Stylesheet::Manager.clear_color_scheme_cache!
 puts "cache=cleared"
@@ -150,6 +157,13 @@ t = Theme.find(${THEME_LIVE})
 t.remote_theme.update_from_remote
 t.reload
 puts "local=#{t.remote_theme.local_version.to_s[0,8]}"
+# ⚠️ Перепечь поля ОБЯЗАТЕЛЬНО. Отпечаток файла цветовой схемы ядро считает из
+# ЗАПЕЧЁННОГО поля color_definitions (builder.rb: resolve_baked_field), и без
+# перепекания имя файла не меняется: тема обновилась, а таблица цветов осталась
+# прежней. 19.09 из-за этого новые токены не доехали и кнопка потеряла заливку,
+# а «cache=cleared» в выводе выглядело успехом.
+t.theme_fields.each { |f| f.ensure_baked! }
+t.save!
 Stylesheet::Manager.clear_theme_cache!
 Stylesheet::Manager.clear_color_scheme_cache!
 RB
