@@ -171,5 +171,38 @@ LIVE="$(ssh $FORUM "sudo docker cp /tmp/gate_live.rb app:/tmp/gate_live.rb >/dev
 echo "  боевая тема: ${LIVE}"
 echo "${LIVE}" | grep -q "${SHORT}" || stop "боевая тема не встала на ${SHORT}"
 
+# ── 6. Живая страница обязана отдавать НОВЫЕ стили ──────────────────────────
+#
+# ⚠️ Дважды 19.09 выкат заканчивался полусломанной полосой: правила из темы
+# приезжали, а файл цветовой схемы оставался прежним — кнопка получала новую
+# геометрию и СТАРЫЙ цвет подписи (белый на почти белой полосе). Причина двойная:
+# отпечаток схемы считается из запечённого поля (лечится ensure_baked! выше), а
+# ссылку на файл каждый рабочий процесс помнит у себя, и сброс кеша её не меняет.
+#
+# Поэтому заслон не верит «cache=cleared», а СРАВНИВАЕТ: какой файл считает
+# текущим ядро и какой отдаёт живая страница. Разошлись — перезапуск и повтор.
+step "6. Сверяю стили на живой странице"
+ЖДЁМ="$(ssh $FORUM "sudo docker exec app rails runner '
+t = Theme.find(${THEME_LIVE})
+cs = t.color_scheme
+b = Stylesheet::Manager::Builder.new(target: :color_definitions, theme: t, color_scheme: cs, manager: Stylesheet::Manager.new(theme_id: t.id))
+puts b.stylesheet_filename
+'" 2>/dev/null | tr -d '\r' | tail -1)"
+echo "  ядро считает текущим: ${ЖДЁМ}"
+
+сверить() { curl -s "https://terrytrilla.club/?gate=$(date +%s)" | grep -o 'color_definitions[^"?]*' | head -1; }
+ОТДАЁТ="$(сверить)"
+if [ "${ОТДАЁТ}" != "${ЖДЁМ}" ]; then
+  echo "  страница отдаёт ${ОТДАЁТ} — перезапускаю рабочие процессы"
+  ssh $FORUM "sudo docker exec app sv restart unicorn" >/dev/null 2>&1
+  for _ in 1 2 3 4 5 6 7 8 9 10; do
+    sleep 10
+    ОТДАЁТ="$(сверить)"
+    [ "${ОТДАЁТ}" = "${ЖДЁМ}" ] && break
+  done
+fi
+[ "${ОТДАЁТ}" = "${ЖДЁМ}" ] || stop "живая страница отдаёт ${ОТДАЁТ}, а ядро считает текущим ${ЖДЁМ} — стили не доехали"
+echo "  живая страница отдаёт тот же файл ✓"
+
 echo
 echo "✓ Выкачено, и проверено ДО выката."
