@@ -36,7 +36,7 @@
   исправную тему.
 */
 
-import { chromium } from 'playwright';
+import { chromium, devices } from 'playwright';
 import { readFileSync } from 'node:fs';
 
 const БАЗА = process.env.TT_FORUM || 'https://terrytrilla.club';
@@ -897,6 +897,59 @@ console.log('\n15 · значок следует за активной схем�
   await ctx.close();
 }
 
+
+// ── То же на МОБИЛЬНОМ экране, и без перезагрузки (B18-тер) ──────────────────
+// Владелец 19.09: «на телефоне менял тему несколько раз — форум остаётся
+// тёмным. Это из-за кеша?». Замер показал, что нет: страница следует за схемой
+// вживую, решает всё браузер телефона. Но доказательство надо держать, а не
+// пересказывать — иначе следующий такой вопрос снова уйдёт в догадки.
+//
+// ⚠️ Проверяем БЕЗ перезагрузки (`emulateMedia` на открытой странице): именно
+// это отделяет поведение от кеша. Если бы схему решал кеш, фон бы не поменялся.
+console.log('\n16 · мобильный экран: схема и значок идут за системой без перезагрузки');
+{
+  const ctx = await browser.newContext({
+    ...devices['Pixel 7'],
+    colorScheme: 'dark',
+    locale: 'ru-RU',
+  });
+  const page = await ctx.newPage();
+  await page.goto(`${БАЗА}/?m=${Date.now()}`, { waitUntil: 'domcontentloaded' });
+  await page.waitForTimeout(4000);
+
+  const снять = () =>
+    page.evaluate(() => {
+      const шапка = document.querySelector('.d-header') || document.body;
+      const базовый = [...document.querySelectorAll('link[rel~="icon"]')].find(
+        (l) => !l.getAttribute('media')
+      );
+      return {
+        фон: getComputedStyle(шапка).backgroundColor,
+        значок: базовый ? базовый.href.split('/').pop() : null,
+        мобильная: document.documentElement.className.includes('mobile-view'),
+      };
+    });
+
+  const тёмная = await снять();
+  // КОНТРОЛЬ: это действительно мобильная раскладка, иначе проверяли бы десктоп.
+  проверка('мобильная раскладка (контроль)', тёмная.мобильная === true, `классы html: ${тёмная.мобильная}`);
+
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.waitForTimeout(1000);
+  const светлая = await снять();
+
+  проверка(
+    'фон следует за схемой телефона без перезагрузки',
+    тёмная.фон !== светлая.фон,
+    `тёмная ${тёмная.фон} → светлая ${светлая.фон}`
+  );
+  проверка(
+    'значок следует за схемой телефона без перезагрузки',
+    тёмная.значок && светлая.значок && тёмная.значок !== светлая.значок,
+    `${тёмная.значок} → ${светлая.значок}`
+  );
+  await ctx.close();
+}
 await browser.close();
 
 const пропущены = итоги.filter((i) => i.пропущено);
